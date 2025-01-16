@@ -1,0 +1,91 @@
+@import "../public/public.css";
+
+.login-section {
+    width: 500px;
+    margin: 0 auto;
+}
+.login-section h1{
+    text-align: center;
+    margin: 40px 0;
+    font-size: var(--font-size-xxx-large);
+}
+/****************************/
+
+.user-info-section > label{
+    display: flex;
+    border: 1px solid var(--Dark-gray-textured-background---1-rgba);
+    margin: 8px 0;
+    align-items: center;
+}
+.user-info-section input{
+    flex: 1;
+    border: none;
+    padding: 10px;
+    font-size: var(--font-size-small);
+    outline: none;
+}
+.user-info-section i{
+    font-size: var(--font-size-normal);
+    margin: 0 8px;
+    cursor: pointer;
+}
+/**********************************************/
+.login-config-section{
+    text-align: right;
+    margin: 4px 0;
+}
+.login-config-section label{
+    margin-left: 20px;
+    color: var(--abstract-gray-background---1-rgba);
+}
+.login-config-section input{
+    margin-right: 5px;
+}
+/********************************************/
+.link-section{
+    margin: 30px 0;
+    text-align: center;
+}
+.link-section a{
+    color: var(--Dark-gray-textured-background---5-rgba);
+    text-decoration: none;
+    font-size: var(--font-size-x-small);
+    &:hover{
+        text-decoration: underline;
+    }
+}
+.link-section a:not(:last-child)::after{
+    content: "|";
+    margin: 0 10px;
+    color: var(--Dark-gray-textured-background---1-rgba);
+}
+#login-btn{
+    width: 100%;
+    padding: 14px 0;
+    font-size: var(--font-size-normal);
+    border: 1px solid black;
+    background-color: black;
+    color: white;
+    cursor: pointer;
+    transition-duration: 0.2s;
+    &:hover{
+        background-color: white;
+        color: black;
+    }
+}
+/******************************************/
+.sns-login-btn-section{
+    margin-top: 30px;
+}
+.sns-login-btn-section a{
+    display: block;
+    margin: 10px auto;
+    width: 150px;
+}
+.sns-login-btn-section img{
+    width: 100%;
+}
+
+
+
+

@@ -1,0 +1,87 @@
+@import "../public/public.css";
+
+.join-section {
+    margin: 100px 0;
+    padding: 0 450px;
+}
+.join-section .form-container {
+    max-width: 400px;
+    margin: 50px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.join-section .form-group {
+    margin-bottom: 20px;
+}
+
+.join-section label {
+    display: block;
+    font-size: 14px;
+    margin-bottom: 8px;
+    color: #333;
+}
+
+.join-section input, select, button {
+    width: 100%;
+    padding: 10px;
+    font-size: 14px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+.join-section input:focus, select:focus {
+    border-color: #007BFF;
+    outline: none;
+}
+
+.join-section button {
+    background-color: black;
+    color: white;
+    border: none;
+    cursor: pointer;
+}
+
+.join-section button:hover {
+    background-color: #0056b3;
+}
+
+.join-section .error-message{
+    display: none;
+    font-size: 12px;
+    margin: 2px 0 10px 0;
+    padding: 0 60px;
+    color: red;
+}
+.join-section .error-message[active]{
+    display: block;
+}
+
+.join-section .phone-input {
+    display: flex;
+    gap: 10px;
+}
+
+.join-section .phone-input select {
+    width: 30%;
+}
+
+.join-section .phone-input input {
+    width: 35%;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

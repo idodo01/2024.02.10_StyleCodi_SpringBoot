@@ -1,0 +1,171 @@
+@import "../public/public.css";
+
+main{
+    width: 1400px;
+    margin: 180px auto;
+}
+main > h1{
+    margin: 40px;
+    text-align: center;
+}
+.main-section > div{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 10px;
+}
+.main-section > div > p{
+    font-size: var(--font-size-x-small);
+    color: var(--abstract-gray-background---1-rgba);
+}
+.delete-btn{
+    border: 1px solid black;
+    padding: 2px 4px;
+    cursor: pointer;
+    background-color: var(--Spring-WT-1-rgba);
+    &:hover{
+      opacity: 0.8;
+    }
+}
+
+
+/******************************************/
+.product-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 10px 0;
+}
+.product-table > tbody tr{
+    height: 140px;
+}
+.product-table th{
+    border-top: 1px solid var(--Dark-gray-textured-background---1-rgba);
+    padding: 10px 0;
+}
+.product-table td{
+    border: 1px solid var(--Dark-gray-textured-background---1-rgba);
+}
+.product-table td:first-child {
+    border-left: none;
+}
+.product-table td:last-child{
+    border-right: none;
+}
+
+.product-select-container{
+    width: 30px;
+    text-align: center;
+}
+.product-image-container{
+    width: 140px;
+    padding: 0 10px;
+}
+.product-image-container > a > img{
+    width: 100%;
+}
+
+.product-title-container{
+    padding: 10px 20px;
+}
+.product-title-container a{
+    display: block;
+    font-size: var(--font-size-small);
+    margin-bottom: 5px;
+    color: var(--Pasteles-1-rgba);
+    text-decoration: none;
+}
+.product-title-container > ul{
+    font-size: var(--font-size-xx-small);
+    color: var(--abstract-gray-background---4-rgba);
+}
+.product-price-container{
+    width: 100px;
+    text-align: center;
+}
+
+.product-amount-container{
+    width: 100px;
+}
+.amount-change-label{
+    display: grid;
+    width: 55px;
+    margin: 0 auto;
+    grid-template-areas:
+            'input up'
+            'input down';
+    grid-template-rows: repeat(2, 15px);
+    border: 1px solid black;
+    border-radius: 4px;
+    overflow: hidden;
+}
+.amount-change-label > input{
+    width: 100%;
+    grid-area: input;
+    border: none;
+    border-right: 1px solid black;
+    text-align: center;
+}
+.amount-change-label > button{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    grid-area: input;
+    width: 20px;
+    border: none;
+    background-color: unset;
+    cursor: pointer;
+    font-size: var(--font-size-xxx-small);
+}
+.amount-change-label > .amount-plus-btn{
+    grid-area: up;
+    border-bottom: 1px solid black;
+}
+.amount-change-label > .amount-minus-btn{
+    grid-area: down;
+}
+
+.product-total-price-container{
+    width: 100px;
+    text-align: center;
+}
+.product-table .delete-btn{
+    display: block;
+    margin: 0 auto;
+    font-size: var(--font-size-x-small);
+}
+/******************************************************************/
+.total-price-container{
+    margin: 30px 0;
+    text-align: right;
+    font-size: var(--font-size-large);
+}
+.total-price-container > span{
+    margin-right: 10px;
+}
+
+.button-container{
+    margin: 20px 0;
+    text-align: center;
+}
+
+.button-container > button{
+    margin: 0 4px;
+    font-size: var(--font-size-normal);
+    padding: 8px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+.button-container > button:first-child{
+    background-color: var(--Summer-spring-decoration-design-elements-3-rgba);
+}
+.button-container > button:last-child{
+    background-color: var(--Summer-spring-decoration-design-elements-2-rgba);
+}
+
+
+
+
+

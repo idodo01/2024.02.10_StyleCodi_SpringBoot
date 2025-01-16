@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ido.style.mapper.OrderMapper">
+    <resultMap id="cartMap" type="CartDTO">
+        <id property="no" column="cart_no" />
+        <result property="amount" column="cart_amount" />
+        <association property="product" javaType="ProductDTO" resultMap="ido.style.mapper.ProductMapper.productWithImageMap" />
+    </resultMap>
+
+    <select id="selectCartsByUser" resultType="CartDTO" resultMap="cartMap">
+        SELECT * FROM `select_carts_by_user_view`
+        WHERE `user_id` = #{id}
+    </select>
+
+    <insert id="insertCart">
+        INSERT INTO `cart` (no, user_id, product_no, amount)
+        VALUES (NULL, #{user.id}, #{product.no}, 1)
+    </insert>
+
+<!--    <insert id="insertCartOptions">-->
+<!--        <selectKey keyProperty="no" resultType="int" order="BEFORE">-->
+<!--            SELECT LAST_INSERT_ID()-->
+<!--        </selectKey>-->
+<!--        INSERT INTO `cart_option` (no, cart_no, product_option_no, amount) VALUES-->
+<!--        <foreach collection="product.options" item="option" separator=",">-->
+<!--            (NULL, #{no}, #{option.no}, #{option.amount})-->
+<!--        </foreach>-->
+<!--    </insert>-->
+    
+
+    <update id="updateCartAmount">
+        UPDATE cart
+        SET `amount` = #{amount}
+        WHERE no = #{no} AND user_id = #{user.id}
+    </update>
+
+    <delete id="deleteCartByNoAndUser">
+        DELETE FROM `cart`
+        WHERE no = #{no} AND user_id = #{user.id}
+    </delete>
+    <delete id="deleteCartsByNoAndUser">
+        DELETE FROM `cart` WHERE user_id = #{user.id} AND cart.no IN
+        <foreach collection="carts" item="cart" open="(" close=")" separator=",">
+            #{cart.no}
+        </foreach>
+    </delete>
+
+    <!--===========================================================-->
+<!--    <insert id="insertOrder">-->
+<!--        INSERT INTO `order` (id, user_id, imp_uid, name, total_price, shipping_name, shipping_tel, shipping_addr, shipping_postcode, shipping_addr_detail, orderer_name, orderer_tel, orderer_email, ordered_at)-->
+<!--        VALUES (#{id}, #{user.id}, #{impUid}, #{name},  #{totalPrice}, #{shippingName},#{shippingTel},#{shippingAddr},#{shippingPostcode},#{shippingAddrDetail},#{ordererName},#{ordererTel},#{ordererEmail},#{orderedAt})-->
+<!--    </insert>-->
+<!--    <insert id="insertOrderProducts">-->
+<!--        INSERT INTO order_product (no, order_id, product_no, amount) VALUES-->
+<!--        (NULL, #{id}, #{product.no}, #{amount})-->
+<!--    </insert>-->
+<!--    <insert id="insertOrderProductOptions">-->
+<!--        INSERT INTO order_product_option-->
+<!--    </insert>-->
+
+
+
+
+
+</mapper>

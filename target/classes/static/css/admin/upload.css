@@ -1,0 +1,168 @@
+@import "../public/public.css";
+
+main{
+    width: 60%;
+    margin: 0 auto;
+    padding: 40px 0;
+}
+h1{
+    text-align: center;
+    font-size: var(--font-size-xxx-large);
+    margin-bottom: 40px;
+}
+form{
+    padding: 20px 40px;
+    background-color: var(--Summer-spring-decoration-design-elements-5-rgba);
+    border-radius: 8px;
+}
+form > section{
+    display: flex;
+    align-items: center;
+    font-size: var(--font-size-normal);
+    padding: 10px 0;
+}
+form > section > b{
+    flex-basis: 180px;
+}
+form > section > label{
+    flex: 1;
+}
+form > section input{
+    width: 100%;
+    padding: 2px 5px;
+    font-size: var(--font-size-small);
+}
+/********************************************************/
+.item-option-section .option-add-container{
+    display: flex;
+    margin-bottom: 10px;
+}
+.item-option-section > b{
+    flex-basis: 180px;
+}
+.item-option-section > div{
+    flex: 1;
+}
+
+.item-option-section .option-add-container label{
+    display: flex;
+    font-size: var(--font-size-small);
+    align-items: center;
+    margin-right: 10px;
+}
+.item-option-section .option-add-container label > span{
+    flex-basis: 120px;
+}
+.item-option-section .option-add-container button{
+    padding: 0 10px;
+    font-size: var(--font-size-normal);
+    border: none;
+    background-color: var(--Pasteles-3-rgba);
+    border-radius: 4px;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+.item-option-section .option-list-container{
+    display: grid;
+    grid-template-columns: repeat(4, minmax(50px , 200px));
+    font-size: var(--font-size-xx-small);
+    text-align: center;
+    grid-gap: 10px;
+}
+.item-option-section .option-list-container > li{
+    display: flex;
+    padding: 4px;
+    border-radius: 4px;
+    border: 1px solid black;
+    background-color: white;
+    justify-content: center;
+}
+.item-option-section .option-list-container div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    flex: 1;
+}
+.item-option-section .option-list-container span{
+    display: block;
+}
+.item-option-section .option-list-container button{
+    align-self: center;
+    padding: 0 5px;
+    color: var(--Pasteles-5-rgba);
+    font-weight: bold;
+    font-size: var(--font-size-x-small);
+    background-color: unset;
+    border: none;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+/**********************************************************************/
+form .item-images-section > b > button{
+    font-size: var(--font-size-normal);
+    color: black;
+    background-color: white;
+    width: 30px;
+    border-radius: 4px;
+    border: 1px solid black;
+    cursor: pointer;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+form .item-images-section li{
+    display: flex;
+    align-items: center;
+}
+form .item-images-section li > button{
+    width: 30px;
+    font-size: var(--font-size-normal);
+    color: var(--Pasteles-5-rgba);
+    background-color: white;
+    border: 1px solid black;
+    border-radius: 4px;
+    cursor: pointer;
+    margin-right: 4px;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+/***************************************************/
+form textarea{
+    width: 100%;
+    height: 300px;
+    resize: none;
+    padding: 20px;
+    font-size: var(--font-size-small);
+}
+/***************************************************/
+form > .item-upload-button-section{
+    display: block;
+    text-align: center;
+}
+form > .item-upload-button-section > button{
+    padding: 10px 30px;
+    cursor: pointer;
+    margin: 0 4px;
+    font-size: var(--font-size-small);
+    border: none;
+    border-radius: 4px;
+    &:hover{
+        opacity: 0.8;
+    }
+}
+form > .item-upload-button-section > button[type=button]{
+    background-color: var(--Spring-WT-5-rgba);
+}
+form > .item-upload-button-section > button[type=submit]{
+    background-color: var(--Spring-WT-1-rgba);
+}
+
+
+
+
+
+

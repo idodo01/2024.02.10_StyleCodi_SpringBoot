@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>STYLE CODI ♥♡♥♡</title>
+    <link rel="stylesheet" href="../../static/css/main/category.css">
+</head>
+<body>
+<main layout:fragment="main">
+    <section class="category-section">
+        <h1>콜렉터블</h1>
+        <div class="product-sort">
+            <div>
+                <span>등록상품:</span>
+                <b>13건</b>
+            </div>
+
+            <ul>
+                <li>
+                    <a href="/product?sort=recent">최신순</a>
+                </li>
+                <li>
+                    <a href="/product?sort=name">이름순</a>
+                </li>
+                <li>
+                    <a href="/product?sort=low-price">낮은 가격순</a>
+                </li>
+                <li>
+                    <a href="/product?sort=high-price">높은 가격순</a>
+                </li>
+            </ul>
+        </div>
+        <section>
+            <div class="item" th:each="product: ${products}">
+                <a class="image-container" th:href="@{|/product/${product.no}|}">
+                    <img th:src="@{|/image/${product.images[0].no}|}" src="https://jp.cookierunstore.com/web/product/medium/202312/27a96ac44b5d30888302cb8673663719.jpg" alt="">
+                </a>
+                <b class="title" th:text="${product.name}">상품 이름</b>
+                <b class="price" th:text="${product.price}">1,192원</b>
+            </div>
+        </section>
+        <ol>
+            <li><a href="#"><i class="bi bi-caret-left-fill"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#"><i class="bi bi-caret-right-fill"></i></a></li>
+        </ol>
+    </section>
+
+</main>
+</body>
+</html>

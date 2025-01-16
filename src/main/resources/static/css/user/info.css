@@ -1,0 +1,143 @@
+/* 전체 컨테이너 스타일 */
+.mypage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+/* 헤더 스타일 */
+.mypage-header {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* 요약 섹션 */
+.summary-section {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    margin-bottom: 20px;
+}
+
+.summary-box {
+    text-align: center;
+    flex: 1;
+    padding: 10px;
+    border-right: 1px solid #ddd;
+}
+
+.summary-box:last-child {
+    border-right: none;
+}
+
+.summary-box p {
+    font-size: 20px;
+    font-weight: bold;
+    margin: 5px 0;
+}
+
+.summary-box span {
+    color: #666;
+}
+
+/* 레이아웃 스타일 */
+.mypage-content {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 왼쪽 사이드바 */
+.info-section {
+    width: 25%;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.info-box {
+    margin-bottom: 20px;
+}
+
+.info-box h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-box li {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.info-box li:hover {
+    text-decoration: underline;
+}
+
+/* 오른쪽 메인 콘텐츠 */
+.main-content {
+    width: 75%;
+    padding-left: 20px;
+}
+
+/* 주문 처리 현황 */
+.order-status-section {
+    margin-bottom: 20px;
+}
+
+.order-status-section h2 {
+    font-size: 18px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.status-box {
+    display: flex;
+    justify-content: space-between;
+    text-align: center;
+}
+
+.status-box div {
+    flex: 1;
+    border-right: 1px solid #ddd;
+    padding: 10px;
+    font-size: 14px;
+}
+
+.status-box div:last-child {
+    border-right: none;
+}
+
+.status-box span {
+    color: #666;
+}
+
+/* 하단 페이지네이션 */
+.pagination {
+    text-align: center;
+    margin-top: 20px;
+}
+
+.pagination a {
+    margin: 0 5px;
+    text-decoration: none;
+    color: #333;
+    font-size: 14px;
+}
+
+.pagination a:hover {
+    text-decoration: underline;
+}

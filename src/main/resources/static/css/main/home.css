@@ -1,0 +1,220 @@
+@import "../public/public.css";
+
+/********************************************************************/
+.embla {
+    position: relative;
+    width: 100%;
+    height: 100vh;
+    --slide-height: 100%;
+    --slide-size: 100%;
+}
+.embla__viewport {
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+.embla__container {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    touch-action: pan-y pinch-zoom;
+}
+.embla__slide {
+    transform: translate3d(0, 0, 0);
+    flex: 0 0 var(--slide-size);
+    min-width: 0;
+}
+.embla__controls {
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+}
+.embla__buttons {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    display: flex;
+    width: 100%;
+    padding: 0 20px;
+    justify-content: space-between;
+    align-items: center;
+}
+.embla__button {
+    -webkit-appearance: none;
+    appearance: none;
+    background-color: transparent;
+    touch-action: manipulation;
+    text-decoration: none;
+    cursor: pointer;
+    border: 0;
+    width: 80px;
+    height: 80px;
+    z-index: 1;
+    border-radius: 50%;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    &:hover{
+        background-color: rgba(0,0,0,0.2);
+    }
+}
+.embla__button__svg {
+    width: 60%;
+    height: 60%;
+}
+.embla__dots {
+    position: absolute;
+    width: 100%;
+    bottom: 20px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.embla__dot {
+    touch-action: manipulation;
+    text-decoration: none;
+    cursor: pointer;
+    border: none;
+    padding: 0;
+    margin: 0 2.5px;
+    width: 15px;
+    height: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+}
+.embla__dot:after {
+    background-color: rgba(200,200,200);
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    content: '';
+}
+.embla__dot--selected:after {
+    background-color: dimgrey;
+}
+/********************************************************************/
+.embla__slide > img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+}
+/***************************************************/
+.recommend-item-section{
+    margin-top: 100px;
+    padding: 50px var(--main-padding);
+    background-color: var(--Spring-WT-2-rgba);
+}
+.recommend-item-section h2{
+    font-family: Bold;
+    font-size: var(--font-size-xx-large);
+    margin-bottom: 80px;
+    text-align: center;
+}
+.recommend-item-section .item-container{
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-gap: 20px;
+}
+.recommend-item-section .item{
+    display: inline-flex;
+    text-align: center;
+    flex-direction: column;
+
+}
+
+.recommend-item-section .image-container{
+    width: 200px;
+    height: 200px;
+    border-radius: 20px;
+    overflow: hidden;
+    margin-bottom: 20px;
+    &:hover > img{
+        transform: scale(120%);
+    }
+}
+.recommend-item-section .image-container > img{
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.2s;
+    object-fit: contain;
+}
+.recommend-item-section .title{
+    text-decoration: none;
+    color: var(--Dark-gray-textured-background---5-rgba);
+    font-family: Medium;
+    font-weight: bold;
+    font-size: var(--font-size-x-small);
+}
+.recommend-item-section .price{
+    color: var(--Pasteles-5-rgba);
+    font-family: Medium;
+    font-size: var(--font-size-x-small);
+}
+/********************************************************/
+.information-section{
+    position: relative;
+    text-align: center;
+    margin-top: 100px;
+    padding: 80px 0;
+    opacity: 1;
+}
+.information-section::after{
+    content: "";
+    display: block;
+    position: absolute;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background: url("../../images/banner/background.jpg") repeat 0 0 fixed;
+    background-size: cover;
+    z-index: -1;
+}
+.information-section > h2{
+    font-family: Bold;
+    font-size: var(--font-size-xxx-large);
+}
+.information-section > span{
+    display: block;
+    font-size: var(--font-size-normal);
+    margin-bottom: 30px;
+}
+.information-section > p{
+    font-size: var(--font-size-x-small);
+    margin-bottom: 50px;
+}
+.information-section > a{
+    text-decoration: none;
+    padding: 10px 20px;
+    border-radius: 2px;
+    border: 1px solid black;
+    background-color: white;
+    color: black;
+    transition-duration: 0.2s;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

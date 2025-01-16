@@ -1,0 +1,112 @@
+@import "../public/public.css";
+
+footer{
+    background-color: rgba(0,0,0,0.1);
+    padding: 50px 200px;
+    color: var(--Dark-gray-textured-background---4-rgba);
+}
+footer a{
+    color: var(--Dark-gray-textured-background---4-rgba);
+}
+footer > nav{
+    margin-bottom: 30px;
+}
+footer > nav li{
+    display: inline-block;
+    list-style: none;
+    margin-right: 10px;
+}
+footer > nav li a{
+    text-decoration: none;
+    &:hover{
+        color: black;
+    }
+}
+/************************************/
+footer > section{
+    display: flex;
+}
+footer > section h4{
+    margin-bottom: 40px;
+    color: black;
+}
+footer > section > div:not(:last-child){
+    margin-right: 50px;
+}
+footer .shop-info{
+    display: flex;
+    flex-direction: column;
+    flex: 2;
+}
+footer .shop-info span{
+    font-size: var(--font-size-xx-small);
+    margin: 2px 0;
+}
+footer .shop-info li{
+    display: inline-block;
+}
+
+footer .shop-info a{
+    width: 35px;
+    height: 35px;
+    display: flex;
+    margin-top: 10px;
+    justify-content: center;
+    align-items: center;
+    font-size: var(--font-size-small);
+    color: black;
+    border: none;
+    border-radius: 50%;
+    background-color: white;
+    transition-duration: 0.2s;
+    &:hover{
+        background-color: black;
+        color: white;
+    }
+}
+/********************************************/
+footer .community-info-container{
+    flex: 2;
+}
+footer .community-info-container ul{
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    grid-gap: 4px;
+}
+footer .community-info-container li{
+    border: 1px solid var(--Dark-gray-textured-background---4-rgba);;
+    text-align: center;
+    &:hover > a{
+        background-color: black;
+        color: white;
+    }
+}
+
+footer .community-info-container a{
+    display: block;
+    padding: 10px;
+    font-size: var(--font-size-xx-small);
+    text-decoration: none;
+    transition-duration: 0.2s;
+}
+
+
+footer .service-info{
+    flex: 6;
+    font-size: var(--font-size-xx-small);
+}
+footer .service-info > span{
+    display: block;
+    margin-top: 10px;
+    font-weight: bold;
+}
+
+
+
+
+
+
+
+
+
+

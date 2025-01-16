@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>로그인 | KOREA STORE</title>
+    <link rel="stylesheet" href="../../static/css/user/login.css">
+    <script src="../../static/js/user/login.js" defer></script>
+</head>
+<body>
+    <main layout:fragment="main">
+        <section class="login-section">
+            <h1>로그인</h1>
+            <form th:action="@{/user/login}" method="post">
+                <section class="user-info-section">
+                    <label>
+                        <input type="text" placeholder="아이디를 입력하세요" id="id" name="id">
+                    </label>
+                    <label>
+                        <input type="text" placeholder="패스워드를 입력하세요" name="password">
+                        <i class="bi bi-eye-fill"></i>
+                    </label>
+                </section>
+                <section class="login-config-section">
+                    <label>
+                        <input type="checkbox" id="id-save">
+                        <span>아이디저장</span>
+                    </label>
+                    <label>
+                        <input type="checkbox" name="remember-me">
+                        <span>자동로그인</span>
+                    </label>
+                </section>
+                <section class="link-section">
+                    <a href="#">아이디 찾기</a>
+                    <a href="#">패스워드 변경</a>
+                    <a href="/user/join">회원가입</a>
+                </section>
+                <button id="login-btn" type="submit">로그인</button>
+            </form>
+
+            <section class="sns-login-btn-section">
+                <a href="/oauth2/authorization/naver">
+                    <img src="../../static/images/icon/naver_login_icon.png" alt="네이버 로그인 버튼 아이콘"/>
+                </a>
+                <a href="/oauth2/authorization/kakao">
+                    <img src="../../static/images/icon/kakao_login_icon.png" alt="카카오 로그인 버튼 아이콘"/>
+                </a>
+                <a href="/oauth2/authorization/google">
+                    <img src="../../static/images/icon/google_login_icon.png" alt="구글 로그인 버튼 아이콘"/>
+                </a>
+            </section>
+        </section>
+
+    </main>
+</body>
+</html>
+
+

@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>STYLE CODI ♥♡♥♡</title>
+    <link rel="stylesheet" href="../../static/css/main/style-category.css">
+</head>
+<body>
+<main layout:fragment="main">
+    <section class="category-section">
+        <h1>콜렉터블</h1>
+        <div class="product-sort">
+            <div>
+                <span>등록상품:</span>
+                <b>13건</b>
+            </div>
+
+            <ul>
+                <li>
+                    <a href="/styleProduct?sort=recent">최신순</a>
+                </li>
+                <li>
+                    <a href="/styleProduct?sort=name">이름순</a>
+                </li>
+                <li>
+            </ul>
+        </div>
+        <section>
+            <div class="item" th:each="styleProduct: ${styleProducts}">
+                <a class="image-container" th:href="@{|/styleProduct/${styleProduct.no}|}">
+                    <img th:src="@{|/styleImage/${styleProduct.images[0].no}|}" src="" alt="">
+                </a>
+                <b class="title" th:text="${styleProduct.name}">스타일 이름</b>
+            </div>
+        </section>
+        <ol>
+            <li><a href="#"><i class="bi bi-caret-left-fill"></i></a></li>
+            <li><a href="#">1</a></li>
+            <li><a href="#">2</a></li>
+            <li><a href="#">3</a></li>
+            <li><a href="#"><i class="bi bi-caret-right-fill"></i></a></li>
+        </ol>
+        <a href="/user/upload">글쓰기</a>
+    </section>
+
+
+</main>
+</body>
+</html>

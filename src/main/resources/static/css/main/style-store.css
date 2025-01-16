@@ -1,0 +1,80 @@
+@import "../public/public.css";
+
+
+/******************************************/
+/**************** 스타일 스토어 세션 *******************/
+/******************************************/
+
+.style-store-section{
+
+    margin: 30px auto;
+    padding: 0 50px;
+
+    justify-content: space-between;
+    font-size: var(--font-size-x-small);
+    color: var(--Dark-gray-textured-background---4-rgba);
+
+    width: 800px;
+
+
+
+}
+
+.style-store-section li{
+    display: inline-block;
+    list-style: none;
+}
+.style-store-section li:not(:last-child)::after{
+    content: "|";
+    margin: 0 10px;
+}
+.style-store-section a{
+    text-decoration: none;
+    color: var(--Dark-gray-textured-background---4-rgba);
+}
+/*****************************************************/
+.style-store-item-section {
+    margin: 20px auto;
+    display: grid;
+    grid-gap: 5px 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+.style-store-item-section .item{
+    display: inline-flex;
+    text-align: center;
+    flex-direction: column;
+
+}
+.style-store-item-section .image-container{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    &:hover > img{
+        transform: scale(120%);
+    }
+}
+.style-store-item-section .image-container > img{
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.2s;
+    object-fit: contain;
+}
+.style-store-item-section .title{
+    text-decoration: none;
+    color: var(--Dark-gray-textured-background---5-rgba);
+    font-family: Medium;
+    font-size: var(--font-size-xx-small);
+    margin-bottom: 8px;
+}
+.style-store-item-section .price{
+    color: var(--Pasteles-5-rgba);
+    font-family: Medium;
+    font-size: var(--font-size-xx-small);
+}
+
+
+
+
+
+

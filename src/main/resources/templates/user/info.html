@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <link rel="stylesheet" href="../../static/css/user/info.css">
+</head>
+<body>
+<main layout:fragment="main">
+<div class="mypage-container">
+    <!-- Header -->
+    <header class="mypage-header">
+        <h1>마이 쇼핑</h1>
+    </header>
+
+    <!-- Summary Section -->
+    <section class="summary-section">
+        <div class="summary-box">
+            <p>2,000원</p>
+            <span>충전금</span>
+        </div>
+        <div class="summary-box">
+            <p>5개</p>
+            <span>쿠폰</span>
+        </div>
+        <div class="summary-box">
+            <p>0원 (0회)</p>
+            <span>총주문</span>
+        </div>
+    </section>
+
+    <!-- Main Content -->
+    <div class="mypage-content">
+        <!-- Sidebar -->
+        <section class="info-section">
+            <div class="info-box">
+                <h3>쇼핑 정보</h3>
+                <ul>
+                    <li>주문내역 조회</li>
+                    <li>적립금 내역</li>
+                    <li>쿠폰 내역</li>
+                    <li>배송 주소록 관리</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h3>활동 정보</h3>
+                <ul>
+                    <li>최근 본 상품</li>
+                    <li>나의 위시리스트</li>
+                    <li>나의 게시글</li>
+                </ul>
+            </div>
+            <div class="info-box">
+                <h3>나의 정보</h3>
+                <ul>
+                    <li>회원 정보 수정</li>
+                    <li>로그아웃</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Main Content -->
+        <section class="main-content">
+            <div class="order-status-section">
+                <h2>나의 주문처리 현황 (최근 3개월 기준)</h2>
+                <div class="status-box">
+                    <div>0<br><span>입금전</span></div>
+                    <div>0<br><span>배송준비중</span></div>
+                    <div>0<br><span>배송중</span></div>
+                    <div>0<br><span>배송완료</span></div>
+                </div>
+            </div>
+
+            <!-- Pagination -->
+            <div class="pagination">
+                <a href="#">1</a>
+                <a href="#">2</a>
+                <a href="#">3</a>
+            </div>
+        </section>
+    </div>
+</div>
+</main>
+</body>
+</html>

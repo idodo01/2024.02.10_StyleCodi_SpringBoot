@@ -1,0 +1,112 @@
+@import "public.css";
+
+#main-header {
+    position: fixed;
+    background: none;
+    display: flex;
+    top: 0;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 20px 30px;
+    z-index: 99;
+    transition-duration: 0.2s;
+    background-color: white;
+    /*&:hover{*/
+    /*    background-color: white;*/
+    /*}*/
+}
+#main-header a{
+    text-decoration: none;
+    color: black;
+}
+/***********************************************/
+.main-menu-ul{
+    display: flex;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Bold;
+    font-size: var(--font-size-x-small);
+}
+.main-menu-ul > li{
+    position: relative;
+    padding: 10px 10px;
+    &:hover .header-child-menu{
+        display: block;
+    }
+}
+
+
+.main-menu-ul > li > a{
+}
+
+.header-child-menu{
+    position: absolute;
+    display: none;
+    top: 40px;
+    transform: translateX(-20px);
+    width: 180px;
+    padding: 10px 0;
+    background-color: white;
+    font-size: var(--font-size-x-small);
+}
+.header-child-menu > li:hover > a{
+    transform: translateX(10px);
+}
+.header-child-menu a{
+    display: block;
+    padding: 10px 20px;
+    transition-duration: 0.3s;
+}
+
+/**************************************/
+#main-header > section{
+    display: flex;
+    align-items: center;
+}
+.header-sub-menu{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    margin-right: 20px;
+    font-family: Bold;
+    font-size: var(--font-size-normal);
+}
+
+.header-sub-menu > li{
+    flex: 1;
+    padding: 10px 8px;
+    &:hover .header-child-menu{
+        width: 120px;
+        display: block;
+    }
+}
+
+.header-sub-menu form{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 100%;
+}
+.header-sub-menu form button{
+    display: block;
+    width: 100%;
+    height: 100%;
+    border: none;
+    background: unset;
+    cursor: pointer;
+}
+
+.header-sub-menu a{
+    width: 100%;
+}
+
+
+
+
+
+

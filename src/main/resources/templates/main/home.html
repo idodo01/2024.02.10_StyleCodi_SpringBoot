@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+      xmlns:sec="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>STYLE CODI ♥♡♥♡</title>
+    <link rel="stylesheet" href="../../static/css/main/home.css">
+
+    <script src="https://unpkg.com/embla-carousel/embla-carousel.umd.js"></script>
+    <script src="https://unpkg.com/embla-carousel-autoplay/embla-carousel-autoplay.umd.js"></script>
+
+    <script src="../../static/js/public/embla-carousel.js" defer></script>
+
+</head>
+<body>
+    <main layout:fragment="main">
+        <section class="home-section">
+            <section class="embla hero-section">
+                <div class="embla__viewport">
+                    <div class="embla__container">
+                        <div class="embla__slide">
+                            <img src="../../static/images/banner/banner1.jpg" />
+                        </div>
+                        <div class="embla__slide">
+                            <img src="../../static/images/banner/banner2.gif" />
+                        </div>
+                        <div class="embla__slide">
+                            <img src="../../static/images/banner/banner3.jpg" />
+                        </div>
+
+                    </div>
+                </div>
+
+                <div class="embla__controls">
+                    <div class="embla__buttons">
+                        <button class="embla__button embla__button--prev" type="button">
+                            <svg class="embla__button__svg" viewBox="0 0 532 532">
+                                <path
+                                        fill="currentColor"
+                                        d="M355.66 11.354c13.793-13.805 36.208-13.805 50.001 0 13.785 13.804 13.785 36.238 0 50.034L201.22 266l204.442 204.61c13.785 13.805 13.785 36.239 0 50.044-13.793 13.796-36.208 13.796-50.002 0a5994246.277 5994246.277 0 0 0-229.332-229.454 35.065 35.065 0 0 1-10.326-25.126c0-9.2 3.393-18.26 10.326-25.2C172.192 194.973 332.731 34.31 355.66 11.354Z"
+                                ></path>
+                            </svg>
+                        </button>
+
+                        <button class="embla__button embla__button--next" type="button">
+                            <svg class="embla__button__svg" viewBox="0 0 532 532">
+                                <path
+                                        fill="currentColor"
+                                        d="M176.34 520.646c-13.793 13.805-36.208 13.805-50.001 0-13.785-13.804-13.785-36.238 0-50.034L330.78 266 126.34 61.391c-13.785-13.805-13.785-36.239 0-50.044 13.793-13.796 36.208-13.796 50.002 0 22.928 22.947 206.395 206.507 229.332 229.454a35.065 35.065 0 0 1 10.326 25.126c0 9.2-3.393 18.26-10.326 25.2-45.865 45.901-206.404 206.564-229.332 229.52Z"
+                                ></path>
+                            </svg>
+                        </button>
+                    </div>
+
+                    <div class="embla__dots"></div>
+                </div>
+            </section>
+
+            <section class="recommend-item-section">
+                <h2>추천 아이템</h2>
+                <div class="item-container">
+                    <div class="item">
+                        <a href="#" class="image-container">
+                            <img src="../../static/images/sample/1.jpg" alt="아이템"/>
+                        </a>
+                        <a href="#" class="title">[연말룩/1만장돌파]포비즈 퍼 스퀘어넥 겨울 니트</a>
+                        <span class="price">27,500원</span>
+                    </div>
+                    <div class="item">
+                        <a href="#" class="image-container">
+                            <img src="../../static/images/sample/2.jpg" alt="아이템"/>
+                        </a>
+                        <a href="#" class="title">[양기모]겨울 기모 리본 자수 루즈핏 맨투맨(2color)</a>
+                        <span class="price">44,900원</span>
+                    </div>
+                    <div class="item">
+                        <a href="#" class="image-container">
+                            <img src="../../static/images/sample/3.png" alt="아이템"/>
+                        </a>
+                        <a href="#" class="title">[연말룩/3만장돌파][MADE]수플레 겨울 오프숄더 셔링 드레이프 골지 티셔츠(6color)</a>
+                        <span class="price">27,900원</span>
+                    </div>
+                    <div class="item">
+                        <a href="#" class="image-container">
+                            <img src="../../static/images/sample/4.png" alt="아이템"/>
+                        </a>
+                        <a href="#" class="title">겨울 기모 프린팅 오버핏 긴팔 맨투맨(2color)</a>
+                        <span class="price">42,900원</span>
+                    </div>
+                    <div class="item">
+                        <a href="#" class="image-container">
+                            <img src="../../static/images/sample/5.jpg" alt="아이템"/>
+                        </a>
+                        <a href="#" class="title">[연말룩/3만장돌파][MADE]수플레 겨울 오프숄더 셔링 드레이프 골지 티셔츠(6color)</a>
+                        <span class="price">27,900원</span>
+                    </div>
+                </div>
+            </section>
+
+            <section class="information-section">
+                <h2>Winter Moment</h2>
+                <span>-</span>
+                <p>
+                    설레는 겨울의 시작, 스타입스냅와 함께
+                </p>
+                <a href="#">자세히 보기</a>
+            </section>
+
+            <br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+        </section>
+    </main>
+</body>
+</html>

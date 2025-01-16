@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ido.style.mapper.AdminMapper">
+    <insert id="insertProduct">
+        INSERT INTO product VALUES (NULL, #{name}, #{price}, #{detail}, DEFAULT, 1)
+    </insert>
+
+    <insert id="insertProductImages">
+        <selectKey keyProperty="no" resultType="int" order="BEFORE">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `product_image` VALUES
+        <foreach collection="images" item="image" separator=",">
+            (NULL, #{no}, #{image.fileName}, #{image.data})
+        </foreach>
+    </insert>
+
+</mapper>

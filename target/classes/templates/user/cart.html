@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+>
+<head>
+    <meta charset="UTF-8">
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
+    <title>장바구니 | KOREA STORE</title>
+    <link rel="stylesheet" href="../../static/css/user/cart.css">
+    <script src="../../static/js/user/cart.js" defer></script>
+</head>
+<body>
+    <main layout:fragment="main">
+        <h1>장바구니</h1>
+        <section class="main-section">
+            <div>
+                <p><b>주문상품</b><span>(3)</span></p>
+                <p>
+                    <span>선택한 항목을</span>
+                    <button id="select-delete-btn" type="button" class="delete-btn">
+                        <i class="bi bi-x"></i>
+                        <span>삭제</span>
+                    </button>
+                </p>
+            </div>
+            <table class="product-table">
+                <thead>
+                    <tr>
+                        <th><label><input type="checkbox" /></label></th>
+                        <th>항목</th>
+                        <th>상품명</th>
+                        <th>가격</th>
+                        <th>수량</th>
+                        <th>소계</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr th:each="cart: ${carts}" th:id="${cart.no}">
+                        <td class="product-select-container"><label><input type="checkbox" /></label></td>
+                        <td class="product-image-container">
+                            <a th:href="@{|/product/${cart.product.no}|}">
+                                <img th:src="@{|/image/${cart.product.images[0].no}|}" src="https://jp.cookierunstore.com/web/product/tiny/202412/c5429b6e81c648b42b71c699247f6085.png" alt="상품이미지">
+                            </a>
+                        </td>
+                        <td class="product-title-container">
+                            <a th:href="@{|/product/${cart.product.no}|}">
+                                <b th:text="${cart.product.name}">クッキーランクリスマススマホアクセサリー</b>
+                            </a>
+                        </td>
+                        <td class="product-price-container" th:text="${#numbers.formatCurrency(cart.product.price)}">¥1,921</td>
+                        <td class="product-amount-container">
+                            <label class="amount-change-label">
+                                <input type="number" th:value="${cart.amount}" min="1">
+                                <button type="button" class="amount-plus-btn"><i class="bi bi-caret-up-fill"></i></button>
+                                <button type="button" class="amount-minus-btn"><i class="bi bi-caret-down-fill"></i></button>
+                            </label>
+                        </td>
+                        <td class="product-total-price-container"
+                            th:text="${#numbers.formatCurrency(cart.product.price * cart.amount)}">¥1,921</td>
+                        <td>
+                            <button type="button" class="delete-btn">
+                                <i class="bi bi-x"></i>
+                                <span>삭제</span>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </section>
+
+        <section class="total-price-container">
+            <span>총합계:</span><b th:text="${#numbers.formatCurrency(totalPrice)}">¥6,360</b>
+        </section>
+
+        <section class="button-container">
+            <button type="button" id="order-select-button">선택한 상품 주문</button>
+            <button type="button" id="order-all-button">전체 상품 주문</button>
+        </section>
+    </main>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+

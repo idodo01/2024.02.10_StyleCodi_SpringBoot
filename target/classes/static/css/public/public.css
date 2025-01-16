@@ -1,0 +1,119 @@
+@import url("https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.3/font/bootstrap-icons.min.css");
+@font-face {
+    font-family: 'Thin';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Thin.woff') format('woff');
+    font-weight: 100;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ExtraLight';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraLight.woff') format('woff');
+    font-weight: 200;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Light';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Light.woff') format('woff');
+    font-weight: 300;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Regular';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Regular.woff') format('woff');
+    font-weight: 400;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Medium';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Medium.woff') format('woff');
+    font-weight: 500;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'SemiBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-SemiBold.woff') format('woff');
+    font-weight: 600;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Bold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Bold.woff') format('woff');
+    font-weight: 700;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'ExtraBold';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-ExtraBold.woff') format('woff');
+    font-weight: 800;
+    font-style: normal;
+}
+@font-face {
+    font-family: 'Black';
+    src: url('https://fastly.jsdelivr.net/gh/Project-Noonnu/noonfonts_2107@1.1/Pretendard-Black.woff') format('woff');
+    font-weight: 900;
+    font-style: normal;
+}
+
+*{
+    --font-size-normal: 24px;
+    --font-size-large: 28px;
+    --font-size-x-large: 32px;
+    --font-size-xx-large: 36px;
+    --font-size-xxx-large: 40px;
+    --font-size-small: 20px;
+    --font-size-x-small: 16px;
+    --font-size-xx-small: 14px;
+    --font-size-xxx-small: 12px;
+
+    
+    
+
+    --Pasteles-1-rgba : rgba(169, 115, 245, 1);
+    --Pasteles-2-rgba : rgba(107, 214, 201, 1);
+    --Pasteles-3-rgba : rgba(133, 239, 135, 1);
+    --Pasteles-4-rgba : rgba(255, 250, 123, 1);
+    --Pasteles-5-rgba : rgba(250, 125, 173, 1);
+    
+    --Summer-spring-decoration-design-elements-1-rgba: rgba(242, 219, 152, 1);
+    --Summer-spring-decoration-design-elements-2-rgba: rgba(242, 209, 147, 1);
+    --Summer-spring-decoration-design-elements-3-rgba: rgba(242, 222, 186, 1);
+    --Summer-spring-decoration-design-elements-4-rgba: rgba(242, 232, 215, 1);
+    --Summer-spring-decoration-design-elements-5-rgba: rgba(242, 242, 242, 1);
+
+    --Spring-WT-1-rgba : rgba(188, 212, 242, 1);
+    --Spring-WT-2-rgba : rgba(237, 240, 202, 0.25);
+    --Spring-WT-3-rgba : rgba(212, 216, 105, 1);
+    --Spring-WT-4-rgba : rgba(175, 191, 59, 1);
+    --Spring-WT-5-rgba : rgba(221, 237, 253, 1);
+
+    --Dark-gray-textured-background---1-rgba : rgba(191, 191, 191, 1);
+    --Dark-gray-textured-background---2-rgba : rgba(140, 140, 140, 1);
+    --Dark-gray-textured-background---3-rgba : rgba(114, 114, 114, 1);
+    --Dark-gray-textured-background---4-rgba : rgba(89, 89, 89, 1);
+    --Dark-gray-textured-background---5-rgba : rgba(63, 63, 63, 1);
+
+    --abstract-gray-background---1-rgba : rgba(82, 85, 89, 1);
+    --abstract-gray-background---2-rgba : rgba(216, 216, 216, 1);
+    --abstract-gray-background---3-rgba : rgba(191, 191, 191, 1);
+    --abstract-gray-background---4-rgba : rgba(129, 135, 140, 1);
+    --abstract-gray-background---5-rgba : rgba(164, 165, 165, 1);
+
+
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    list-style: none;
+    font-family: Regular;
+
+    input[type="number"]::-webkit-outer-spin-button,
+    input[type="number"]::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        appearance: none;
+    }
+
+    /* 파이어폭스에서의 초기화 방법 */
+    input[type=number] {
+        -moz-appearance: textfield;
+    }
+}

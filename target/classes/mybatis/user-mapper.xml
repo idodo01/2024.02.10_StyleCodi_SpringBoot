@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+        PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="ido.style.mapper.UserMapper">
+    <!-- id를 통해 유저 정보 조회하기   -->
+    <select id="selectUserById" resultType="UserDTO">
+        SELECT * FROM `user` WHERE id = #{id}
+    </select>
+    <!-- UserDTO 객체의 값으로 유저 등록하기   -->
+    <insert id="insertUser">
+        INSERT INTO `user` (id, password, tel, email, name, profile_image)
+        VALUES (#{id}, #{password}, #{tel}, #{email}, #{name}, NULL)
+    </insert>
+
+    <insert id="insertStyleProduct">
+        INSERT INTO style_product VALUES (NULL, #{name}, #{detail}, DEFAULT, 1)
+    </insert>
+
+    <insert id="insertStyleProductImages">
+        <selectKey keyProperty="no" resultType="int" order="BEFORE">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `style_product_image` VALUES
+        <foreach collection="images" item="image" separator=",">
+            (NULL, #{no}, #{image.fileName}, #{image.data})
+        </foreach>
+    </insert>
+</mapper>

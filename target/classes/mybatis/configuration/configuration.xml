@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE configuration
+        PUBLIC "-//mybatis.org//DTD Config 3.0//EN"
+        "https://mybatis.org/dtd/mybatis-3-config.dtd">
+<configuration>
+    <settings>
+        <setting name="jdbcTypeForNull" value="NULL"/>
+        <setting name="mapUnderscoreToCamelCase" value="true"/>
+    </settings>
+    <typeAliases>
+        <typeAlias type="ido.style.dto.ProductDTO" alias="ProductDTO" />
+        <typeAlias type="ido.style.dto.CategoryDTO" alias="CategoryDTO" />
+        <typeAlias type="ido.style.dto.ProductImageDTO" alias="ProductImageDTO" />
+
+        <typeAlias type="ido.style.dto.StyleProductDTO" alias="StyleProductDTO" />
+        <typeAlias type="ido.style.dto.StyleCategoryDTO" alias="StyleCategoryDTO" />
+        <typeAlias type="ido.style.dto.StyleProductImageDTO" alias="StyleProductImageDTO" />
+
+        <typeAlias type="ido.style.dto.UserDTO" alias="UserDTO" />
+        <typeAlias type="ido.style.dto.SnsInfoDTO" alias="SnsInfoDTO" />
+        <typeAlias type="ido.style.dto.CartDTO" alias="CartDTO" />
+    </typeAliases>
+</configuration>
+
+
+
+
+
