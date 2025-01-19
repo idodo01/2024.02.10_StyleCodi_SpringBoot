@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>STYLE CODI ♥♡♥♡</title>
+    <link rel="stylesheet" href="../../static/css/main/style-dibs.css">
+    <script src="../../static/js/main/style-dibs.js" defer></script>
+</head>
+<body>
+
+
+<section class="style-store-section">
+    <div class="button-container">
+        <a href="/style-store"><div class="tab">스토어 상품으로</div ></a>
+        <a href="/style-dibs"><div class="tab">찜 상품으로</div></a>
+    </div>
+    <hr>
+        <ul class="style-main-menu">
+            <li th:each="styleStoreCategory: ${styleStoreCategories}">
+                <a th:href="@{|/style-dibs?categoryNo=${styleStoreCategory.no}|}" th:text="${styleStoreCategory.name}" target="store">ALL</a>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <a th:href="@{|/style-dibs?categoryNo=${categoryNo}&sort=recent|}">최신순</a>
+            </li>
+            <li>
+                <a th:href="@{|/style-dibs?categoryNo=${categoryNo}&sort=name|}">이름순</a>
+            </li>
+            <li>
+                <a th:href="@{|/style-dibs?categoryNo=${categoryNo}&sort=low-price|}">낮은 가격순</a>
+            </li>
+            <li>
+                <a th:href="@{|/style-dibs?categoryNo=${categoryNo}&sort=high-price|}">높은 가격순</a>
+            </li>
+        </ul>
+
+    <section class="style-store-item-section">
+        <div class="item" th:each="dib: ${dibs}" >
+            <button class="image-container">
+            <img class="item-img" th:src="@{|/image/${dib.product.images[0].no}|}" src="" alt=""
+                 th:data-category="${dib.product.category.no}"
+                 th:onclick="|changeParentImage(event)|">
+            </button>
+            <b class="title" th:text="${dib.product.name}">상품명</b>
+            <b class="price" th:text="${dib.product.price}">9,999원</b>
+            <a th:href="@{|/product/${dib.product.no}|}" target="_blank">상세보기</a>
+        </div>
+    </section>
+
+    <ol>
+        <li><a href="#"><i class="bi bi-caret-left-fill"></i></a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#"><i class="bi bi-caret-right-fill"></i></a></li>
+    </ol>
+</section>
+
+</body>
+</html>

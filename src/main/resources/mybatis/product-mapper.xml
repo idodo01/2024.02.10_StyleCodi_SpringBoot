@@ -10,8 +10,8 @@
         <result property="price" column="product_price" />
 
         <association property="category" javaType="CategoryDTO" autoMapping="true">
-            <id property="no" column="category_no" />
-            <result property="name" column="category_name" />
+            <id property="no" column="product_category" />
+            <result property="name" column="product_category_name" />
         </association>
 
         <collection property="images" ofType="ProductImageDTO" javaType="list">
@@ -27,8 +27,8 @@
         P.detail,
         P.uploaded_at,
 
-        CT.no AS category_no,
-        CT.name AS category_name,
+        CT.no AS product_category,
+        CT.name AS product_category_name,
 
         PI.`no` AS product_image_no
 
@@ -104,4 +104,66 @@
         WHERE C1.parent IS NULL
     </select>
 
+
+<!--    찜 상품-->
+
+    <resultMap id="dibsMap" type="DibsDTO">
+        <id property="no" column="dibs_no" />
+        <association property="product" javaType="ProductDTO" resultMap="productWithImageMap" />
+    </resultMap>
+
+    <select id="selectDibsByUser" resultType="DibsDTO" resultMap="dibsMap">
+        SELECT
+        D.user_id AS user_id,
+        D.no AS dibs_no,
+
+        P.no AS product_no,
+        P.name AS product_name,
+        P.price AS product_price,
+        P.detail,
+        P.uploaded_at,
+
+        CT.no AS product_category,
+        PI.no AS product_image_no
+
+        FROM (((dibs D
+        JOIN product P
+        ON D.product_no = P.no)
+
+        JOIN product_image PI
+        ON P.no = PI.product_no)
+
+        JOIN category CT
+        ON P.category = CT.no
+            <if test="categoryNo != 1">
+                AND P.category IN (WITH RECURSIVE `category_cte` AS
+                (
+                SELECT * FROM `category` WHERE `no` = #{categoryNo}
+                UNION
+                SELECT child.* FROM `category_cte` parent
+                INNER JOIN `category` child
+                ON parent.no = child.parent
+                ) SELECT `no` FROM `category_cte`)
+            </if>
+        )
+
+        WHERE `user_id` = #{user.id}
+
+        <choose>
+            <when test="sort == 'name'">
+                ORDER BY P.`name`
+            </when>
+            <when test="sort == 'low-price'">
+                ORDER BY P.`price`
+            </when>
+            <when test="sort == 'high-price'">
+                ORDER BY P.`price` DESC
+            </when>
+            <otherwise>
+                ORDER BY P.`uploaded_at`
+            </otherwise>
+        </choose>
+
+
+    </select>
 </mapper>

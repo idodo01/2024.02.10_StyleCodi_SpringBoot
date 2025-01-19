@@ -18,7 +18,7 @@
 
         <typeAlias type="ido.style.dto.UserDTO" alias="UserDTO" />
         <typeAlias type="ido.style.dto.SnsInfoDTO" alias="SnsInfoDTO" />
-        <typeAlias type="ido.style.dto.CartDTO" alias="CartDTO" />
+        <typeAlias type="ido.style.dto.DibsDTO" alias="DibsDTO" />
     </typeAliases>
 </configuration>
 

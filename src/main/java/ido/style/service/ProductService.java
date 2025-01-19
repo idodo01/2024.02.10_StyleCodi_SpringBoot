@@ -1,8 +1,6 @@
 package ido.style.service;
 
-import ido.style.dto.CategoryDTO;
-import ido.style.dto.ProductDTO;
-import ido.style.dto.StyleStoreCategoryDTO;
+import ido.style.dto.*;
 import ido.style.mapper.ProductMapper;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,9 +26,14 @@ public class ProductService {
         return productMapper.selectCategories();
     }
 
-//    스타일 스토어 상품, 카테고리
+    //    스타일 스토어 상품, 카테고리
 
     public List<StyleStoreCategoryDTO> get_style_store_categories(){
         return productMapper.selectStyleStoreCategories();
+    }
+
+    // 해당 유저의 장바구니 item들을 가져오기
+    public List<DibsDTO> get_dibs_by_user(Integer categoryNo, UserDTO user, String sort){
+        return productMapper.selectDibsByUser(categoryNo, user, sort);
     }
 }

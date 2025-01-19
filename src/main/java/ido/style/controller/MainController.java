@@ -4,6 +4,8 @@ import ido.style.dto.*;
 import ido.style.service.ProductService;
 import ido.style.service.StyleProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.core.Authentication;
+import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -11,6 +13,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestParam;
 
 import java.util.List;
+import java.util.Objects;
 
 @Controller
 public class MainController {
@@ -75,8 +78,10 @@ public class MainController {
             String sort,
             Model model
     ){
-        List<ProductDTO> products = productService.get_products(categoryNo, sort);
+        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
 
+
+        List<ProductDTO> products = productService.get_products(categoryNo, sort);
 
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
@@ -110,74 +115,63 @@ public class MainController {
 
     /****************************************************************************/
     // 스타일 코디
-    @GetMapping("/style")
-    public String get_styles(
-            @RequestParam(defaultValue = "1") Integer categoryNo,
-            String sort,
-            Model model
-    ){
-        List<ProductDTO> products = productService.get_products(categoryNo, sort);
-        List<CategoryDTO> categories = productService.get_categories();
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-        model.addAttribute("products", products);
-        model.addAttribute("categories", categories);
-        model.addAttribute("styleCategories", styleCategories);
-        return "main/style";
-    }
-    
-    // 스타일 코디
     @GetMapping("/style-make")
-    public String get_styles_make(
-            @RequestParam(defaultValue = "1") Integer categoryNo,
-            String sort,
+    public String get_style_make(
             Model model
     ){
 
 
-        model.addAttribute("categoryNo", categoryNo);
-
-
-
-        List<ProductDTO> products = productService.get_products(categoryNo, sort);
         List<CategoryDTO> categories = productService.get_categories();
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
 
-        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
-
-        model.addAttribute("products", products);
         model.addAttribute("categories", categories);
         model.addAttribute("styleCategories", styleCategories);
 
-        model.addAttribute("styleStoreCategories", styleStoreCategories);
         return "main/style-make";
     }
 
-    // 스타일 코디 - style-make 안에 사용되는 IFRAME
+    // 스타일 코디 - style-make 안에 사용되는 IFRAME 1 (스토어 페이지)
     @GetMapping("/style-store")
-    public String get_styles_store(
+    public String get_style_store(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
             Model model
     ){
 
-
-        model.addAttribute("categoryNo", categoryNo);
-
-
+        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
 
         List<ProductDTO> products = productService.get_products(categoryNo, sort);
-        List<CategoryDTO> categories = productService.get_categories();
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-
         List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
 
         model.addAttribute("products", products);
-        model.addAttribute("categories", categories);
-        model.addAttribute("styleCategories", styleCategories);
-
         model.addAttribute("styleStoreCategories", styleStoreCategories);
         return "main/style-store";
     }
 
+    // 스타일 코디 - style-make 안에 사용되는 IFRAME 2 (찜 페이지)
+    @GetMapping("/style-dibs")
+    public String get_user_dibs(
+            @RequestParam(defaultValue = "1") Integer categoryNo,
+            String sort,
 
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
+
+        List<DibsDTO> dibs = productService.get_dibs_by_user(categoryNo, user, sort);
+        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
+
+        model.addAttribute("dibs", dibs);
+        model.addAttribute("styleStoreCategories", styleStoreCategories);
+
+
+        return "main/style-dibs";
+    }
 }

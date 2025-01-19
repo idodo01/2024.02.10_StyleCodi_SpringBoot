@@ -81,6 +81,16 @@ category-section > section .price{
 }
 
 
+/****************************************/
+.user-like-container > button{
+    border: unset;
+    background: unset;
+    cursor: pointer;
+    font-size: var(--font-size-normal);
+}
+.user-like-container .bi-heart-fill {
+    color: red;
+}
 
 
 

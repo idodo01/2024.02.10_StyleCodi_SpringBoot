@@ -7,7 +7,7 @@ import lombok.ToString;
 @Getter
 @Setter
 @ToString
-public class CartDTO {
+public class DibsDTO {
     private Integer no;
     private UserDTO user;
     private ProductDTO product;
