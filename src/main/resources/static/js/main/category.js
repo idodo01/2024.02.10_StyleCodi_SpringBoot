@@ -20,7 +20,7 @@ function toggleIcon(button) {
         }
 
         // 장바구니 담기 POST 요청 전송
-        fetch(`/style-dibs`, {
+        fetch(`/style-loves`, {
             method: "POST",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,
@@ -37,7 +37,7 @@ function toggleIcon(button) {
                 window.location.reload();
 
                 // if(confirm('상품이 찜목록에 담겼습니다. 찜목록으로 이동하시겠습니까?')){
-                //     location.href = '/style-dibs';
+                //     location.href = '/style-loves';
                 // }
             }
 
@@ -51,7 +51,7 @@ function toggleIcon(button) {
             no: productForm.id,
         }
 
-        fetch('/style-dibs', {
+        fetch('/style-loves', {
             method: "DELETE",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,

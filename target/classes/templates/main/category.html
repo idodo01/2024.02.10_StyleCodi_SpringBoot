@@ -50,7 +50,7 @@
                     <b class="price" th:text="${product.price}">1,192원</b>
                     <div class="user-like-container">
                         <button onclick="toggleIcon(this)">
-                            <i th:classappend="${dibsMap[product.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>
+                            <i th:classappend="${lovesMap[product.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>
                         </button>
                     </div>
                 </form>

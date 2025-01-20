@@ -33,25 +33,25 @@ public class ProductService {
     }
 
     // 해당 유저의 찜 목록을 가져오기
-    public List<DibsDTO> get_dibs_by_user(Integer categoryNo, UserDTO user, String sort){
-        return productMapper.selectDibsByUser(categoryNo, user, sort);
+    public List<LovesDTO> get_loves_by_user(Integer categoryNo, UserDTO user, String sort){
+        return productMapper.selectLovesByUser(categoryNo, user, sort);
     }
 
     // product: 유저가 추가하려는 상품 정보
     // user: 로그인된 유저
-    public void add_dibs(ProductDTO product, UserDTO user){
-        DibsDTO dibs = new DibsDTO();
-        dibs.setProduct(product);
-        dibs.setUser(user);
+    public void add_loves(ProductDTO product, UserDTO user){
+        LovesDTO loves = new LovesDTO();
+        loves.setProduct(product);
+        loves.setUser(user);
 
-        productMapper.insertDibs(dibs);
+        productMapper.insertLoves(loves);
     }
 
-    public void remove_dibs(ProductDTO product, UserDTO user){
-        DibsDTO dibs = new DibsDTO();
-        dibs.setProduct(product);
-        dibs.setUser(user);
+    public void remove_loves(ProductDTO product, UserDTO user){
+        LovesDTO loves = new LovesDTO();
+        loves.setProduct(product);
+        loves.setUser(user);
 
-        productMapper.deleteDibs(dibs);
+        productMapper.deleteLoves(loves);
     }
 }

@@ -25,15 +25,15 @@ public interface ProductMapper {
     List<StyleStoreCategoryDTO> selectStyleStoreCategories();
 
     // 찜 상품 불러오기
-    List<DibsDTO> selectDibsByUser(
+    List<LovesDTO> selectLovesByUser(
             Integer categoryNo,
             UserDTO user,
             String sort
     );
 
-    void insertDibs(DibsDTO dibs); // 찜 목록에 상품 정보 추가
+    void insertLoves(LovesDTO loves); // 찜 목록에 상품 정보 추가
 
-    void deleteDibs(DibsDTO dibs); // 찜 목록에 상품 정보 삭제
+    void deleteLoves(LovesDTO loves); // 찜 목록에 상품 정보 삭제
 
 
 }

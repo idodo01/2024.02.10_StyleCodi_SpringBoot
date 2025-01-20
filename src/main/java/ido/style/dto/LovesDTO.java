@@ -9,7 +9,7 @@ import java.util.Objects;
 @Getter
 @Setter
 @ToString
-public class DibsDTO {
+public class LovesDTO {
     private Integer no;
     private UserDTO user;
     private ProductDTO product;
@@ -18,8 +18,8 @@ public class DibsDTO {
     public boolean equals(Object o) {
         if (this == o) return true; // 같은 객체 참조
         if (o == null || getClass() != o.getClass()) return false; // 타입 검사
-        DibsDTO dibsDTO = (DibsDTO) o;
-        return Objects.equals(product, dibsDTO.product); // product 비교
+        LovesDTO lovesDTO = (LovesDTO) o;
+        return Objects.equals(product, lovesDTO.product); // product 비교
     }
 
     @Override

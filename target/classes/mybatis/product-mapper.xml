@@ -107,15 +107,16 @@
 
 <!--    찜 상품-->
 
-    <resultMap id="dibsMap" type="DibsDTO">
-        <id property="no" column="dibs_no" />
+    <resultMap id="lovesMap" type="LovesDTO">
+        <id property="no" column="loves_no" />
         <association property="product" javaType="ProductDTO" resultMap="productWithImageMap" />
     </resultMap>
 
-    <select id="selectDibsByUser" resultType="DibsDTO" resultMap="dibsMap">
+    <select id="selectLovesByUser" resultType="LovesDTO" resultMap="lovesMap">
         SELECT
-        D.user_id AS user_id,
-        D.no AS dibs_no,
+        L.user_id AS loves_user_no,
+        L.product_no AS loves_product_no,
+        L.no AS loves_no,
 
         P.no AS product_no,
         P.name AS product_name,
@@ -126,9 +127,9 @@
         CT.no AS product_category,
         PI.no AS product_image_no
 
-        FROM (((dibs D
+        FROM (((Loves L
         JOIN product P
-        ON D.product_no = P.no)
+        ON L.product_no = P.no)
 
         JOIN product_image PI
         ON P.no = PI.product_no)
@@ -167,13 +168,13 @@
 
     </select>
 
-    <insert id="insertDibs">
-        INSERT INTO `dibs` (no, product_no, user_id)
+    <insert id="insertLoves">
+        INSERT INTO `loves` (no, product_no, user_id)
         VALUES (NULL, #{product.no}, #{user.id})
     </insert>
 
-    <delete id="deleteDibs">
-        DELETE FROM `dibs`
+    <delete id="deleteLoves">
+        DELETE FROM `loves`
         WHERE product_no = #{product.no}
     </delete>
 

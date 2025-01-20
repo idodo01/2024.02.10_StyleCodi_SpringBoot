@@ -37,7 +37,7 @@ public class MainController {
 
     // 스타일 상품 리스트 화면
     @GetMapping("/styleProduct")
-    public String get_stylecateogry(
+    public String get_styleCategory(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
             Model model
@@ -75,7 +75,7 @@ public class MainController {
 
     // 모든 상품 리스트 화면
     @GetMapping("/product")
-    public String get_cateogry(
+    public String get_category(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
 
@@ -91,11 +91,11 @@ public class MainController {
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
 
-        List<DibsDTO> dibs = productService.get_dibs_by_user(categoryNo, user, sort);
-        Map<Integer, Boolean> dibsMap = products.stream()
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
+        Map<Integer, Boolean> lovesMap = products.stream()
                 .collect(Collectors.toMap(
                         ProductDTO::getNo,
-                        product -> dibs.stream().anyMatch(dib -> dib.getProduct().getNo().equals(product.getNo()))
+                        product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
                 ));
 
 
@@ -104,7 +104,7 @@ public class MainController {
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
 
-        model.addAttribute("dibsMap", dibsMap);
+        model.addAttribute("lovesMap", lovesMap);
 
         return "main/category";
     }
@@ -164,8 +164,8 @@ public class MainController {
     }
 
     // 스타일 코디 - style-make 안에 사용되는 IFRAME 2 (찜 페이지)
-    @GetMapping("/style-dibs")
-    public String get_user_dibs(
+    @GetMapping("/style-loves")
+    public String get_user_love(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
 
@@ -180,21 +180,20 @@ public class MainController {
 
         model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
 
-        List<DibsDTO> dibs = productService.get_dibs_by_user(categoryNo, user, sort);
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
         List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
 
-        System.out.println("Dibs List: " + dibs);
 
-        model.addAttribute("dibs", dibs);
+        model.addAttribute("loves", loves);
         model.addAttribute("styleStoreCategories", styleStoreCategories);
 
 
-        return "main/style-dibs";
+        return "main/style-loves";
     }
 
     // 장바구니에 상품을 추가하기
-    @PostMapping("/style-dibs")
-    public ResponseEntity<Void> dibs_post(
+    @PostMapping("/style-loves")
+    public ResponseEntity<Void> loves_post(
             @RequestBody ProductDTO product,
             @AuthenticationPrincipal UserDTO userDTO
     ){
@@ -202,19 +201,17 @@ public class MainController {
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
         // 해당 상품과 유저를 전달해서 찜목록에 추가하기
-        productService.add_dibs(product, userDTO);
+        productService.add_loves(product, userDTO);
         return ResponseEntity.ok().build();
     }
 
-    @DeleteMapping("/style-dibs")
-    public ResponseEntity<Void> dibs_delete(
+    @DeleteMapping("/style-loves")
+    public ResponseEntity<Void> loves_delete(
             @RequestBody ProductDTO product,
             @AuthenticationPrincipal UserDTO userDTO
     ){
 
-        System.out.println("Dibs delete: " + product);
-
-        productService.remove_dibs(product, userDTO);
+        productService.remove_loves(product, userDTO);
         return ResponseEntity.ok().build(); // 200
 
     }
