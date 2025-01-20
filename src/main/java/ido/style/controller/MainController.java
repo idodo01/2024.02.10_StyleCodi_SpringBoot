@@ -4,16 +4,18 @@ import ido.style.dto.*;
 import ido.style.service.ProductService;
 import ido.style.service.StyleProductService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
 public class MainController {
@@ -76,6 +78,9 @@ public class MainController {
     public String get_cateogry(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
+
+            @AuthenticationPrincipal UserDTO user,
+
             Model model
     ){
         model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
@@ -86,10 +91,20 @@ public class MainController {
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
 
+        List<DibsDTO> dibs = productService.get_dibs_by_user(categoryNo, user, sort);
+        Map<Integer, Boolean> dibsMap = products.stream()
+                .collect(Collectors.toMap(
+                        ProductDTO::getNo,
+                        product -> dibs.stream().anyMatch(dib -> dib.getProduct().getNo().equals(product.getNo()))
+                ));
+
+
         model.addAttribute("products", products);
 
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
+
+        model.addAttribute("dibsMap", dibsMap);
 
         return "main/category";
     }
@@ -168,10 +183,39 @@ public class MainController {
         List<DibsDTO> dibs = productService.get_dibs_by_user(categoryNo, user, sort);
         List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
 
+        System.out.println("Dibs List: " + dibs);
+
         model.addAttribute("dibs", dibs);
         model.addAttribute("styleStoreCategories", styleStoreCategories);
 
 
         return "main/style-dibs";
+    }
+
+    // 장바구니에 상품을 추가하기
+    @PostMapping("/style-dibs")
+    public ResponseEntity<Void> dibs_post(
+            @RequestBody ProductDTO product,
+            @AuthenticationPrincipal UserDTO userDTO
+    ){
+        if(Objects.isNull(userDTO)){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 해당 상품과 유저를 전달해서 찜목록에 추가하기
+        productService.add_dibs(product, userDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    @DeleteMapping("/style-dibs")
+    public ResponseEntity<Void> dibs_delete(
+            @RequestBody ProductDTO product,
+            @AuthenticationPrincipal UserDTO userDTO
+    ){
+
+        System.out.println("Dibs delete: " + product);
+
+        productService.remove_dibs(product, userDTO);
+        return ResponseEntity.ok().build(); // 200
+
     }
 }

@@ -1024,7 +1024,7 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="317" parent="301" name="no">
-      <AutoIncrement>1</AutoIncrement>
+      <AutoIncrement>49</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>

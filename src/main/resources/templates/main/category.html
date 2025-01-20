@@ -7,6 +7,7 @@
 >
 <head>
     <meta charset="UTF-8">
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
     <title>STYLE CODI ♥♡♥♡</title>
     <link rel="stylesheet" href="../../static/css/main/category.css">
     <script src="../../static/js/main/category.js" defer></script>
@@ -40,15 +41,19 @@
         </div>
         <section>
             <div class="item" th:each="product: ${products}">
-                <a class="image-container" th:href="@{|/product/${product.no}|}">
-                    <img th:src="@{|/image/${product.images[0].no}|}" src="https://jp.cookierunstore.com/web/product/medium/202312/27a96ac44b5d30888302cb8673663719.jpg" alt="">
-                </a>
-                <div class="user-like-container">
-                    <button onclick="toggleIcon(this)"><i class="bi bi-heart"></i></button>
-                </div>
-
-                <b class="title" th:text="${product.name}">상품 이름</b>
-                <b class="price" th:text="${product.price}">1,192원</b>
+                <form th:id="${product.no}">
+                    <a class="image-container" th:href="@{|/product/${product.no}|}">
+                        <img th:src="@{|/image/${product.images[0].no}|}" src="" alt="">
+                    </a>
+                    <b class="title" th:text="${product.name}">상품 이름</b>
+                    <br>
+                    <b class="price" th:text="${product.price}">1,192원</b>
+                    <div class="user-like-container">
+                        <button onclick="toggleIcon(this)">
+                            <i th:classappend="${dibsMap[product.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>
+                        </button>
+                    </div>
+                </form>
             </div>
         </section>
         <ol>

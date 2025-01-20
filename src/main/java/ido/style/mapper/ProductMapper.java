@@ -31,6 +31,11 @@ public interface ProductMapper {
             String sort
     );
 
+    void insertDibs(DibsDTO dibs); // 찜 목록에 상품 정보 추가
+
+    void deleteDibs(DibsDTO dibs); // 찜 목록에 상품 정보 삭제
+
+
 }
 
     

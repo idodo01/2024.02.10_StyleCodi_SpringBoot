@@ -166,4 +166,15 @@
 
 
     </select>
+
+    <insert id="insertDibs">
+        INSERT INTO `dibs` (no, product_no, user_id)
+        VALUES (NULL, #{product.no}, #{user.id})
+    </insert>
+
+    <delete id="deleteDibs">
+        DELETE FROM `dibs`
+        WHERE product_no = #{product.no}
+    </delete>
+
 </mapper>
