@@ -52,7 +52,7 @@
     "Spring Boot.StyleSnapApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/idodo/Documents/Study/Cookie Run Store_12월 30일까지",
+    "last_opened_file_path": "C:/Users/idodo/Documents/Study1/2024.01.05_StyleCodi_SpringBoot-master/src/main/resources/templates/main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -72,9 +72,9 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\templates\main" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\css\main" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\js\main" />
-      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\templates\main" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.12.22_StyleSnap_SpringBoot-master\src\main\resources\static\css\main" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.12.22_StyleSnap_SpringBoot-master\src\main\resources\static\js\main" />
     </key>
@@ -129,6 +129,7 @@
       <workItem from="1737277237645" duration="5738000" />
       <workItem from="1737283141617" duration="132000" />
       <workItem from="1737350249928" duration="21088000" />
+      <workItem from="1737428524190" duration="14061000" />
     </task>
     <servers />
   </component>

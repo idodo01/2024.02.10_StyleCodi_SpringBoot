@@ -1,22 +1,26 @@
 @import "../public/public.css";
 
 
+
+
 .style-all-section {
     width: 1400px;
     margin: 180px auto;
+
+    text-align: center;
+
+    display: flex;
 }
 
-.style-all-section > ol{
-    margin: 50px 0;
-    display: flex;
-    justify-content: center;
-}
-.style-all-section > ol > li {
-    margin: 0 8px;
-}
-.style-all-section > ol a{
-    color: black;
-    font-size: var(--font-size-x-small);
+/**********************************************/
+.style-list-section{
+    margin: 30px auto;
+
+    width: 200px;
+
+    border: 5px solid pink;
+    border-radius: 8px;
+
 }
 
 /******************************************/
@@ -104,8 +108,8 @@
 .style-store-section{
     margin: 30px auto;
 
-    width: 800px;
-
+    /*width: 800px;*/
+    width:70%;
     border: 5px solid pink;
     border-radius: 8px;
 

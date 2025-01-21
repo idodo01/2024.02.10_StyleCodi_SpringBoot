@@ -1,6 +1,9 @@
 const parts = ["top", "outer", "bottom", "shoes", "bag"];
 
 
+// 미리보기에 사용된 상품 목록
+
+
 /***********************스타일 맵***************************/
 function uploadImage(part) {
     document.getElementById(`input-${part}`).click();
@@ -12,16 +15,24 @@ function previewImage(event, part) {
     if (file) {
         const reader = new FileReader();
         reader.onload = function(e) {
+
+            // 미리보기 사진 추가됨
             const box = document.getElementById(part);
             box.innerHTML = `<img class="${part}-img" src="${e.target.result}" alt="${part}"> 
+                            <b class="${part}-productNo" id="${e.target.result}"></b>
                             <input type="file" accept="image/*" id="input-${part}" 
                             onChange="previewImage(event, '${part}')"
                             style="display: none;"/>`;
             box.classList.remove('empty'); // 이미지가 첨부되면 'empty' 클래스 제거
+
+
+
         };
         reader.readAsDataURL(file);
     }
+
 }
+
 
 
 async function combineImages() {

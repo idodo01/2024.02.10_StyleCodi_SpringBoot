@@ -3,6 +3,8 @@ package ido.style.controller;
 import ido.style.dto.*;
 import ido.style.service.ProductService;
 import ido.style.service.StyleProductService;
+import jakarta.servlet.http.HttpServletResponse;
+import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -12,6 +14,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
+import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -98,7 +101,6 @@ public class MainController {
                         product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
                 ));
 
-
         model.addAttribute("products", products);
 
         model.addAttribute("styleCategories", styleCategories);
@@ -132,17 +134,41 @@ public class MainController {
     // 스타일 코디
     @GetMapping("/style-make")
     public String get_style_make(
+            HttpSession session,
             Model model
     ){
 
-
         List<CategoryDTO> categories = productService.get_categories();
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+
 
         model.addAttribute("categories", categories);
         model.addAttribute("styleCategories", styleCategories);
 
         return "main/style-make";
+    }
+
+    @GetMapping("/style-list")
+    public String get_style_list(
+            HttpSession session,
+            Model model
+    ){
+        String selectedProductNo = (String) session.getAttribute("selectedProductNo");
+
+        model.addAttribute("selectedProductNo", selectedProductNo);
+
+        return "main/style-list";
+    }
+
+    @PostMapping("/add-list")
+    public ResponseEntity<Void> updateProduct(@RequestBody Map<String, String> requestBody, HttpSession session, HttpServletResponse response) {
+        String productNo = requestBody.get("productNo");
+        if (productNo != null) {
+            // 세션에 상품 번호 저장
+            session.setAttribute("selectedProductNo", productNo);
+            return ResponseEntity.ok().build();  // 클라이언트가 리디렉션을 처리하도록 응답
+        }
+        return ResponseEntity.badRequest().build();
     }
 
     // 스타일 코디 - style-make 안에 사용되는 IFRAME 1 (스토어 페이지)
@@ -191,7 +217,8 @@ public class MainController {
         return "main/style-loves";
     }
 
-    // 장바구니에 상품을 추가하기
+
+    // 찜목록에 상품을 추가하기
     @PostMapping("/style-loves")
     public ResponseEntity<Void> loves_post(
             @RequestBody ProductDTO product,

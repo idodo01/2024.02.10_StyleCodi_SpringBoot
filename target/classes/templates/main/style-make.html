@@ -16,27 +16,49 @@
 <main layout:fragment="main">
     <section class="style-all-section">
 
+        <section class="style-list-section">
+
+            <iframe id="style-list-iframe" name="list" src="http://localhost:8080/style-list"></iframe>
+
+
+<!--            <div class="item" th:each="product: ${products}" >-->
+<!--                <button class="image-container">-->
+<!--                    <img class="item-img" th:src="@{|/image/${product.images[0].no}|}" src="" th:alt="${product.no}"-->
+<!--                         th:data-category="${product.category.no}"-->
+<!--                         th:onclick="|changeParentImage(event)|">-->
+<!--                </button>-->
+<!--                <b class="title" th:text="${product.name}">상품명</b>-->
+<!--                <b class="price" th:text="${product.price}">9,999원</b>-->
+<!--                <a th:href="@{|/product/${product.no}|}" target="_blank">상세보기</a>-->
+<!--            </div>-->
+        </section>
+
         <section class="style-body-section">
             <section class="style-map-section">
                 <div class="container">
                     <div class="box top empty" id="top" onclick="uploadImage('top')">
                         <img class="top-img" src="../../static/images/example/top.jpg" alt="상의">
-                        <input type="file" accept="image/*" id="input-top" onchange="previewImage(event, 'top')" style="display: none;">
+                        <b class="top-productNo"></b>
+                        <input type="file" accept="image/*" id="input-top" onchange="addList(); previewImage(event, 'top')" style="display: none;">
                     </div>
                     <div class="box outer empty" id="outer" onclick="uploadImage('outer')">
                         <img class="outer-img" src="../../static/images/example/outer.jpg" alt="겉옷">
+                        <b class="outer-productNo"></b>
                         <input type="file" accept="image/*" id="input-outer" onchange="previewImage(event, 'outer')" style="display: none;">
                     </div>
                     <div class="box bottom empty" id="bottom" onclick="uploadImage('bottom')">
                         <img class="bottom-img" src="../../static/images/example/bottom.jpg" alt="하의">
+                        <b class="bottom-productNo"></b>
                         <input type="file" accept="image/*" id="input-bottom" onchange="previewImage(event, 'bottom')" style="display: none;">
                     </div>
                     <div class="box shoes empty" id="shoes" onclick="uploadImage('shoes')">
                         <img class="shoes-img" src="../../static/images/example/shose.jpg" alt="신발">
+                        <b class="shoes-productNo"></b>
                         <input type="file" accept="image/*" id="input-shoes" onchange="previewImage(event, 'shoes')" style="display: none;">
                     </div>
                     <div class="box bag empty" id="bag" onclick="uploadImage('bag')">
                         <img class="bag-img" src="../../static/images/example/bag.jpg" alt="가방">
+                        <b class="bag-productNo"></b>
                         <input type="file" accept="image/*" id="input-bag" onchange="previewImage(event, 'bag')" style="display: none;">
                     </div>
                 </div>
@@ -46,15 +68,10 @@
                 <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
             </section>
 
+        </section>
 
-            <section class="style-store-section">
-
-
-                <iframe name="store" src="http://localhost:8080/style-store"></iframe>
-
-
-            </section>
-
+        <section class="style-store-section">
+            <iframe name="store" src="http://localhost:8080/style-store"></iframe>
         </section>
     </section>
 </main>
