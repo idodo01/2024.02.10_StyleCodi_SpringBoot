@@ -178,4 +178,10 @@
         WHERE product_no = #{product.no}
     </delete>
 
+    <insert id="insertStyles">
+        INSERT INTO `styles` (no, top_no, outer_no, bottom_no, shoes_no, bag_no, user_id)
+        VALUES (NULL, #{product_top.no},#{product_outer.no}, #{product_bottom.no}, #{product_shoes.no}, #{product_bag.no},  #{user.id})
+    </insert>
+<!--    , outer_no, bottom_no, shoes_no, bag_no,-->
+<!--    #{product.no}, #{product.no}, #{product.no}, #{product.no},-->
 </mapper>

@@ -79,3 +79,75 @@ async function combineImages() {
     link.click();
 }
 
+
+
+function saveClickList() {
+
+    const topProductNo = Number(document.querySelector(`.top-productNo`).id);
+    const outerProductNo = Number(document.querySelector(`.outer-productNo`).id);
+    const bottomProductNo = Number(document.querySelector(`.bottom-productNo`).id);
+    const shoesProductNo = Number(document.querySelector(`.shoes-productNo`).id);
+    const bagProductNo = Number(document.querySelector(`.bag-productNo`).id);
+
+    // console.log(topProductNo,outerProductNo,bottomProductNo,shoesProductNo,bagProductNo);
+    // console.log(typeof topProductNo);
+    // console.log(typeof (Number(topProductNo)));
+
+    const csrfToken = document.querySelector('meta[name=_csrf]').getAttribute('content');
+
+    const requestBody = [
+        { no: topProductNo },
+        { no: outerProductNo },
+        { no: bottomProductNo },
+        { no: shoesProductNo },
+        { no: bagProductNo },
+        // no: outerProductNo,
+        // bottomProductNo: bottomProductNo,
+        // shoesProductNo: shoesProductNo,
+        // bagProductNo: bagProductNo
+    ]
+
+    // POST 요청 전송
+    fetch(`/style-list`, {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": csrfToken,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+    }).then(response => {
+        if (response.ok) {
+            console.log('요청 성공');
+        } else {
+            console.error('요청 실패:', response.status);
+        }
+    })
+        .catch((error) => console.error('서버 통신 오류:', error));
+
+    //
+    // 세션 처리 방법
+    // fetch('/save-click-list', {
+    //         method: 'POST',
+    //         headers: {
+    //             "X-CSRF-TOKEN": csrfToken,
+    //             'Content-Type': 'application/json'
+    //         },
+    //         body: JSON.stringify(
+    //             {productNo: productNo}
+    //         )
+    //     })
+    //         .then((response) => {
+    //             if (response.ok) {
+    //                 console.log('상품 번호 서버에 전달 완료');
+    //                 const styleListIframe = parent.document.getElementById('style-list-iframe');
+    //                 // style-list iframe을 새로고침
+    //                 styleListIframe.contentWindow.location.reload();
+    //
+    //                 // window.location.href = '/style-list';
+    //                 // location.reload(); // 페이지 새로고침으로 타임리프 갱신
+    //             } else {
+    //                 console.error('상품 번호 전달 실패');
+    //             }
+    //         })
+    //         .catch((error) => console.error('서버 통신 오류:', error));
+}

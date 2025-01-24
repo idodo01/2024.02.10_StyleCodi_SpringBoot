@@ -15,10 +15,10 @@ public class AdminController {
     private AdminService adminService;
     
     @GetMapping("/upload")
-    public void get_upload(){}
+    public void admin_upload(){}
 
     @PostMapping("/upload")
-    public String post_upload(ProductDTO productDTO){
+    public String admin_upload(ProductDTO productDTO){
         adminService.add_product(productDTO);
         return "redirect:/admin/upload";
     }

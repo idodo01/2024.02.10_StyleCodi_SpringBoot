@@ -28,6 +28,13 @@ function changeParentImage(event) {
 
     // 부모 페이지의 이미지를 변경
     parentImg.src = event.target.getAttribute('src');
+    /*****************************************************************/
 
+    const bClassName = `${part}-productNo`; // 동적 클래스 이름
+
+    const parentB = parent.document.querySelector(`.${bClassName}`);
+
+    // 부모 문서인 style-make의 ${part}-productNo 클래스의 위치의 id에 삽입
+    parentB.id = event.target.getAttribute('alt');
 
 }

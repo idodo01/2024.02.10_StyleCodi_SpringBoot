@@ -16,7 +16,7 @@
 
         <ul class="main-menu-ul">
             <li th:each="styleCategory: ${styleCategories}">
-                <a th:href="@{|/styleProduct?categoryNo=${styleCategory.no}|}" th:text="${styleCategory.name}">ALL</a>
+                <a th:href="@{|/styleCategory?categoryNo=${styleCategory.no}|}" th:text="${styleCategory.name}">ALL</a>
                 <ul class="header-child-menu" th:if="${styleCategory.children}">
                     <li th:each="childCategory: ${styleCategory.children}">
                         <a th:href="@{|/styleProduct?categoryNo=${childCategory.no}|}" th:text="${childCategory.name}">ALL</a>
@@ -24,7 +24,7 @@
                 </ul>
             </li>
             <li th:each="category: ${categories}">
-                <a th:href="@{|/product?categoryNo=${category.no}|}" th:text="${category.name}">ALL</a>
+                <a th:href="@{|/category?categoryNo=${category.no}|}" th:text="${category.name}">ALL</a>
                 <ul class="header-child-menu" th:if="${category.children}">
                     <li th:each="childCategory: ${category.children}">
                         <a th:href="@{|/product?categoryNo=${childCategory.no}|}" th:text="${childCategory.name}">ALL</a>
@@ -53,12 +53,11 @@
                         <i class="bi bi-person"></i>
                         <ul class="header-child-menu">
                             <li><a href="/user/info">마이페이지</a></li>
-                            <li><a href="">내주문내역</a></li>
-                            <li><a href="/user/cart">장바구니</a></li>
+                            <li><a href="/style-loves">내 찜목록</a></li>
+                            <li><a href="">내 옷장</a></li>
+                            <li><a href="/style-list">내 스타일 조합</a></li>
                         </ul>
                     </li>
-
-                    <li><a href="/user/cart"><i class="bi bi-cart"></i></a></li>
                     <li><a href=""><i class="bi bi-search"></i></a></li>
                 </ul>
             </nav>

@@ -54,4 +54,25 @@ public class ProductService {
 
         productMapper.deleteLoves(loves);
     }
+
+    // 스타일 저장
+    public void add_styles(
+            ProductDTO product_top,
+            ProductDTO product_outer,
+            ProductDTO product_bottom,
+            ProductDTO product_shoes,
+            ProductDTO product_bag,
+            UserDTO user
+    ){
+        StylesDTO styles = new StylesDTO();
+        styles.setProduct_top(product_top);
+        styles.setProduct_outer(product_outer);
+        styles.setProduct_bottom(product_bottom);
+        styles.setProduct_shoes(product_shoes);
+        styles.setProduct_bag(product_bag);
+
+        styles.setUser(user);
+
+        productMapper.insertStyles(styles);
+    }
 }

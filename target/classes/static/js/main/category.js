@@ -19,8 +19,8 @@ function toggleIcon(button) {
             no: productForm.id,
         }
 
-        // 장바구니 담기 POST 요청 전송
-        fetch(`/style-loves`, {
+        // 찜 POST 요청 전송
+        fetch(`/loves-post`, {
             method: "POST",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,
@@ -51,7 +51,7 @@ function toggleIcon(button) {
             no: productForm.id,
         }
 
-        fetch('/style-loves', {
+        fetch('/loves-delete', {
             method: "DELETE",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,

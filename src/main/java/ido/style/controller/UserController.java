@@ -33,7 +33,7 @@ public class UserController {
 
 
     @GetMapping("/login")
-    public String get_login(
+    public String user_login(
             Authentication authentication,
             Model model
     ) {
@@ -50,7 +50,7 @@ public class UserController {
     }
     /************************************************/
     @GetMapping("/join")
-    public String get_join(
+    public String user_join(
             @ModelAttribute UserDTO userDTO,
             Authentication authentication,
             Model model
@@ -67,7 +67,7 @@ public class UserController {
     }
 
     @PostMapping("/join")
-    public String post_join(
+    public String user_join(
             @ModelAttribute UserDTO userDTO,
             BindingResult bindingResult,
             HttpSession session
@@ -85,7 +85,7 @@ public class UserController {
 
     /************************ 유저 정보 ***************************/
     @GetMapping("/info")
-    public void get_user_info(
+    public void user_info(
             @AuthenticationPrincipal UserDTO user,
             Model model
     ){
@@ -97,7 +97,7 @@ public class UserController {
 
     /******************************************************************/
     @GetMapping("/upload")
-    public String get_style_upload(
+    public String style_upload(
             @ModelAttribute UserDTO userDTO,
             Authentication authentication,
             Model model
@@ -115,7 +115,7 @@ public class UserController {
     }
 
     @PostMapping("/upload")
-    public String post_style_upload(
+    public String style_upload(
             StyleProductDTO styleProductDTO
     )
     {

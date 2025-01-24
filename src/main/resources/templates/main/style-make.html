@@ -8,6 +8,7 @@
 <head>
     <meta charset="UTF-8">
     <title>STYLE CODI ♥♡♥♡</title>
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
     <link rel="stylesheet" href="../../static/css/main/style-make.css">
     <script src="../../static/js/main/style-make.js" defer></script>
 </head>
@@ -16,22 +17,9 @@
 <main layout:fragment="main">
     <section class="style-all-section">
 
-        <section class="style-list-section">
-
-            <iframe id="style-list-iframe" name="list" src="http://localhost:8080/style-list"></iframe>
-
-
-<!--            <div class="item" th:each="product: ${products}" >-->
-<!--                <button class="image-container">-->
-<!--                    <img class="item-img" th:src="@{|/image/${product.images[0].no}|}" src="" th:alt="${product.no}"-->
-<!--                         th:data-category="${product.category.no}"-->
-<!--                         th:onclick="|changeParentImage(event)|">-->
-<!--                </button>-->
-<!--                <b class="title" th:text="${product.name}">상품명</b>-->
-<!--                <b class="price" th:text="${product.price}">9,999원</b>-->
-<!--                <a th:href="@{|/product/${product.no}|}" target="_blank">상세보기</a>-->
-<!--            </div>-->
-        </section>
+<!--        <section class="style-list-section">-->
+<!--            <iframe id="style-list-iframe" name="list" src="http://localhost:8080/style-list"></iframe>-->
+<!--        </section>-->
 
         <section class="style-body-section">
             <section class="style-map-section">
@@ -63,7 +51,8 @@
                     </div>
                 </div>
 
-                <button class="combine-btn" onclick="combineImages()">조합하기</button>
+                <button class="combine-btn" onclick="combineImages()">이미지 다운로드</button>
+                <button sec:authorize="authenticated" class="save-btn" onclick="saveClickList()">저장하기</button>
 
                 <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
             </section>
