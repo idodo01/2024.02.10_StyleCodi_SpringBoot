@@ -11,10 +11,7 @@ import org.springframework.security.core.annotation.AuthenticationPrincipal;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 import java.util.Objects;
@@ -84,19 +81,39 @@ public class UserController {
     }
 
     /************************ 유저 정보 ***************************/
-    @GetMapping("/info")
-    public void user_info(
+    @GetMapping("/myPage")
+    public String user_myPage(
+            @RequestParam(defaultValue = "1") Integer categoryNo,
+            String sort,
+
+            Authentication authentication,
             @AuthenticationPrincipal UserDTO user,
+
             Model model
     ){
-       List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
+
+        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
+        model.addAttribute("styleStoreCategories", styleStoreCategories);
+
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort); // 찜 목록
+        model.addAttribute("loves", loves);
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
+
+        return "user/myPage";
     }
 
     /******************************************************************/
-    @GetMapping("/upload")
+    @GetMapping("/style-upload")
     public String style_upload(
             @ModelAttribute UserDTO userDTO,
             Authentication authentication,
@@ -111,16 +128,16 @@ public class UserController {
         List<CategoryDTO> categories = productService.get_categories();
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
-        return "user/upload";
+        return "user/style-upload";
     }
 
-    @PostMapping("/upload")
+    @PostMapping("/style-upload")
     public String style_upload(
             StyleProductDTO styleProductDTO
     )
     {
         userService.add_style_product(styleProductDTO);
-        return "redirect:/styleProduct";
+        return "redirect:/styleCategory";
     }
 
 

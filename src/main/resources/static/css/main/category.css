@@ -1,14 +1,10 @@
 @import "../public/public.css";
 
 .category-section{
-    margin: 20px 0;
+    margin: 120px 0;
     padding: 0 250px;
 }
 
-.category-section h1{
-    text-align: center;
-    margin: 60px;
-}
 /***********************************/
 .product-sort {
     display: flex;

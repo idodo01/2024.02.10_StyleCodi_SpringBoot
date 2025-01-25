@@ -264,8 +264,8 @@ public class MainController {
 
         model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
 
-        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
-        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort); // 찜 목록
+        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
 
 
         model.addAttribute("loves", loves);

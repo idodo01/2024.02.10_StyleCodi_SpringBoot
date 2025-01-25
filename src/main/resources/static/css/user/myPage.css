@@ -1,29 +1,78 @@
 @import "../public/public.css";
 
-/***************************************************************/
-.button-container{
+.myPage-section{
+    margin: 120px 0;
+    padding: 0 250px;
+}
+
+/*******************************************************/
+
+/* 전체 컨테이너 스타일 */
+.myPage-container {
     display: flex;
-    justify-content: center;
-    margin-bottom: 30px;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
 }
 
-.tab {
-    /*padding: 10px 20px;*/
-    margin: 0 10px;
-    cursor: pointer;
-    background-color: pink;
-    border-radius: 20px;
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
     font-weight: bold;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
 }
-.tab:hover {
-    transform: scale(0.8);
+/***************************************************/
+/* 레이아웃 스타일 */
+.myPage-content {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
 }
 
-/******************************************/
-/**************** 스타일 스토어 세션 *******************/
-/******************************************/
+/* 왼쪽 사이드바 */
+.info-section {
+    width: 25%;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.info-box {
+    margin-bottom: 20px;
+}
+
+.info-box h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-box li {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.info-box li:hover {
+    text-decoration: underline;
+}
+
+/**************************************************/
+/* 오른쪽 메인 콘텐츠 */
+.myPage-main-section {
+    width: 75%;
+    padding-left: 20px;
+}
+
+/*****************************************************/
+/* 찜 */
 
 .style-loves-section{
 
@@ -92,9 +141,5 @@
     font-family: Medium;
     font-size: var(--font-size-xx-small);
 }
-
-
-
-
 
 

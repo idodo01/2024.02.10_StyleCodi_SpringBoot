@@ -6,8 +6,8 @@ html{
 
 .product-section {
     /*position: relative;*/
-    width: 1200px;
     margin: 120px auto;
+    width: 1200px;
 }
 .product-section img{
     width: 100%;

@@ -13,7 +13,7 @@
 <body>
 
 
-<section class="style-store-section">
+<section class="style-loves-section">
     <div class="button-container">
         <a href="/style-store"><div class="tab">스토어 상품으로</div ></a>
         <a href="/style-loves"><div class="tab">찜 상품으로</div></a>
@@ -40,7 +40,7 @@
             </li>
         </ul>
 
-    <section class="style-store-item-section">
+    <section class="style-loves-item-section">
         <div class="item" th:each="love: ${loves}" >
             <button class="image-container">
             <img class="item-img" th:src="@{|/image/${love.product.images[0].no}|}" src="" alt=""

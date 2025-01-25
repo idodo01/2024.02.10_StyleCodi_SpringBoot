@@ -18,7 +18,7 @@
         <nav id="category-nav">
             <ol>
                 <li th:each="category: ${categoryMap}">
-                    <a th:href="@{/product(categoryNo=${category.no})}" th:text="${category.name}">CATEGORY1</a>
+                    <a th:href="@{/category(categoryNo=${category.no})}" th:text="${category.name}">CATEGORY1</a>
                 </li>
             </ol>
         </nav>
@@ -54,9 +54,7 @@
                         <span>(총 1개)</span>
                     </div>
 
-                    <button type="submit" class="buy-btn">바로 구입</button>
                     <div class="button-container">
-                        <button type="button" class="cart-btn">카트에 담기</button>
                         <button type="button" class="heart-btn">찜하기</button>
                     </div>
                 </form>

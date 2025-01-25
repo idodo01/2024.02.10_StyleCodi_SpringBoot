@@ -6,8 +6,9 @@ html{
 
 .product-section {
     /*position: relative;*/
-    width: 1200px;
     margin: 120px auto;
+    width: 1200px;
+
 }
 .product-section img{
     width: 100%;
@@ -161,12 +162,9 @@ product-section > article .button-container{
         opacity: 0.8;
     }
 }
-.product-section > article .button-container > .cart-btn{
-    background-color: var(--Pasteles-2-rgba);
-    margin-right: 5px;
-}
+
 .product-section > article .button-container > .heart-btn{
-    background-color: var(--Pasteles-5-rgba);
+    background-color: hotpink;
     margin-left: 5px;
 }
 
