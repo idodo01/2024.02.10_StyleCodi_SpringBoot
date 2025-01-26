@@ -1270,29 +1270,29 @@
       <UnderlyingIndexName>PRIMARY</UnderlyingIndexName>
     </key>
     <column id="365" parent="309" name="no">
-      <AutoIncrement>65</AutoIncrement>
+      <AutoIncrement>70</AutoIncrement>
       <NotNull>1</NotNull>
       <Position>1</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="366" parent="309" name="top_no">
+    <column id="366" parent="309" name="product_top">
       <NotNull>1</NotNull>
       <Position>2</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="367" parent="309" name="outer_no">
+    <column id="367" parent="309" name="product_outer">
       <Position>3</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="368" parent="309" name="bottom_no">
+    <column id="368" parent="309" name="product_bottom">
       <Position>4</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="369" parent="309" name="shoes_no">
+    <column id="369" parent="309" name="product_shoes">
       <Position>5</Position>
       <StoredType>int|0s</StoredType>
     </column>
-    <column id="370" parent="309" name="bag_no">
+    <column id="370" parent="309" name="product_bag">
       <Position>6</Position>
       <StoredType>int|0s</StoredType>
     </column>

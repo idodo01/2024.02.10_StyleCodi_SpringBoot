@@ -74,7 +74,7 @@ h1 {
 /*****************************************************/
 /* 찜 */
 
-.style-loves-section{
+.myPage-loves-section{
 
     margin: 30px auto;
     padding: 0 50px;
@@ -89,32 +89,32 @@ h1 {
 
 }
 
-.style-loves-section li{
+.myPage-loves-section li{
     display: inline-block;
     list-style: none;
 }
-.style-loves-section li:not(:last-child)::after{
+.myPage-loves-section li:not(:last-child)::after{
     content: "|";
     margin: 0 10px;
 }
-.style-loves-section a{
+.myPage-loves-section a{
     text-decoration: none;
     color: var(--Dark-gray-textured-background---4-rgba);
 }
 /*****************************************************/
-.style-loves-item-section {
+.myPage-loves-item-section {
     margin: 20px auto;
     display: grid;
     grid-gap: 5px 30px;
     grid-template-columns: repeat(4, 1fr);
 }
-.style-loves-item-section .item{
+.myPage-loves-item-section .item{
     display: inline-flex;
     text-align: center;
     flex-direction: column;
 
 }
-.style-loves-item-section .image-container{
+.myPage-loves-item-section .image-container{
     width: 150px;
     height: 150px;
     overflow: hidden;
@@ -123,20 +123,20 @@ h1 {
         transform: scale(120%);
     }
 }
-.style-loves-item-section .image-container > img{
+.myPage-loves-item-section .image-container > img{
     width: 100%;
     height: 100%;
     transition-duration: 0.2s;
     object-fit: contain;
 }
-.style-loves-item-section .title{
+.myPage-loves-item-section .title{
     text-decoration: none;
     color: var(--Dark-gray-textured-background---5-rgba);
     font-family: Medium;
     font-size: var(--font-size-xx-small);
     margin-bottom: 8px;
 }
-.style-loves-item-section .price{
+.myPage-loves-item-section .price{
     color: var(--Pasteles-5-rgba);
     font-family: Medium;
     font-size: var(--font-size-xx-small);

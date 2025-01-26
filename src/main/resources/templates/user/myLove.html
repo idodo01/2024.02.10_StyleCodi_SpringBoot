@@ -8,13 +8,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>My Page</title>
-    <link rel="stylesheet" href="../../static/css/user/myPage.css">
+    <link rel="stylesheet" href="../../static/css/user/myLove.css">
 </head>
 <body>
 <main layout:fragment="main">
     <section class="myPage-section">
         <div class="myPage-container">
-            <h1>마이 페이지</h1>
+            <h1>내 찜 목록</h1>
 
             <!-- Main Content -->
             <div class="myPage-content">
@@ -34,7 +34,7 @@
                         </ul>
                     </div>
                     <div class="info-box">
-                        <h3>내 스타일 조합</h3>
+                        <h3>내 스타일</h3>
                         <ul>
                             <li>~~~~~~</li>
                         </ul>
@@ -44,29 +44,29 @@
 
                 <!-- Main Content -->
                 <section class="myPage-main-section">
-                    <section class="style-loves-section">
-                        <ul class="style-main-menu">
+                    <section class="myPage-loves-section">
+                        <ul class="loves-main-menu">
                             <li th:each="styleStoreCategory: ${styleStoreCategories}">
-                                <a th:href="@{|/user/myPage?categoryNo=${styleStoreCategory.no}|}" th:text="${styleStoreCategory.name}" target="store">ALL</a>
+                                <a th:href="@{|/user/myLove?categoryNo=${styleStoreCategory.no}|}" th:text="${styleStoreCategory.name}" target="store">ALL</a>
                             </li>
                         </ul>
 
                         <ul>
                             <li>
-                                <a th:href="@{|/user/myPage?categoryNo=${categoryNo}&sort=recent|}">최신순</a>
+                                <a th:href="@{|/user/myLove?categoryNo=${categoryNo}&sort=recent|}">최신순</a>
                             </li>
                             <li>
-                                <a th:href="@{|/user/myPage?categoryNo=${categoryNo}&sort=name|}">이름순</a>
+                                <a th:href="@{|/user/myLove?categoryNo=${categoryNo}&sort=name|}">이름순</a>
                             </li>
                             <li>
-                                <a th:href="@{|/user/myPage?categoryNo=${categoryNo}&sort=low-price|}">낮은 가격순</a>
+                                <a th:href="@{|/user/myLove?categoryNo=${categoryNo}&sort=low-price|}">낮은 가격순</a>
                             </li>
                             <li>
-                                <a th:href="@{|/user/myPage?categoryNo=${categoryNo}&sort=high-price|}">높은 가격순</a>
+                                <a th:href="@{|/user/myLove?categoryNo=${categoryNo}&sort=high-price|}">높은 가격순</a>
                             </li>
                         </ul>
 
-                        <section class="style-loves-item-section">
+                        <section class="myPage-loves-item-section">
                             <div class="item" th:each="love: ${loves}" >
                                 <button class="image-container">
                                     <img class="item-img" th:src="@{|/image/${love.product.images[0].no}|}" src="" alt=""

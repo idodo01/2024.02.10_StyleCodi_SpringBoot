@@ -80,9 +80,9 @@ public class UserController {
         return joinResult ? "redirect:/user/login" : "user/join";
     }
 
-    /************************ 유저 정보 ***************************/
-    @GetMapping("/myPage")
-    public String user_myPage(
+    /************************ 유저 마이페이지 ***************************/
+    @GetMapping("/myLove")
+    public String user_myLove(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
 
@@ -102,6 +102,7 @@ public class UserController {
 
         List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort); // 찜 목록
         model.addAttribute("loves", loves);
+        System.out.println("loves object: " + loves);
 
         // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
@@ -109,9 +110,34 @@ public class UserController {
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
 
-        return "user/myPage";
+        return "user/myLove";
     }
 
+    @GetMapping("/myStyle")
+    public String user_myStyle(
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        List<StylesDTO> styles = productService.get_styles_by_user(user); // 내 스타일
+        model.addAttribute("styles", styles);
+
+        System.out.println("Style object: " + styles);
+
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myStyle";
+    }
     /******************************************************************/
     @GetMapping("/style-upload")
     public String style_upload(

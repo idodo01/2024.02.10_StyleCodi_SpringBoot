@@ -75,4 +75,9 @@ public class ProductService {
 
         productMapper.insertStyles(styles);
     }
+
+    // 해당 유저의 찜 목록을 가져오기
+    public List<StylesDTO> get_styles_by_user(UserDTO user){
+        return productMapper.selectStylesByUser(user);
+    }
 }
