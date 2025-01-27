@@ -20,6 +20,9 @@
         <typeAlias type="ido.style.dto.SnsInfoDTO" alias="SnsInfoDTO" />
         <typeAlias type="ido.style.dto.LovesDTO" alias="LovesDTO" />
         <typeAlias type="ido.style.dto.StylesDTO" alias="StylesDTO" />
+
+        <typeAlias type="ido.style.dto.ClothesDTO" alias="ClothesDTO" />
+        <typeAlias type="ido.style.dto.ClothesImageDTO" alias="ClothesImageDTO" />
     </typeAliases>
 </configuration>
 

@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <link rel="stylesheet" href="../../static/css/user/myStyle-detail.css">
+    <script src="../../static/js/user/myStyle-detail.js" defer></script>
+
+</head>
+<body>
+<main layout:fragment="main">
+    <section class="myPage-section">
+        <div class="myPage-container">
+            <h1>내 스타일</h1>
+
+            <!-- Main Content -->
+            <div class="myPage-content">
+                <!-- Sidebar -->
+                <section class="info-section">
+                    <div class="info-box">
+                        <h3><a href="/user/myLove">내 찜목록</a></h3>
+                        <ul>
+                            <li>상품 찜</li>
+                            <li>스타일 찜</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h3><a href="/user/myClothes">내 옷장</a></h3>
+                    </div>
+                    <div class="info-box">
+                        <h3><a href="/user/myStyle">내 스타일</a></h3>
+                    </div>
+                </section>
+
+                <!-- Main Content -->
+                <section class="myPage-main-section">
+                    <section class="style-body-section">
+                        <section class="style-map-section">
+                            <div class="container">
+                                <div class="box top empty" id="top">
+                                    <img class="top-img" th:src="@{|/image/${style.product_top.images[0].no}|}" alt="상의">
+                                </div>
+                                <div class="box outer empty" id="outer">
+                                    <img class="outer-img" th:src="@{|/image/${style.product_outer.images[0].no}|}" alt="겉옷">
+                                </div>
+                                <div class="box bottom empty" id="bottom">
+                                    <img class="bottom-img" th:src="@{|/image/${style.product_bottom.images[0].no}|}" alt="하의">
+                                </div>
+                                <div class="box shoes empty" id="shoes">
+                                    <img class="shoes-img" th:src="@{|/image/${style.product_shoes.images[0].no}|}" alt="신발">
+                                </div>
+                                <div class="box bag empty" id="bag">
+                                    <img class="bag-img" th:src="@{|/image/${style.product_bag.images[0].no}|}" alt="가방">
+                                </div>
+                            </div>
+
+                            <button class="combine-btn" onclick="combineImages()">이미지 다운로드</button>
+
+                            <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
+                        </section>
+                        <section class="style-detail-section">
+                            <div class="top-detail">
+                                <button class="image-container">
+                                    <img th:src="@{|/image/${style.product_top.images[0].no}|}" alt="상의">
+                                </button>
+                                <b class="title" th:text="${style.product_top.name}"></b>
+                                <a th:href="@{|/product/${style.product_top.no}|}" target="_blank">상세보기</a>
+                            </div>
+                            <div class="outer-detail">
+                                <button class="image-container">
+                                    <img th:src="@{|/image/${style.product_outer.images[0].no}|}" alt="아우터">
+                                </button>
+                                <b class="title" th:text="${style.product_outer.name}"></b>
+                                <a th:href="@{|/product/${style.product_outer.no}|}" target="_blank">상세보기</a>
+                            </div>
+                            <div class="bottom-detail">
+                                <button class="image-container">
+                                    <img th:src="@{|/image/${style.product_bottom.images[0].no}|}" alt="하의">
+                                </button>
+                                <b class="title" th:text="${style.product_bottom.name}"></b>
+                                <a th:href="@{|/product/${style.product_bottom.no}|}" target="_blank">상세보기</a>
+                            </div>
+                            <div class="shoes-detail">
+                                <button class="image-container">
+                                    <img th:src="@{|/image/${style.product_shoes.images[0].no}|}" alt="신발">
+                                </button>
+                                <b class="title" th:text="${style.product_shoes.name}"></b>
+                                <a th:href="@{|/product/${style.product_shoes.no}|}" target="_blank">상세보기</a>
+                            </div>
+                            <div class="bag-detail">
+                                <button class="image-container">
+                                    <img th:src="@{|/image/${style.product_bag.images[0].no}|}" alt="가방">
+                                </button>
+                                <b class="title" th:text="${style.product_bag.name}"></b>
+                                <a th:href="@{|/product/${style.product_bag.no}|}" target="_blank">상세보기</a>
+                            </div>
+                        </section>
+                    </section>
+                </section>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

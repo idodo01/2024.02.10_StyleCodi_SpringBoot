@@ -1,7 +1,9 @@
 package ido.style.service;
 
+import ido.style.dto.ClothesDTO;
 import ido.style.dto.StyleCategoryDTO;
 import ido.style.dto.StyleProductDTO;
+import ido.style.dto.UserDTO;
 import ido.style.mapper.ProductMapper;
 import ido.style.mapper.StyleProductMapper;
 import lombok.extern.slf4j.Slf4j;
@@ -27,5 +29,6 @@ public class StyleProductService {
     public List<StyleCategoryDTO> get_categories(){
         return styleProductMapper.selectStyleCategories();
     }
+
 
 }

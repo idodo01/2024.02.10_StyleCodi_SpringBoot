@@ -37,10 +37,12 @@ public interface ProductMapper {
 
     void insertStyles(StylesDTO styles); // 스타일 리스트 추가
 
-    // 찜 상품 불러오기
+    // 스타일 불러오기
     List<StylesDTO> selectStylesByUser(
             UserDTO user
     );
+
+    StylesDTO selectStyleByUser(UserDTO user, Integer styleNo);
 
 }
 

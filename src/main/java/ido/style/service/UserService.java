@@ -1,5 +1,6 @@
 package ido.style.service;
 
+import ido.style.dto.ClothesDTO;
 import ido.style.dto.StyleProductDTO;
 import ido.style.dto.UserDTO;
 import ido.style.mapper.UserMapper;
@@ -8,6 +9,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
 import java.util.Objects;
 
 @Log4j2
@@ -32,12 +34,23 @@ public class UserService {
         return true; // 가입 성공 판단
     }
 
-    // 상품과 해당 상품의 옵션들을 DB에 INSERT
+    // 스타일 INSERT
     public void add_style_product(StyleProductDTO styleProduct){
-        // 상품을 전달해서 DB에 상품의 정보를 추가하기!
         userMapper.insertStyleProduct(styleProduct);
-
         userMapper.insertStyleProductImages(styleProduct);
 
+    }
+
+    // 옷 INSERT
+    public void add_clothes(ClothesDTO clothes,UserDTO user){
+        // 상품을 전달해서 DB에 상품의 정보를 추가하기!
+        userMapper.insertClothes(clothes, user);
+
+        userMapper.insertClothesImages(clothes);
+
+    }
+
+    public List<ClothesDTO> get_clothes_products(Integer categoryNo, UserDTO user, String sort){
+        return userMapper.selectClothes(categoryNo, user, sort);
     }
 }

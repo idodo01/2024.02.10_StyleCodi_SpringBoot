@@ -23,23 +23,17 @@
                 <!-- Sidebar -->
                 <section class="info-section">
                     <div class="info-box">
-                        <h3>내 찜목록</h3>
+                        <h3><a href="/user/myLove">내 찜목록</a></h3>
                         <ul>
                             <li>상품 찜</li>
                             <li>스타일 찜</li>
                         </ul>
                     </div>
                     <div class="info-box">
-                        <h3>내 옷장</h3>
-                        <ul>
-                            <li>~~~~~</li>
-                        </ul>
+                        <h3><a href="/user/myClothes">내 옷장</a></h3>
                     </div>
                     <div class="info-box">
-                        <h3>내 스타일</h3>
-                        <ul>
-                            <li>~~~~~~</li>
-                        </ul>
+                        <h3><a href="/user/myStyle">내 스타일</a></h3>
                     </div>
 
                 </section>
@@ -48,54 +42,35 @@
                 <section class="myPage-main-section">
                     <section class="style-body-section">
                         <div class="item" th:each="style: ${styles}" >
-<!--                                    <img class="item-img" th:src="@{|/image/${style.product.images[0].no}|}" src="" alt=""-->
-<!--                                         th:data-category="${style.product.category.no}"-->
-<!--                                         th:onclick="|changeParentImage(event)|">-->
-
-                                <section class="style-map-section">
-                                    <div class="container">
-                                        <div class="box top empty" id="top">
-                                            <img class="top-img" th:src="@{|/image/${style.product_top.images[0].no}|}" alt="상의">
-                                            <b class="top-productNo"></b>
-                                            <input type="file" accept="image/*" id="input-top" style="display: none;">
-                                        </div>
-                                        <div class="box outer empty" id="outer">
-                                            <img class="outer-img" th:src="@{|/image/${style.product_outer.images[0].no}|}" alt="겉옷">
-                                            <b class="outer-productNo"></b>
-                                            <input type="file" accept="image/*" id="input-outer"style="display: none;">
-                                        </div>
-                                        <div class="box bottom empty" id="bottom">
-                                            <img class="bottom-img" th:src="@{|/image/${style.product_bottom.images[0].no}|}" alt="하의">
-                                            <b class="bottom-productNo"></b>
-                                            <input type="file" accept="image/*" id="input-bottom" style="display: none;">
-                                        </div>
-                                        <div class="box shoes empty" id="shoes">
-                                            <img class="shoes-img" th:src="@{|/image/${style.product_shoes.images[0].no}|}" alt="신발">
-                                            <b class="shoes-productNo"></b>
-                                            <input type="file" accept="image/*" id="input-shoes" style="display: none;">
-                                        </div>
-                                        <div class="box bag empty" id="bag">
-                                            <img class="bag-img" th:src="@{|/image/${style.product_bag.images[0].no}|}" alt="가방">
-                                            <b class="bag-productNo"></b>
-                                            <input type="file" accept="image/*" id="input-bag" style="display: none;">
-                                        </div>
+                            <section class="style-map-section">
+                                <div class="container">
+                                    <div class="box top empty" id="top">
+                                        <img class="top-img" th:src="@{|/image/${style.product_top.images[0].no}|}" alt="상의">
+                                    </div>
+                                    <div class="box outer empty" id="outer">
+                                        <img class="outer-img" th:src="@{|/image/${style.product_outer.images[0].no}|}" alt="겉옷">
+                                    </div>
+                                    <div class="box bottom empty" id="bottom">
+                                        <img class="bottom-img" th:src="@{|/image/${style.product_bottom.images[0].no}|}" alt="하의">
+                                    </div>
+                                    <div class="box shoes empty" id="shoes">
+                                        <img class="shoes-img" th:src="@{|/image/${style.product_shoes.images[0].no}|}" alt="신발">
+                                    </div>
+                                    <div class="box bag empty" id="bag">
+                                        <img class="bag-img" th:src="@{|/image/${style.product_bag.images[0].no}|}" alt="가방">
                                     </div>
 
-                                    <button class="combine-btn" onclick="combineImages()">이미지 다운로드</button>
+                                </div>
+                                <a class="image-container" th:href="@{|/user/myStyle-detail/${style.no}|}">
+                                상세보기</a>
+                                <button class="combine-btn" onclick="combineImages()">이미지 다운로드</button>
 
-                                    <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
-                                </section>
+                                <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
+                            </section>
                         </div>
                     </section>
-
-
                 </section>
-
-
             </div>
-
-
-
         </div>
     </section>
 </main>

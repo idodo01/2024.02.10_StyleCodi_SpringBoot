@@ -26,4 +26,76 @@
             (NULL, #{no}, #{image.fileName}, #{image.data})
         </foreach>
     </insert>
+
+    <!--    내 옷 -->
+
+    <insert id="insertClothes">
+        INSERT INTO clothes VALUES (NULL, #{clothes.name}, #{clothes.detail}, DEFAULT, 1, #{user.id})
+    </insert>
+
+    <insert id="insertClothesImages">
+        <selectKey keyProperty="no" resultType="int" order="BEFORE">
+            SELECT LAST_INSERT_ID()
+        </selectKey>
+        INSERT INTO `clothes_image` VALUES
+        <foreach collection="images" item="image" separator=",">
+            (NULL, #{no}, #{image.fileName}, #{image.data})
+        </foreach>
+    </insert>
+
+
+    <resultMap id="clothesWithImageMap" type="ClothesDTO" autoMapping="true">
+        <id property="no" column="product_no" />
+        <result property="name" column="product_name" />
+
+        <association property="category" javaType="StyleCategoryDTO" autoMapping="true">
+            <id property="no" column="category_no" />
+            <result property="name" column="category_name" />
+        </association>
+
+        <collection property="images" ofType="ClothesImageDTO" javaType="list">
+            <id property="no" column="product_image_no"/>
+        </collection>
+    </resultMap>
+
+    <select id="selectClothes" resultType="ClothesDTO" resultMap="clothesWithImageMap">
+        SELECT
+        C.no AS product_no,
+        C.name AS product_name,
+        C.detail,
+        C.uploaded_at,
+        C.user_id,
+        CT.no AS category_no,
+        CT.name AS category_name,
+        CI.no AS product_image_no
+
+        FROM ((clothes C
+        JOIN clothes_image CI
+        ON C.no = CI.product_no)
+
+        JOIN category CT
+        ON C.category = CT.no
+        <if test="categoryNo != 1">
+            AND C.category IN (WITH RECURSIVE `category_cte` AS
+            (
+            SELECT * FROM `category` WHERE `no` = #{categoryNo}
+            UNION
+            SELECT child.* FROM `category_cte` parent
+            INNER JOIN `category` child
+            ON parent.no = child.parent
+            ) SELECT `no` FROM `category_cte`)
+        </if>
+        )
+
+        WHERE C.user_id = #{user.id}
+
+        <choose>
+            <when test="sort == 'name'">
+                ORDER BY C.name
+            </when>
+            <otherwise>
+                ORDER BY C.uploaded_at
+            </otherwise>
+        </choose>
+    </select>
 </mapper>

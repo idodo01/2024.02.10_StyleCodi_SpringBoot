@@ -43,9 +43,9 @@
     <section class="style-store-item-section">
         <div class="item" th:each="product: ${products}" >
             <button class="image-container">
-            <img class="item-img" th:src="@{|/image/${product.images[0].no}|}" src="" th:alt="${product.no}"
-                 th:data-category="${product.category.no}"
-                 th:onclick="|changeParentImage(event)|">
+                <img class="item-img" th:src="@{|/image/${product.images[0].no}|}" src="" th:alt="${product.no}"
+                     th:data-category="${product.category.no}"
+                     th:onclick="|changeParentImage(event)|">
             </button>
             <b class="title" th:text="${product.name}">상품명</b>
             <b class="price" th:text="${product.price}">9,999원</b>

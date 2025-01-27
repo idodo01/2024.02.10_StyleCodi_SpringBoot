@@ -79,7 +79,33 @@ public class UserController {
         // 가입 성공이면 login 화면으로, 실패라면 회원가입 화면으로.
         return joinResult ? "redirect:/user/login" : "user/join";
     }
+    /******************************************************************/
+    @GetMapping("/style-upload")
+    public String style_upload(
+            @AuthenticationPrincipal UserDTO user,
+            Authentication authentication,
+            Model model
+    ){
 
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+        return "user/style-upload";
+    }
+
+    @PostMapping("/style-upload")
+    public String style_upload(
+            StyleProductDTO styleProductDTO
+    )
+    {
+        userService.add_style_product(styleProductDTO);
+        return "redirect:/styleCategory";
+    }
     /************************ 유저 마이페이지 ***************************/
     @GetMapping("/myLove")
     public String user_myLove(
@@ -138,13 +164,74 @@ public class UserController {
 
         return "user/myStyle";
     }
-    /******************************************************************/
-    @GetMapping("/style-upload")
-    public String style_upload(
-            @ModelAttribute UserDTO userDTO,
+
+    @GetMapping("/myStyle-detail/{styleNo}")
+    public String user_myStyle_detail(
+            @PathVariable Integer styleNo,
+
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        StylesDTO style = productService.get_style_by_user(user, styleNo); // 내 스타일
+        model.addAttribute("style", style);
+
+        System.out.println("Style object: " + style);
+
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myStyle-detail";
+    }
+
+    /*********************************************/
+    @GetMapping("/myClothes")
+    public String user_myClothes(
+            @RequestParam(defaultValue = "1") Integer categoryNo,
+            String sort,
+
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
+
+        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
+        model.addAttribute("styleStoreCategories", styleStoreCategories);
+
+        List<ClothesDTO> clothes =  userService.get_clothes_products(categoryNo, user, sort);
+
+        model.addAttribute("clothes", clothes);
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myClothes";
+    }
+
+    @GetMapping("/clothes-upload")
+    public String clothes_upload(
+            @AuthenticationPrincipal UserDTO user,
             Authentication authentication,
             Model model
-         ){
+    ){
 
         if(!(Objects.nonNull(authentication))){
             return "redirect:/user/login";
@@ -154,16 +241,17 @@ public class UserController {
         List<CategoryDTO> categories = productService.get_categories();
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
-        return "user/style-upload";
+        return "user/clothes-upload";
     }
 
-    @PostMapping("/style-upload")
-    public String style_upload(
-            StyleProductDTO styleProductDTO
+    @PostMapping("/clothes-upload")
+    public String clothes_upload(
+            @AuthenticationPrincipal UserDTO user,
+            ClothesDTO clothes
     )
     {
-        userService.add_style_product(styleProductDTO);
-        return "redirect:/styleCategory";
+        userService.add_clothes(clothes, user);
+        return "redirect:/user/myClothes";
     }
 
 

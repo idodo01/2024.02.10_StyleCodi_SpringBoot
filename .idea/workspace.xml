@@ -75,15 +75,15 @@
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\templates\user" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\css\user" />
+      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\js\user" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\templates\main" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\css\main" />
-      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\js\main" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
-      <recent name="ido.style.dto" />
-      <recent name="ido.style.interceptor" />
       <recent name="ido.style.converter" />
       <recent name="ido.style.mapper" />
+      <recent name="ido.style.dto" />
+      <recent name="ido.style.interceptor" />
       <recent name="ido.style.controller" />
     </key>
   </component>
@@ -136,6 +136,7 @@
       <workItem from="1737779965769" duration="3109000" />
       <workItem from="1737783214493" duration="597000" />
       <workItem from="1737865324196" duration="11855000" />
+      <workItem from="1737953391429" duration="20650000" />
     </task>
     <servers />
   </component>

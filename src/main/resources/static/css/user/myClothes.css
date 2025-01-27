@@ -1,0 +1,142 @@
+@import "../public/public.css";
+
+.myPage-section{
+    margin: 120px 0;
+    padding: 0 250px;
+}
+
+/*******************************************************/
+
+/* 전체 컨테이너 스타일 */
+.myPage-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    font-family: Arial, sans-serif;
+    max-width: 1200px;
+}
+
+h1 {
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+/***************************************************/
+/* 레이아웃 스타일 */
+.myPage-content {
+    display: flex;
+    width: 100%;
+    margin-top: 20px;
+}
+
+/* 왼쪽 사이드바 */
+.info-section {
+    width: 25%;
+    border-right: 1px solid #ddd;
+    padding-right: 20px;
+}
+
+.info-box {
+    margin-bottom: 20px;
+}
+
+.info-box h3 {
+    font-size: 16px;
+    font-weight: bold;
+    margin-bottom: 10px;
+}
+
+.info-box ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.info-box li {
+    font-size: 14px;
+    color: #333;
+    margin-bottom: 5px;
+    cursor: pointer;
+}
+
+.info-box li:hover {
+    text-decoration: underline;
+}
+
+/**************************************************/
+/* 오른쪽 메인 콘텐츠 */
+.myPage-main-section {
+    width: 75%;
+    padding-left: 20px;
+}
+
+/*****************************************************/
+
+.myPage-clothes-section{
+
+    margin: 30px auto;
+    padding: 0 50px;
+
+    justify-content: space-between;
+    font-size: var(--font-size-x-small);
+    color: var(--Dark-gray-textured-background---4-rgba);
+
+    width: 800px;
+
+
+
+}
+
+.myPage-clothes-section li{
+    display: inline-block;
+    list-style: none;
+}
+.myPage-clothes-section li:not(:last-child)::after{
+    content: "|";
+    margin: 0 10px;
+}
+.myPage-clothes-section a{
+    text-decoration: none;
+    color: var(--Dark-gray-textured-background---4-rgba);
+}
+/*****************************************************/
+.myPage-clothes-item-section {
+    margin: 20px auto;
+    display: grid;
+    grid-gap: 5px 30px;
+    grid-template-columns: repeat(4, 1fr);
+}
+.myPage-clothes-item-section .item{
+    display: inline-flex;
+    text-align: center;
+    flex-direction: column;
+
+}
+.myPage-clothes-item-section .image-container{
+    width: 150px;
+    height: 150px;
+    overflow: hidden;
+    margin-bottom: 10px;
+    &:hover > img{
+        transform: scale(120%);
+    }
+}
+.myPage-clothes-item-section .image-container > img{
+    width: 100%;
+    height: 100%;
+    transition-duration: 0.2s;
+    object-fit: contain;
+}
+.myPage-clothes-item-section .title{
+    text-decoration: none;
+    color: var(--Dark-gray-textured-background---5-rgba);
+    font-family: Medium;
+    font-size: var(--font-size-xx-small);
+    margin-bottom: 8px;
+}
+.myPage-clothes-item-section .price{
+    color: var(--Pasteles-5-rgba);
+    font-family: Medium;
+    font-size: var(--font-size-xx-small);
+}

@@ -211,10 +211,6 @@
         <!-- ProductDTO 매핑 (product_top) -->
         <association property="product_top" javaType="ProductDTO">
             <id property="no" column="product_top_no" />
-            <result property="name" column="product_top_name" />
-            <result property="price" column="product_top_price" />
-            <result property="detail" column="product_top_detail" />
-            <result property="uploadedAt" column="product_top_uploaded_at" />
             <collection property="images" ofType="ProductImageDTO">
                 <id property="no" column="product_top_image_no" />
             </collection>
@@ -223,10 +219,6 @@
         <!-- ProductDTO 매핑 (product_outer) -->
         <association property="product_outer" javaType="ProductDTO">
             <id property="no" column="product_outer_no" />
-            <result property="name" column="product_outer_name" />
-            <result property="price" column="product_outer_price" />
-            <result property="detail" column="product_outer_detail" />
-            <result property="uploadedAt" column="product_outer_uploaded_at" />
             <collection property="images" ofType="ProductImageDTO">
                 <id property="no" column="product_outer_image_no" />
             </collection>
@@ -235,10 +227,6 @@
         <!-- ProductDTO 매핑 (product_bottom) -->
         <association property="product_bottom" javaType="ProductDTO">
             <id property="no" column="product_bottom_no" />
-            <result property="name" column="product_bottom_name" />
-            <result property="price" column="product_bottom_price" />
-            <result property="detail" column="product_bottom_detail" />
-            <result property="uploadedAt" column="product_bottom_uploaded_at" />
             <collection property="images" ofType="ProductImageDTO">
                 <id property="no" column="product_bottom_image_no" />
             </collection>
@@ -247,10 +235,6 @@
         <!-- ProductDTO 매핑 (product_shoes) -->
         <association property="product_shoes" javaType="ProductDTO">
             <id property="no" column="product_shoes_no" />
-            <result property="name" column="product_shoes_name" />
-            <result property="price" column="product_shoes_price" />
-            <result property="detail" column="product_shoes_detail" />
-            <result property="uploadedAt" column="product_shoes_uploaded_at" />
             <collection property="images" ofType="ProductImageDTO">
                 <id property="no" column="product_shoes_image_no" />
             </collection>
@@ -259,10 +243,6 @@
         <!-- ProductDTO 매핑 (product_bag) -->
         <association property="product_bag" javaType="ProductDTO">
             <id property="no" column="product_bag_no" />
-            <result property="name" column="product_bag_name" />
-            <result property="price" column="product_bag_price" />
-            <result property="detail" column="product_bag_detail" />
-            <result property="uploadedAt" column="product_bag_uploaded_at" />
             <collection property="images" ofType="ProductImageDTO">
                 <id property="no" column="product_bag_image_no" />
             </collection>
@@ -281,34 +261,14 @@
 
             -- Product information
             P1.no AS product_top_no,
-            P1.name AS product_top_name,
-            P1.price AS product_top_price,
-            P1.detail AS product_top_detail,
-            P1.uploaded_at AS product_top_uploaded_at,
 
             P2.no AS product_outer_no,
-            P2.name AS product_outer_name,
-            P2.price AS product_outer_price,
-            P2.detail AS product_outer_detail,
-            P2.uploaded_at AS product_outer_uploaded_at,
 
             P3.no AS product_bottom_no,
-            P3.name AS product_bottom_name,
-            P3.price AS product_bottom_price,
-            P3.detail AS product_bottom_detail,
-            P3.uploaded_at AS product_bottom_uploaded_at,
 
             P4.no AS product_shoes_no,
-            P4.name AS product_shoes_name,
-            P4.price AS product_shoes_price,
-            P4.detail AS product_shoes_detail,
-            P4.uploaded_at AS product_shoes_uploaded_at,
 
             P5.no AS product_bag_no,
-            P5.name AS product_bag_name,
-            P5.price AS product_bag_price,
-            P5.detail AS product_bag_detail,
-            P5.uploaded_at AS product_bag_uploaded_at,
 
             -- Product image information
             PI1.no AS product_top_image_no,
@@ -330,6 +290,110 @@
         JOIN product_image PI4 ON P4.no = PI4.product_no
         JOIN product_image PI5 ON P5.no = PI5.product_no
 
-        WHERE S.`user_id` = #{user.id}
+        WHERE `user_id` = #{id}
     </select>
+
+
+    <resultMap id="styleMap" type="StylesDTO">
+        <!-- Styles 테이블 매핑 -->
+        <id property="no" column="styles_no" />
+
+        <!-- ProductDTO 매핑 (product_top) -->
+        <association property="product_top" javaType="ProductDTO">
+            <id property="no" column="product_top_no" />
+            <result property="name" column="product_top_name" />
+            <collection property="images" ofType="ProductImageDTO">
+                <id property="no" column="product_top_image_no" />
+            </collection>
+        </association>
+
+        <!-- ProductDTO 매핑 (product_outer) -->
+        <association property="product_outer" javaType="ProductDTO">
+            <id property="no" column="product_outer_no" />
+            <result property="name" column="product_outer_name" />
+            <collection property="images" ofType="ProductImageDTO">
+                <id property="no" column="product_outer_image_no" />
+            </collection>
+        </association>
+
+        <!-- ProductDTO 매핑 (product_bottom) -->
+        <association property="product_bottom" javaType="ProductDTO">
+            <id property="no" column="product_bottom_no" />
+            <result property="name" column="product_bottom_name" />
+            <collection property="images" ofType="ProductImageDTO">
+                <id property="no" column="product_bottom_image_no" />
+            </collection>
+        </association>
+
+        <!-- ProductDTO 매핑 (product_shoes) -->
+        <association property="product_shoes" javaType="ProductDTO">
+            <id property="no" column="product_shoes_no" />
+            <result property="name" column="product_shoes_name" />
+            <collection property="images" ofType="ProductImageDTO">
+                <id property="no" column="product_shoes_image_no" />
+            </collection>
+        </association>
+
+        <!-- ProductDTO 매핑 (product_bag) -->
+        <association property="product_bag" javaType="ProductDTO">
+            <id property="no" column="product_bag_no" />
+            <result property="name" column="product_bag_name" />
+            <result property="price" column="product_bag_price" />
+            <result property="detail" column="product_bag_detail" />
+            <result property="uploadedAt" column="product_bag_uploaded_at" />
+            <collection property="images" ofType="ProductImageDTO">
+                <id property="no" column="product_bag_image_no" />
+            </collection>
+        </association>
+    </resultMap>
+
+    <select id="selectStyleByUser" resultType="StylesDTO" resultMap="styleMap">
+        SELECT
+            S.no AS styles_no,
+            S.product_top AS styles_product_top,
+            S.product_outer AS styles_product_outer,
+            S.product_bottom AS styles_product_bottom,
+            S.product_shoes AS styles_product_shoes,
+            S.product_bag AS styles_product_bag,
+            S.user_id AS styles_user_no,
+
+            -- Product information
+            P1.no AS product_top_no,
+            P1.name AS product_top_name,
+
+            P2.no AS product_outer_no,
+            P2.name AS product_outer_name,
+
+            P3.no AS product_bottom_no,
+            P3.name AS product_bottom_name,
+
+            P4.no AS product_shoes_no,
+            P4.name AS product_shoes_name,
+
+            P5.no AS product_bag_no,
+            P5.name AS product_bag_name,
+
+            -- Product image information
+            PI1.no AS product_top_image_no,
+            PI2.no AS product_outer_image_no,
+            PI3.no AS product_bottom_image_no,
+            PI4.no AS product_shoes_image_no,
+            PI5.no AS product_bag_image_no
+
+        FROM styles S
+
+                 JOIN product P1 ON S.product_top = P1.no
+                 JOIN product P2 ON S.product_outer = P2.no
+                 JOIN product P3 ON S.product_bottom = P3.no
+                 JOIN product P4 ON S.product_shoes = P4.no
+                 JOIN product P5 ON S.product_bag = P5.no
+                 JOIN product_image PI1 ON P1.no = PI1.product_no
+                 JOIN product_image PI2 ON P2.no = PI2.product_no
+                 JOIN product_image PI3 ON P3.no = PI3.product_no
+                 JOIN product_image PI4 ON P4.no = PI4.product_no
+                 JOIN product_image PI5 ON P5.no = PI5.product_no
+
+        WHERE `user_id` = #{user.id} AND S.`no` = #{styleNo};
+    </select>
+
 </mapper>

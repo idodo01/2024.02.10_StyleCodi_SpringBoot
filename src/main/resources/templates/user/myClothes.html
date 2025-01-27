@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+      layout:decorate="~{/layout/main-layout}"
+>
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Page</title>
+    <link rel="stylesheet" href="../../static/css/user/myClothes.css">
+
+</head>
+<body>
+<main layout:fragment="main">
+    <section class="myPage-section">
+        <div class="myPage-container">
+            <h1>내 옷장</h1>
+
+            <!-- Main Content -->
+            <div class="myPage-content">
+                <!-- Sidebar -->
+                <section class="info-section">
+                    <div class="info-box">
+                        <h3><a href="/user/myLove">내 찜목록</a></h3>
+                        <ul>
+                            <li>상품 찜</li>
+                            <li>스타일 찜</li>
+                        </ul>
+                    </div>
+                    <div class="info-box">
+                        <h3><a href="/user/myClothes">내 옷장</a></h3>
+                    </div>
+                    <div class="info-box">
+                        <h3><a href="/user/myStyle">내 스타일</a></h3>
+                    </div>
+
+                </section>
+
+                <!-- Main Content -->
+                <section class="myPage-main-section">
+                    <section class="myPage-clothes-section">
+                        <ul class="clothes-main-menu">
+                            <li th:each="styleStoreCategory: ${styleStoreCategories}">
+                                <a th:href="@{|/user/myClothes?categoryNo=${styleStoreCategory.no}|}" th:text="${styleStoreCategory.name}" target="store">ALL</a>
+                            </li>
+                        </ul>
+
+                        <ul>
+                            <li>
+                                <a th:href="@{|/user/myClothes?categoryNo=${categoryNo}&sort=recent|}">최신순</a>
+                            </li>
+                            <li>
+                                <a th:href="@{|/user/myClothes?categoryNo=${categoryNo}&sort=name|}">이름순</a>
+                            </li>
+
+                        </ul>
+
+
+                        <section class="myPage-clothes-item-section">
+                            <div class="item" th:each="clothe: ${clothes}">
+                                <button class="image-container">
+                                    <img th:src="@{|/clothesImage/${clothe.images[0].no}|}" src="" alt="">
+                                </button>
+                                <b class="title" th:text="${clothe.name}">옷 이름</b>
+                                <b class="detail" th:utext="${clothe.detail}">옷 설명</b>
+                            </div>
+                        </section>
+
+                        <a href="/user/clothes-upload">내 옷 등록</a>
+
+                    </section>
+                </section>
+            </div>
+        </div>
+    </section>
+</main>
+</body>
+</html>

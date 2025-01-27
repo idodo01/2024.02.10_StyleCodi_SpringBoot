@@ -1,5 +1,6 @@
 package ido.style.configuration;
 
+import ido.style.converter.ClothesMultipartConverter;
 import ido.style.converter.MultipartConverter;
 import ido.style.converter.StyleMultipartConverter;
 import ido.style.interceptor.CategoryInterceptor;
@@ -29,6 +30,7 @@ public class MainConfiguration implements WebMvcConfigurer {
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new MultipartConverter());
         registry.addConverter(new StyleMultipartConverter());
+        registry.addConverter(new ClothesMultipartConverter());
     }
 
 }
