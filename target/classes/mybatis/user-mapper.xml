@@ -30,7 +30,7 @@
     <!--    내 옷 -->
 
     <insert id="insertClothes">
-        INSERT INTO clothes VALUES (NULL, #{clothes.name}, #{clothes.detail}, DEFAULT, 1, #{user.id})
+        INSERT INTO clothes VALUES (NULL, #{clothes.name}, #{clothes.detail}, DEFAULT, 2, #{user.id})
     </insert>
 
     <insert id="insertClothesImages">

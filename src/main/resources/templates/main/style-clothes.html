@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="ko"
+      xmlns:th="http://www.thymeleaf.org"
+      xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
+      xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+>
+<head>
+    <meta charset="UTF-8">
+    <title>STYLE CODI ♥♡♥♡</title>
+    <link rel="stylesheet" href="../../static/css/main/style-clothes.css">
+    <script src="../../static/js/main/style-clothes.js" defer></script>
+</head>
+<body>
+
+
+<section class="style-clothes-section">
+    <div class="button-container">
+        <a href="/style-store"><div class="tab">스토어 상품으로</div ></a>
+        <a href="/style-loves"><div class="tab">찜 상품으로</div></a>
+        <a href="/style-clothes"><div class="tab">내 옷으로</div></a>
+    </div>
+    <hr>
+        <ul class="style-main-menu">
+            <li th:each="styleStoreCategory: ${styleStoreCategories}">
+                <a th:href="@{|/style-clothes?categoryNo=${styleStoreCategory.no}|}" th:text="${styleStoreCategory.name}" target="store">ALL</a>
+            </li>
+        </ul>
+
+        <ul>
+            <li>
+                <a th:href="@{|/style-clothes?categoryNo=${categoryNo}&sort=recent|}">최신순</a>
+            </li>
+            <li>
+                <a th:href="@{|/style-clothes?categoryNo=${categoryNo}&sort=name|}">이름순</a>
+            </li>
+        </ul>
+
+    <section class="style-clothes-item-section">
+        <div class="item" th:each="clothe: ${clothes}" >
+            <button class="image-container">
+            <img class="item-img" th:src="@{|/clothesImage/${clothe.images[0].no}|}" src="" alt=""
+                 th:data-category="${clothe.category.no}"
+                 th:onclick="|changeParentImage(event)|">
+            </button>
+            <b class="title" th:text="${clothe.name}">옷 이름</b>
+            <b class="detail" th:utext="${clothe.detail}">옷 설명</b>
+        </div>
+    </section>
+
+    <ol>
+        <li><a href="#"><i class="bi bi-caret-left-fill"></i></a></li>
+        <li><a href="#">1</a></li>
+        <li><a href="#">2</a></li>
+        <li><a href="#">3</a></li>
+        <li><a href="#"><i class="bi bi-caret-right-fill"></i></a></li>
+    </ol>
+</section>
+
+</body>
+</html>

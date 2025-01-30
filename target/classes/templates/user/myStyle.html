@@ -40,34 +40,34 @@
 
                 <!-- Main Content -->
                 <section class="myPage-main-section">
-                    <section class="style-body-section">
-                        <div class="item" th:each="style: ${styles}" >
-                            <section class="style-map-section">
-                                <div class="container">
-                                    <div class="box top empty" id="top">
-                                        <img class="top-img" th:src="@{|/image/${style.product_top.images[0].no}|}" alt="상의">
+                    <section class="myPage-style-section">
+                        <section class="myPage-style-item-section">
+                            <div class="item" th:each="style: ${styles}" >
+                                <section class="image-container">
+                                    <div class="container">
+                                        <div class="box top empty" id="top">
+                                            <img class="top-img" th:src="@{|/image/${style.product_top.images[0].no}|}" alt="상의">
+                                        </div>
+                                        <div class="box outer empty" id="outer">
+                                            <img class="outer-img" th:src="@{|/image/${style.product_outer.images[0].no}|}" alt="겉옷">
+                                        </div>
+                                        <div class="box bottom empty" id="bottom">
+                                            <img class="bottom-img" th:src="@{|/image/${style.product_bottom.images[0].no}|}" alt="하의">
+                                        </div>
+                                        <div class="box shoes empty" id="shoes">
+                                            <img class="shoes-img" th:src="@{|/image/${style.product_shoes.images[0].no}|}" alt="신발">
+                                        </div>
+                                        <div class="box bag empty" id="bag">
+                                            <img class="bag-img" th:src="@{|/image/${style.product_bag.images[0].no}|}" alt="가방">
+                                        </div>
                                     </div>
-                                    <div class="box outer empty" id="outer">
-                                        <img class="outer-img" th:src="@{|/image/${style.product_outer.images[0].no}|}" alt="겉옷">
-                                    </div>
-                                    <div class="box bottom empty" id="bottom">
-                                        <img class="bottom-img" th:src="@{|/image/${style.product_bottom.images[0].no}|}" alt="하의">
-                                    </div>
-                                    <div class="box shoes empty" id="shoes">
-                                        <img class="shoes-img" th:src="@{|/image/${style.product_shoes.images[0].no}|}" alt="신발">
-                                    </div>
-                                    <div class="box bag empty" id="bag">
-                                        <img class="bag-img" th:src="@{|/image/${style.product_bag.images[0].no}|}" alt="가방">
-                                    </div>
+                                </section>
+                                    <a th:href="@{|/user/myStyle-detail/${style.no}|}">상세보기</a>
+                                    <button onclick="combineImages()">이미지 다운로드</button>
+                                    <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
 
-                                </div>
-                                <a class="image-container" th:href="@{|/user/myStyle-detail/${style.no}|}">
-                                상세보기</a>
-                                <button class="combine-btn" onclick="combineImages()">이미지 다운로드</button>
-
-                                <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
-                            </section>
-                        </div>
+                            </div>
+                        </section>
                     </section>
                 </section>
             </div>

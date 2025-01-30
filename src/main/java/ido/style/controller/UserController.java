@@ -20,9 +20,8 @@ import java.util.Objects;
 @RequestMapping("/user")
 public class UserController {
     private static final Logger log = LogManager.getLogger(UserController.class);
-    @Autowired private UserService userService;
-
-
+    @Autowired
+    private UserService userService;
     @Autowired
     private ProductService productService;
     @Autowired
@@ -214,7 +213,6 @@ public class UserController {
         model.addAttribute("styleStoreCategories", styleStoreCategories);
 
         List<ClothesDTO> clothes =  userService.get_clothes_products(categoryNo, user, sort);
-
         model.addAttribute("clothes", clothes);
 
         // 상위 header에 사용되는 카테고리
@@ -228,7 +226,7 @@ public class UserController {
 
     @GetMapping("/clothes-upload")
     public String clothes_upload(
-            @AuthenticationPrincipal UserDTO user,
+//            @AuthenticationPrincipal UserDTO user,
             Authentication authentication,
             Model model
     ){

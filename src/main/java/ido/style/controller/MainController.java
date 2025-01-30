@@ -3,6 +3,7 @@ package ido.style.controller;
 import ido.style.dto.*;
 import ido.style.service.ProductService;
 import ido.style.service.StyleProductService;
+import ido.style.service.UserService;
 import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,7 +27,8 @@ public class MainController {
     private ProductService productService;
     @Autowired
     private StyleProductService styleProductService;
-
+    @Autowired
+    private UserService userService;
 
     @GetMapping("/") // localhost:8080
     public String get_home(Model model){
@@ -300,5 +302,32 @@ public class MainController {
         productService.remove_loves(product, userDTO);
         return ResponseEntity.ok().build(); // 200
 
+    }
+
+    // 스타일 - style-make 안에 사용되는 IFRAME 2 (찜 페이지)
+    @GetMapping("/style-clothes")
+    public String get_user_clothes(
+            @RequestParam(defaultValue = "1") Integer categoryNo,
+            String sort,
+
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
+
+        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
+        model.addAttribute("styleStoreCategories", styleStoreCategories);
+
+        List<ClothesDTO> clothes =  userService.get_clothes_products(categoryNo, user, sort);
+        model.addAttribute("clothes", clothes);
+
+
+        return "main/style-clothes";
     }
 }

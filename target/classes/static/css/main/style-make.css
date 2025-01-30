@@ -84,7 +84,7 @@
 .shoes { grid-column: 1 / 2; grid-row: 3 / 4; }
 .bag { grid-column: 2 / 3; grid-row: 3 / 4; }
 
-.combine-btn {
+button {
     padding: 10px 20px;
     background-color: lightpink;
     color: white;
@@ -95,7 +95,7 @@
     cursor: pointer;
 }
 
-.combine-btn:hover {
+button:hover {
     background-color: #315a8a;
 }
 
