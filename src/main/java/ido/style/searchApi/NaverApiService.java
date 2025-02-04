@@ -74,12 +74,57 @@ public class NaverApiService {
                                 product.setTitle(title);  // 수정된 title 값 설정
                                 product.setLink(item.path("link").asText());
                                 product.setImage(item.path("image").asText());
-                                product.setPrice(item.path("lprice").asText("0"));  // 가격 기본값 설정
-                                product.setCategory(item.path("category4").asText("Unknown")); // 기본값 설정
+                                product.setPrice(Integer.valueOf(item.path("lprice").asText("0")));  // 가격 기본값 설정
 
-                                return product;
+
+                                // 카테고리 값들을 모두 가져오기
+                                String category1 = item.path("category1").asText("Unknown");
+                                String category2 = item.path("category2").asText("Unknown");
+                                String category3 = item.path("category3").asText("Unknown");
+                                String category4 = item.path("category4").asText("Unknown");
+
+                                // 카테고리 값들을 출력하여 확인 (로깅하거나 콘솔에 출력)
+                                System.out.println("Category 1: " + category1);
+                                System.out.println("Category 2: " + category2);
+                                System.out.println("Category 3: " + category3);
+                                System.out.println("Category 4: " + category4);
+
+                                // 카테고리 조건에 맞는 경우만 처리
+                                if(category3.equals("카디건")
+                                        ||category3.equals("점퍼")
+                                        ||category3.equals("재킷")) {
+                                    product.setCategory(6);
+                                } else if (category3.equals("니트/스웨터")
+                                        ||category3.equals("블라우스/셔츠")
+                                        ||category3.equals("티셔츠")) {
+                                    product.setCategory(5);
+                                } else if(category3.equals("바지")
+                                        ||category3.equals("스커트")){
+                                    product.setCategory(4);
+                                } else if(category2.equals("여성신발")
+                                || category3.equals("여성신발")){
+                                    product.setCategory(3);
+                                } else if(category2.equals("여성가방")){
+                                    product.setCategory(2);
+                                } else {
+                                    product.setCategory(1);
+                                }
+
+//                                2,BAG
+//                                3,SHOSE
+//                                4,BOTTOM
+//                                5,TOP
+//                                6,OUTER
+
+                                return product; // 해당 아이템을 반환
+//                                // 조건에 맞지 않으면 null 반환하여 필터링
+//                                return null;
+
                             })
+//                            // null 값을 제외하고 리스트로 변환
+//                            .filter(product -> product != null)
                             .collect(Collectors.toList());
+
 
             productNaverShopMapper.insertProducts(products); // MyBatis를 사용하여 DB 저장
             return products;

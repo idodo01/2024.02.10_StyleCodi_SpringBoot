@@ -20,7 +20,10 @@ public interface ProductMapper {
     List<CategoryDTO> selectCategories();
 
     // 네이버 쇼핑 상품 불러오기
-    List<ProductNaverShopDTO> selectNaverShopProducts();
+    List<ProductNaverShopDTO> selectNaverShopProducts(
+            Integer categoryNo, // 상품의 카테고리
+            String sort // 상품의 정렬 방식
+    );
 
 
 

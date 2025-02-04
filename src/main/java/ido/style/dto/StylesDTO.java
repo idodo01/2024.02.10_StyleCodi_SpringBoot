@@ -1,5 +1,7 @@
 package ido.style.dto;
 
+import ido.style.searchApi.ProductNaverShopDTO;
+import ido.style.searchApi.ProductNaverShopMapper;
 import lombok.Getter;
 import lombok.Setter;
 import lombok.ToString;
@@ -10,11 +12,11 @@ import lombok.ToString;
 public class StylesDTO {
     private Integer no;
 
-    private ProductDTO product_top;
-    private ProductDTO product_outer;
-    private ProductDTO product_bottom;
-    private ProductDTO product_shoes;
-    private ProductDTO product_bag;
+    private ProductNaverShopDTO product_top;
+    private ProductNaverShopDTO product_outer;
+    private ProductNaverShopDTO product_bottom;
+    private ProductNaverShopDTO product_shoes;
+    private ProductNaverShopDTO product_bag;
 
     private UserDTO user;
 

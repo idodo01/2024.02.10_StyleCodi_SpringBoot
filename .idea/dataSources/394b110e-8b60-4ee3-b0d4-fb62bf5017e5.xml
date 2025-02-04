@@ -1256,12 +1256,12 @@
     <column id="363" parent="307" name="price">
       <NotNull>1</NotNull>
       <Position>5</Position>
-      <StoredType>varchar(45)|0s</StoredType>
+      <StoredType>int|0s</StoredType>
     </column>
     <column id="364" parent="307" name="category">
       <NotNull>1</NotNull>
       <Position>6</Position>
-      <StoredType>varchar(45)|0s</StoredType>
+      <StoredType>int|0s</StoredType>
     </column>
     <index id="365" parent="307" name="PRIMARY">
       <ColNames>no</ColNames>

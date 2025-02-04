@@ -29,8 +29,8 @@ public class ProductService {
     }
 
     // 상품 불러오기 - 네이버 상품
-    public List<ProductNaverShopDTO> get_naver_shop_products(){
-        return productMapper.selectNaverShopProducts();
+    public List<ProductNaverShopDTO> get_naver_shop_products(Integer categoryNo, String sort){
+        return productMapper.selectNaverShopProducts(categoryNo, sort);
     }
 
 
@@ -47,7 +47,7 @@ public class ProductService {
 
     // product: 유저가 추가하려는 상품 정보
     // user: 로그인된 유저
-    public void add_loves(ProductDTO product, UserDTO user){
+    public void add_loves(ProductNaverShopDTO product, UserDTO user){
         LovesDTO loves = new LovesDTO();
         loves.setProduct(product);
         loves.setUser(user);
@@ -55,7 +55,7 @@ public class ProductService {
         productMapper.insertLoves(loves);
     }
 
-    public void remove_loves(ProductDTO product, UserDTO user){
+    public void remove_loves(ProductNaverShopDTO product, UserDTO user){
         LovesDTO loves = new LovesDTO();
         loves.setProduct(product);
         loves.setUser(user);
@@ -65,11 +65,11 @@ public class ProductService {
 
     // 스타일 저장
     public void add_styles(
-            ProductDTO product_top,
-            ProductDTO product_outer,
-            ProductDTO product_bottom,
-            ProductDTO product_shoes,
-            ProductDTO product_bag,
+            ProductNaverShopDTO product_top,
+            ProductNaverShopDTO product_outer,
+            ProductNaverShopDTO product_bottom,
+            ProductNaverShopDTO product_shoes,
+            ProductNaverShopDTO product_bag,
             UserDTO user
     ){
         StylesDTO styles = new StylesDTO();

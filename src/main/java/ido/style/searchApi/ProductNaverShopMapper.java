@@ -8,4 +8,6 @@ import java.util.List;
 public interface ProductNaverShopMapper {
 
     void insertProducts(List<ProductNaverShopDTO> products);  // XML에서 처리할 메서드
+
+
 }

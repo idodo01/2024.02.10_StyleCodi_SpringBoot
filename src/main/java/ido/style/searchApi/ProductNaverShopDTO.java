@@ -12,8 +12,8 @@ public class ProductNaverShopDTO {
     private String title;
     private String link;
     private String image;
-    private String price;
-    private String category;
+    private Integer price;
+    private Integer category;
 
 }
 
