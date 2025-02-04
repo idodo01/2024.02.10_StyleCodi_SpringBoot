@@ -105,7 +105,15 @@
     </select>
 
 
-<!--    찜 상품-->
+    <!--    네이버 쇼핑 상품-->
+    <select id="selectNaverShopProducts" resultType="ProductNaverShopDTO">
+        SELECT *
+        FROM product_naver_shop
+    </select>
+
+
+    <!--    찜 상품 - api 사용 후 -->
+
     <resultMap id="lovesMap" type="LovesDTO">
         <!-- Loves 테이블 매핑 -->
         <id property="no" column="loves_no" />
@@ -155,16 +163,16 @@
 
         JOIN category CT
         ON P.category = CT.no
-            <if test="categoryNo != 1">
-                AND P.category IN (WITH RECURSIVE `category_cte` AS
-                (
-                SELECT * FROM `category` WHERE `no` = #{categoryNo}
-                UNION
-                SELECT child.* FROM `category_cte` parent
-                INNER JOIN `category` child
-                ON parent.no = child.parent
-                ) SELECT `no` FROM `category_cte`)
-            </if>
+        <if test="categoryNo != 1">
+            AND P.category IN (WITH RECURSIVE `category_cte` AS
+            (
+            SELECT * FROM `category` WHERE `no` = #{categoryNo}
+            UNION
+            SELECT child.* FROM `category_cte` parent
+            INNER JOIN `category` child
+            ON parent.no = child.parent
+            ) SELECT `no` FROM `category_cte`)
+        </if>
         )
 
         WHERE `user_id` = #{user.id}
@@ -186,6 +194,88 @@
 
 
     </select>
+
+<!--    찜 상품 - api 사용전 -->
+<!--    <resultMap id="lovesMap" type="LovesDTO">-->
+<!--        &lt;!&ndash; Loves 테이블 매핑 &ndash;&gt;-->
+<!--        <id property="no" column="loves_no" />-->
+
+<!--        &lt;!&ndash; ProductDTO 매핑 &ndash;&gt;-->
+<!--        <association property="product" javaType="ProductDTO">-->
+<!--            <id property="no" column="product_no" />-->
+<!--            <result property="name" column="product_name" />-->
+<!--            <result property="price" column="product_price" />-->
+<!--            <result property="detail" column="detail" />-->
+<!--            <result property="uploadedAt" column="uploaded_at" />-->
+
+<!--            &lt;!&ndash; ProductCategory 매핑 &ndash;&gt;-->
+<!--            <association property="category" javaType="CategoryDTO">-->
+<!--                <id property="no" column="product_category" />-->
+<!--            </association>-->
+
+<!--            &lt;!&ndash; ProductImageDTO 매핑 &ndash;&gt;-->
+<!--            <collection property="images" ofType="ProductImageDTO">-->
+<!--                <id property="no" column="product_image_no" />-->
+<!--            </collection>-->
+<!--        </association>-->
+<!--    </resultMap>-->
+
+
+<!--    <select id="selectLovesByUser" resultType="LovesDTO" resultMap="lovesMap">-->
+<!--        SELECT-->
+<!--        L.user_id AS loves_user_no,-->
+<!--        L.product_no AS loves_product_no,-->
+<!--        L.no AS loves_no,-->
+
+<!--        P.no AS product_no,-->
+<!--        P.name AS product_name,-->
+<!--        P.price AS product_price,-->
+<!--        P.detail,-->
+<!--        P.uploaded_at,-->
+
+<!--        CT.no AS product_category,-->
+<!--        PI.no AS product_image_no-->
+
+<!--        FROM (((Loves L-->
+<!--        JOIN product P-->
+<!--        ON L.product_no = P.no)-->
+
+<!--        JOIN product_image PI-->
+<!--        ON P.no = PI.product_no)-->
+
+<!--        JOIN category CT-->
+<!--        ON P.category = CT.no-->
+<!--            <if test="categoryNo != 1">-->
+<!--                AND P.category IN (WITH RECURSIVE `category_cte` AS-->
+<!--                (-->
+<!--                SELECT * FROM `category` WHERE `no` = #{categoryNo}-->
+<!--                UNION-->
+<!--                SELECT child.* FROM `category_cte` parent-->
+<!--                INNER JOIN `category` child-->
+<!--                ON parent.no = child.parent-->
+<!--                ) SELECT `no` FROM `category_cte`)-->
+<!--            </if>-->
+<!--        )-->
+
+<!--        WHERE `user_id` = #{user.id}-->
+
+<!--        <choose>-->
+<!--            <when test="sort == 'name'">-->
+<!--                ORDER BY P.`name`-->
+<!--            </when>-->
+<!--            <when test="sort == 'low-price'">-->
+<!--                ORDER BY P.`price`-->
+<!--            </when>-->
+<!--            <when test="sort == 'high-price'">-->
+<!--                ORDER BY P.`price` DESC-->
+<!--            </when>-->
+<!--            <otherwise>-->
+<!--                ORDER BY P.`uploaded_at`-->
+<!--            </otherwise>-->
+<!--        </choose>-->
+
+
+<!--    </select>-->
 
     <insert id="insertLoves">
         INSERT INTO `loves` (no, product_no, user_id)

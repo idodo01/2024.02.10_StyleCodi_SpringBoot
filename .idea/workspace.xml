@@ -15,6 +15,7 @@
       <list>
         <option value="HTML File" />
         <option value="JavaScript File" />
+        <option value="Class" />
       </list>
     </option>
   </component>
@@ -41,6 +42,7 @@
   </component>
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
+    "Application.ApiExamSearchBlog.executor": "Run",
     "Application.StyleSnapApplication.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
     "RequestMappingsPanelOrder0": "0",
@@ -53,7 +55,7 @@
     "Spring Boot.StyleSnapApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/idodo/Documents/Study1/2024.01.05_StyleCodi_SpringBoot-master/src/main/resources/static/css/main",
+    "last_opened_file_path": "C:/Users/idodo/Documents/Study1/2024.01.05_StyleCodi_SpringBoot-master/src/main/resources/templates/main",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -73,21 +75,34 @@
 }]]></component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\templates\main" />
+      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\mybatis" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\css\main" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\js\main" />
-      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\templates\main" />
       <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\templates\user" />
-      <recent name="C:\Users\idodo\Documents\Study1\2024.01.05_StyleCodi_SpringBoot-master\src\main\resources\static\css\user" />
     </key>
     <key name="CopyClassDialog.RECENTS_KEY">
+      <recent name="ido.style.searchApi" />
       <recent name="ido.style.converter" />
       <recent name="ido.style.mapper" />
       <recent name="ido.style.dto" />
       <recent name="ido.style.interceptor" />
-      <recent name="ido.style.controller" />
     </key>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="Spring Boot.StyleCodiApplication">
+    <configuration name="ApiExamSearchBlog" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
+      <option name="MAIN_CLASS_NAME" value="ido.style.searchApi.ApiExamSearchBlog" />
+      <module name="Style" />
+      <extension name="coverage">
+        <pattern>
+          <option name="PATTERN" value="ido.style.searchApi.*" />
+          <option name="ENABLED" value="true" />
+        </pattern>
+      </extension>
+      <method v="2">
+        <option name="Make" enabled="true" />
+      </method>
+    </configuration>
     <configuration name="StyleCodiApplication" type="SpringBootApplicationConfigurationType" factoryName="Spring Boot" nameIsGenerated="true">
       <option name="FRAME_DEACTIVATION_UPDATE_POLICY" value="UpdateClassesAndResources" />
       <module name="Style" />
@@ -96,6 +111,11 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <recent_temporary>
+      <list>
+        <item itemvalue="Application.ApiExamSearchBlog" />
+      </list>
+    </recent_temporary>
   </component>
   <component name="SharedIndexes">
     <attachedChunks>
@@ -137,7 +157,8 @@
       <workItem from="1737783214493" duration="597000" />
       <workItem from="1737865324196" duration="11855000" />
       <workItem from="1737953391429" duration="20750000" />
-      <workItem from="1738223613637" duration="3134000" />
+      <workItem from="1738223613637" duration="3431000" />
+      <workItem from="1738645998547" duration="12776000" />
     </task>
     <servers />
   </component>

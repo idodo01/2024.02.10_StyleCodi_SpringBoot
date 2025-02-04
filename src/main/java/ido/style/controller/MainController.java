@@ -1,10 +1,12 @@
 package ido.style.controller;
 
 import ido.style.dto.*;
+//import ido.style.searchApi.JsonParser;
+//import ido.style.searchApi.ProductNaverShopDTO;
+import ido.style.searchApi.ProductNaverShopDTO;
 import ido.style.service.ProductService;
 import ido.style.service.StyleProductService;
 import ido.style.service.UserService;
-import jakarta.servlet.http.HttpServletResponse;
 import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +17,6 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
 
-import java.io.IOException;
 import java.util.List;
 import java.util.Map;
 import java.util.Objects;
@@ -77,8 +78,7 @@ public class MainController {
         return "main/styleProduct";
     }
 
-
-    // 모든 상품 리스트 화면
+    // 모든 상품 리스트 화면 - 네이버 쇼핑 상품
     @GetMapping("/category")
     public String get_category(
             @RequestParam(defaultValue = "1") Integer categoryNo,
@@ -88,10 +88,8 @@ public class MainController {
 
             Model model
     ){
-        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
 
-
-        List<ProductDTO> products = productService.get_products(categoryNo, sort);
+        List<ProductNaverShopDTO> products = productService.get_naver_shop_products();
 
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
@@ -99,7 +97,7 @@ public class MainController {
         List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
         Map<Integer, Boolean> lovesMap = products.stream()
                 .collect(Collectors.toMap(
-                        ProductDTO::getNo,
+                        ProductNaverShopDTO::getNo,
                         product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
                 ));
 
@@ -112,6 +110,41 @@ public class MainController {
 
         return "main/category";
     }
+    
+//    // 모든 상품 리스트 화면 - api 사용전
+//    @GetMapping("/category")
+//    public String get_category(
+//            @RequestParam(defaultValue = "1") Integer categoryNo,
+//            String sort,
+//
+//            @AuthenticationPrincipal UserDTO user,
+//
+//            Model model
+//    ){
+//        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
+//
+//
+//        List<ProductDTO> products = productService.get_products(categoryNo, sort);
+//
+//        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+//        List<CategoryDTO> categories = productService.get_categories();
+//
+//        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
+//        Map<Integer, Boolean> lovesMap = products.stream()
+//                .collect(Collectors.toMap(
+//                        ProductDTO::getNo,
+//                        product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
+//                ));
+//
+//        model.addAttribute("products", products);
+//
+//        model.addAttribute("styleCategories", styleCategories);
+//        model.addAttribute("categories", categories);
+//
+//        model.addAttribute("lovesMap", lovesMap);
+//
+//        return "main/category";
+//    }
 
 
     // 상품 하나의 화면

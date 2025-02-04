@@ -2,6 +2,7 @@ package ido.style.service;
 
 import ido.style.dto.*;
 import ido.style.mapper.ProductMapper;
+import ido.style.searchApi.ProductNaverShopDTO;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -14,6 +15,7 @@ public class ProductService {
     @Autowired
     private ProductMapper productMapper;
 
+    // 상품 불러오기
     public List<ProductDTO> get_products(Integer categoryNo, String sort){
         return productMapper.selectProducts(categoryNo, sort);
     }
@@ -26,8 +28,14 @@ public class ProductService {
         return productMapper.selectCategories();
     }
 
-    //    스타일 스토어 상품, 카테고리
+    // 상품 불러오기 - 네이버 상품
+    public List<ProductNaverShopDTO> get_naver_shop_products(){
+        return productMapper.selectNaverShopProducts();
+    }
 
+
+
+    // 스타일 스토어 상품, 카테고리
     public List<StyleStoreCategoryDTO> get_style_store_categories(){
         return productMapper.selectStyleStoreCategories();
     }

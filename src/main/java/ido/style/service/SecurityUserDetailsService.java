@@ -25,7 +25,7 @@ public class SecurityUserDetailsService implements UserDetailsService{
         if(user == null) {
             throw new UsernameNotFoundException(username);
         }
-        
+
         var pe = new BCryptPasswordEncoder();
         log.info("이 사람 패스워드는 1234인가?:" + pe.matches("1234", user.getPassword()) );
         log.info("1234의 인코딩 결과:" + pe.encode("1234"));

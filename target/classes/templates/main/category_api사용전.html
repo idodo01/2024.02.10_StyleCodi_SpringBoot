@@ -22,36 +22,36 @@
                 <b>10건</b>
             </div>
 
-<!--            <ul>-->
-<!--                <li>-->
-<!--                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=recent|}" target="store">최신순</a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=name|}" target="store">이름순</a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=low-price|}" target="store">낮은 가격순</a>-->
-<!--                </li>-->
-<!--                <li>-->
-<!--                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=high-price|}" target="store">높은 가격순</a>-->
-<!--                </li>-->
-<!--            </ul>-->
+            <ul>
+                <li>
+                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=recent|}" target="store">최신순</a>
+                </li>
+                <li>
+                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=name|}" target="store">이름순</a>
+                </li>
+                <li>
+                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=low-price|}" target="store">낮은 가격순</a>
+                </li>
+                <li>
+                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=high-price|}" target="store">높은 가격순</a>
+                </li>
+            </ul>
 
         </div>
         <section>
             <div class="item" th:each="product: ${products}">
                 <form th:id="${product.no}">
-                    <a class="image-container" th:href="@{|${product.link}|}">
-                        <img th:src="@{|${product.image}|}" src="" alt="">
+                    <a class="image-container" th:href="@{|/product/${product.no}|}">
+                        <img th:src="@{|/image/${product.images[0].no}|}" src="" alt="">
                     </a>
-                    <b class="title" th:text="${product.title}">상품 이름</b>
+                    <b class="title" th:text="${product.name}">상품 이름</b>
                     <br>
                     <b class="price" th:text="${product.price}">1,192원</b>
-<!--                    <div class="user-like-container">-->
-<!--                        <button onclick="toggleIcon(this)">-->
-<!--                            <i th:classappend="${lovesMap[product.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>-->
-<!--                        </button>-->
-<!--                    </div>-->
+                    <div class="user-like-container">
+                        <button onclick="toggleIcon(this)">
+                            <i th:classappend="${lovesMap[product.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>
+                        </button>
+                    </div>
                 </form>
             </div>
         </section>

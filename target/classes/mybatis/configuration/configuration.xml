@@ -12,6 +12,8 @@
         <typeAlias type="ido.style.dto.CategoryDTO" alias="CategoryDTO" />
         <typeAlias type="ido.style.dto.ProductImageDTO" alias="ProductImageDTO" />
 
+        <typeAlias type="ido.style.searchApi.ProductNaverShopDTO" alias="ProductNaverShopDTO" />
+
         <typeAlias type="ido.style.dto.StyleProductDTO" alias="StyleProductDTO" />
         <typeAlias type="ido.style.dto.StyleCategoryDTO" alias="StyleCategoryDTO" />
         <typeAlias type="ido.style.dto.StyleProductImageDTO" alias="StyleProductImageDTO" />

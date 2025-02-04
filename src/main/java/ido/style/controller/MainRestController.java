@@ -17,7 +17,7 @@ public class MainRestController {
     @Autowired private EmailService emailService;
     // 어떤 이메일(key)에 대해 생성된 인증번호(value)를 저장하는 저장소(repsitory)
     private final Map<String, String> emailCertRepository = new HashMap<>();
-    
+
     // 사용자가 회원가입 창에서 휴대폰 인증을 시도하고 성공했을 경우 portone api의 imp_uid값을 받아온다
     @PostMapping("/tel/auth")
     public ResponseEntity<Void> post_tel_auth(
@@ -28,8 +28,8 @@ public class MainRestController {
         session.setAttribute("impUid", impUid);
         return ResponseEntity.ok().build();
     }
-    
-    
+
+
     // 사용자가 회원가입 창에서 이메일 인증확인 버튼을 클릭했을 시 동작
     @GetMapping("/email/auth")
     public ResponseEntity<Void> get_email_auth(
@@ -67,8 +67,8 @@ public class MainRestController {
         // 에러라면 우리 서비스에서 에러니까 500 에러가 맞다.
         return ResponseEntity.internalServerError().build();
     }
-    
-    
-    
-    
+
+
+
+
 }

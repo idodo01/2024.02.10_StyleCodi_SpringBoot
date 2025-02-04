@@ -2,6 +2,7 @@ package ido.style.mapper;
 
 
 import ido.style.dto.*;
+import ido.style.searchApi.ProductNaverShopDTO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Select;
 
@@ -17,6 +18,10 @@ public interface ProductMapper {
     ProductDTO selectProductByNo(Integer productNo);
 
     List<CategoryDTO> selectCategories();
+
+    // 네이버 쇼핑 상품 불러오기
+    List<ProductNaverShopDTO> selectNaverShopProducts();
+
 
 
     // 스타일 메이크 전용 카테고리
