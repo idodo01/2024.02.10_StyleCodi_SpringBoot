@@ -25,53 +25,8 @@ function previewImage(event, part) {
     }
 }
 
-async function combineImages() {
-    const canvas = document.getElementById("canvas");
-    const ctx = canvas.getContext("2d");
 
-    // Clear the canvas
-    ctx.clearRect(0, 0, canvas.width, canvas.height);
-
-    // Define dimensions for each part
-    const dimensions = {
-        top: {x: 0, y: 0, width: 200, height: 200},
-        outer: {x: 200, y: 0, width: 200, height: 400},
-        bottom: {x: 0, y: 200, width: 200, height: 200},
-        shoes: {x: 0, y: 400, width: 200, height: 200},
-        bag: {x: 200, y: 400, width: 200, height: 200}
-    };
-
-    for (const part of parts) {
-        const box = document.getElementById(part);
-        const img = box.querySelector("img");
-        if (img) {
-            const {x, y, width, height} = dimensions[part];
-            const image = new Image();
-            image.crossOrigin = 'Anonymous';  // CORS 설정
-
-            image.src = img.src;
-            await new Promise((resolve) => {
-                image.onload = () => {
-                    ctx.drawImage(image, x, y, width, height);
-                    resolve();
-                };
-            });
-        } else {
-            // 이미지가 없을 경우, 빈 하얀 사각형을 캔버스에 그리기
-            const {x, y, width, height} = dimensions[part];
-            ctx.fillStyle = "#fff"; // 하얀색으로 설정
-            ctx.fillRect(x, y, width, height);
-        }
-    }
-
-    // Create a download link
-    const link = document.createElement("a");
-    link.download = "combined-image.png";
-    link.href = canvas.toDataURL("image/png");
-    link.click();
-}
-
-function saveClickList() {
+function saveList() {
     const topProductNo = Number(document.querySelector(`.top-productNo`).id);
     const outerProductNo = Number(document.querySelector(`.outer-productNo`).id);
     const bottomProductNo = Number(document.querySelector(`.bottom-productNo`).id);
@@ -90,6 +45,41 @@ function saveClickList() {
 
     // POST 요청 전송
     fetch(`/style-list`, {
+        method: "POST",
+        headers: {
+            "X-CSRF-TOKEN": csrfToken,
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify(requestBody)
+    }).then(response => {
+        if (response.ok) {
+            console.log('요청 성공');
+        } else {
+            console.error('요청 실패:', response.status);
+        }
+    })
+        .catch((error) => console.error('서버 통신 오류:', error));
+}
+
+function uploadList() {
+    const topProductNo = Number(document.querySelector(`.top-productNo`).id);
+    const outerProductNo = Number(document.querySelector(`.outer-productNo`).id);
+    const bottomProductNo = Number(document.querySelector(`.bottom-productNo`).id);
+    const shoesProductNo = Number(document.querySelector(`.shoes-productNo`).id);
+    const bagProductNo = Number(document.querySelector(`.bag-productNo`).id);
+
+    const csrfToken = document.querySelector('meta[name=_csrf]').getAttribute('content');
+
+    const requestBody = [
+        { no: topProductNo },
+        { no: outerProductNo },
+        { no: bottomProductNo },
+        { no: shoesProductNo },
+        { no: bagProductNo }
+    ];
+
+    // POST 요청 전송
+    fetch(`/style-list-stylecodi`, {
         method: "POST",
         headers: {
             "X-CSRF-TOKEN": csrfToken,

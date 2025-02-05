@@ -93,4 +93,34 @@ public class ProductService {
         return productMapper.selectStyleByUser(user, styleNo);
     }
 
+    // 스타일 코디 업로드
+    public void add_styles_stylecodi(
+            ProductNaverShopDTO product_top,
+            ProductNaverShopDTO product_outer,
+            ProductNaverShopDTO product_bottom,
+            ProductNaverShopDTO product_shoes,
+            ProductNaverShopDTO product_bag,
+            UserDTO user
+    ){
+        StylesProductDTO styles = new StylesProductDTO();
+        styles.setProduct_top(product_top);
+        styles.setProduct_outer(product_outer);
+        styles.setProduct_bottom(product_bottom);
+        styles.setProduct_shoes(product_shoes);
+        styles.setProduct_bag(product_bag);
+
+        styles.setUser(user);
+
+        productMapper.insertStylesStyleCodi(styles);
+    }
+
+    // 스타일 코디 - 모든 스타일
+    public List<StylesProductDTO> get_styles_style_codi(){
+        return productMapper.selectStylesStyleCodi();
+    }
+    // 스타일 코디 - 하나의 스타일
+    public StylesProductDTO get_style_style_codi(Integer styleNo){
+        return productMapper.selectStyleStyleCodi(styleNo);
+    }
+
 }

@@ -51,10 +51,8 @@
                     </div>
                 </div>
 
-                <button onclick="combineImages()">이미지 다운로드</button>
-                <button sec:authorize="authenticated" class="save-btn" onclick="saveClickList()">저장하기</button>
-
-                <canvas id="canvas" width="400" height="600" style="display: none;"></canvas>
+                <button sec:authorize="authenticated" class="save-btn" onclick="saveList()">저장하기</button>
+                <button sec:authorize="authenticated" class="upload-btn" onclick="uploadList()">업로드하기</button>
             </section>
 
         </section>

@@ -41,19 +41,30 @@ public class MainController {
         return "main/home"; // 홈페이지로 가라
     }
 
-    // 스타일 리스트 화면
+//    // 로그인 필요 페이지
+//    @GetMapping("/loginPlz")
+//    public String loginPlz() {
+//       return "redirect:/user/login";
+//    }
+
+
+ // 스타일 리스트 화면
     @GetMapping("/styleCategory")
     public String get_styleCategory(
-            @RequestParam(defaultValue = "1") Integer categoryNo,
-            String sort,
+//            @RequestParam(defaultValue = "1") Integer categoryNo,
+//            String sort,
             Model model
-    ){
-        List<StyleProductDTO> styleProducts = styleProductService.get_style_products(categoryNo, sort);
 
+    ){
+
+        List<StylesProductDTO> styles = productService.get_styles_style_codi();
+        model.addAttribute("styles", styles);
+
+        System.out.println(styles);
+
+        // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
-
-        model.addAttribute("styleProducts", styleProducts);
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
 
@@ -61,19 +72,20 @@ public class MainController {
     }
 
     // 스타일 하나의 화면
-    @GetMapping("/styleProduct/{productNo}")
+    @GetMapping("/styleProduct/{styleNo}")
     public String get_styleProduct_detail(
-            @PathVariable Integer productNo,
+            @PathVariable Integer styleNo,
             Model model
-    ) {
-        StyleProductDTO styleProduct = styleProductService.get_style_product(productNo);
+    ){
 
-        List<CategoryDTO> categories = productService.get_categories();
+        StylesProductDTO style = productService.get_style_style_codi(styleNo);
+        model.addAttribute("style", style);
+
+        // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-
-        model.addAttribute("styleProduct", styleProduct);
-        model.addAttribute("categories", categories);
+        List<CategoryDTO> categories = productService.get_categories();
         model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
 
         return "main/styleProduct";
     }
@@ -112,41 +124,6 @@ public class MainController {
 
         return "main/category";
     }
-    
-//    // 모든 상품 리스트 화면 - api 사용전
-//    @GetMapping("/category")
-//    public String get_category(
-//            @RequestParam(defaultValue = "1") Integer categoryNo,
-//            String sort,
-//
-//            @AuthenticationPrincipal UserDTO user,
-//
-//            Model model
-//    ){
-//        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
-//
-//
-//        List<ProductDTO> products = productService.get_products(categoryNo, sort);
-//
-//        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-//        List<CategoryDTO> categories = productService.get_categories();
-//
-//        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
-//        Map<Integer, Boolean> lovesMap = products.stream()
-//                .collect(Collectors.toMap(
-//                        ProductDTO::getNo,
-//                        product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
-//                ));
-//
-//        model.addAttribute("products", products);
-//
-//        model.addAttribute("styleCategories", styleCategories);
-//        model.addAttribute("categories", categories);
-//
-//        model.addAttribute("lovesMap", lovesMap);
-//
-//        return "main/category";
-//    }
 
 
     // 상품 하나의 화면
@@ -185,7 +162,7 @@ public class MainController {
         return "main/style-make";
     }
 
-    // 스타일 리스트 저장
+    // 스타일 리스트 - 마이페이지 저장
     @PostMapping("/style-list")
     public ResponseEntity<Void> style_list(
 //            @RequestBody Map<String, Object> requestBody,
@@ -206,64 +183,30 @@ public class MainController {
         if(Objects.isNull(userDTO)){
             return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-        // 해당 상품과 유저를 전달해서 찜목록에 추가하기
-//        productService.add_styles(product1, userDTO);
         productService.add_styles(product1, product2, product3, product4, product5, userDTO);
         return ResponseEntity.ok().build();
     }
 
-    @GetMapping("/style-list")
-    public String style_list(
-            @RequestParam(defaultValue = "1") Integer categoryNo,
-            String sort,
+    // 스타일 리스트 - 스타일 코디 업로드
+    @PostMapping("/style-list-stylecodi")
+    public ResponseEntity<Void> style_list_stylecodi(
 
-            Authentication authentication,
-            @AuthenticationPrincipal UserDTO user,
-
-            Model model
+            @RequestBody List<ProductNaverShopDTO> products,
+            @AuthenticationPrincipal UserDTO userDTO
     ){
-        if(!(Objects.nonNull(authentication))){
-            return "redirect:/user/login";
+
+        ProductNaverShopDTO product1 = products.get(0);
+        ProductNaverShopDTO product2 = products.get(1);
+        ProductNaverShopDTO product3 = products.get(2);
+        ProductNaverShopDTO product4 = products.get(3);
+        ProductNaverShopDTO product5 = products.get(4);
+
+        if(Objects.isNull(userDTO)){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
         }
-
-        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
-
-        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
-        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
-
-
-        model.addAttribute("loves", loves);
-        model.addAttribute("styleStoreCategories", styleStoreCategories);
-
-
-        return "main/style-loves";
+        productService.add_styles_stylecodi(product1, product2, product3, product4, product5, userDTO);
+        return ResponseEntity.ok().build();
     }
-    
-    
-    // 세션 처리 방법
-    
-//    @PostMapping("/save-click-list")
-//    public ResponseEntity<Void> save_click_list(@RequestBody Map<String, String> requestBody, HttpSession session, HttpServletResponse response) {
-//        String productNo = requestBody.get("productNo");
-//        if (productNo != null) {
-//            // 세션에 상품 번호 저장
-//            session.setAttribute("selectedProductNo", productNo);
-//            return ResponseEntity.ok().build();  // 클라이언트가 리디렉션을 처리하도록 응답
-//        }
-//        return ResponseEntity.badRequest().build();
-//    }
-//
-//    @GetMapping("/style-click-list")
-//    public String get_style_list(
-//            HttpSession session,
-//            Model model
-//    ){
-//        String selectedProductNo = (String) session.getAttribute("selectedProductNo");
-//
-//        model.addAttribute("selectedProductNo", selectedProductNo);
-//
-//        return "main/style-click-list";
-//    }
 
 
     // 스타일 - style-make 안에 사용되는 IFRAME 1 (스토어 페이지)

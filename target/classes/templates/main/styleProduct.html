@@ -14,104 +14,72 @@
 </head>
 <body>
 <main layout:fragment="main">
-    <section class="product-section">
-        <article>
-            <section>
-                <div class="main-image-container">
-                    <img th:src="@{|/styleImage/${styleProduct.images[0].no}|}" alt="메인이미지">
-                </div>
-                <div class="sub-image-container">
-                    <button th:each="image,stat: ${styleProduct.images}" th:unless="${stat.first}">
-                        <img th:src="@{|/styleImage/${image.no}|}" alt="메인이미지">
-                    </button>
+    <section class="main-section">
+        <section class="style-body-section">
+            <section class="style-map-section">
+                <div class="container">
+                    <div class="box top empty" id="top">
+                        <img class="top-img" th:src="@{|${style.product_top.image}|}" alt="상의">
+                    </div>
+                    <div class="box outer empty" id="outer">
+                        <img class="outer-img" th:src="@{|${style.product_outer.image}|}" alt="겉옷">
+                    </div>
+                    <div class="box bottom empty" id="bottom">
+                        <img class="bottom-img" th:src="@{|${style.product_bottom.image}|}" alt="하의">
+                    </div>
+                    <div class="box shoes empty" id="shoes">
+                        <img class="shoes-img" th:src="@{|${style.product_shoes.image}|}" alt="신발">
+                    </div>
+                    <div class="box bag empty" id="bag">
+                        <img class="bag-img" th:src="@{|${style.product_bag.image}|}" alt="가방">
+                    </div>
                 </div>
             </section>
-
-            <form th:action="@{/user/order}" method="post" th:id="${styleProduct.no}" name="product">
-                <header>
-                    <div>
-                        <b>상품명</b>
-                        <h3 th:text="${styleProduct.name}">상품명</h3>
-                    </div>
-                </header>
-            </form>
-        </article>
-
-        <nav id="product-info-navigator">
-            <ul>
-                <li>
-                    <a href="#product-info-section">
-                        <i class="bi bi-dash-lg"></i>
-                        <span>디테일</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#product-help-section">
-                        <i class="bi bi-dash-lg"></i>
-                        <span>가이드</span>
-                    </a>
-                </li>
-                <li>
-                    <a href="#">
-                        <i class="bi bi-dash-lg"></i>
-                        <span>리뷰</span>
-                    </a>
-                </li>
-            </ul>
-        </nav>
-
-        <section id="product-info-section">
-            <div class="prouduct-img-container">
-                <img th:each="image: ${styleProduct.images}" th:src="@{|/styleImage/${image.no}|}" alt="상세사진">
-            </div>
-            <p th:utext="${styleProduct.detail}">
-                상품 디테일이 적힌 공간입니다~~
-            </p>
-        </section>
-
-        <section id="product-help-section">
-            <div>
-                <h4>상품결제정보</h4>
-                <p>
-                    - 고액결제의 경우 안전을 위해 카드사에서 확인전화를 드릴 수도 있습니다. <br>
-                    확인과정에서 도난카드,명의도용 등 정상적인 주문이 아니라고 판단될 경우 임의로 주문이 보류/취소될 수 있습니다.<br>
-                    - 구매자가 미성년자일 경우 법정 대리인 미동의 시 구매를 취소할 수 있습니다.<br>
-                    - 무통장 입금으로 주문 시 입력한 입금자명과 실제 입금자의 성명이 일치하여야 입금 확인이 가능합니다<br>
-                </p>
-            </div>
-            <div>
-                <h4>배송에 대해서</h4>
-                <p>
-                    배송정보<br>
-                    배송 방법 : 택배<br>
-                    배송 지역 : 전국지역<br>
-                    배송 비용 : 무료<br>
-                    배송 기간 : 3일 ~ 7일<br>
-                    배송 안내 : - 스타일스냅는 빠르고 안전한 배송을 위해 우체국 택배를 이용하고 있습니다.<br>
-                    - 대부분 출고 후 다음날 도착하며, 지역 및 기상 상황에 따라 변동이 있을 수 있는 점 참고 부탁드립니다.<br>
-                    - 결제일 기준 상품 준비까지 평균 2~5일 정도 소요됩니다.<br>
-                    - 묶음배송 시 지연 건에 한 해 1회 부분 출고를 도와드리고 있습니다.<br>
-                    - 제주도/도서지방은 별도의 추가 금액이 발생됩니다<br>
-                </p>
-            </div>
-            <div>
-                <h4>교환 및 반품정보</h4>
-                <p>
-                    교환 및 반품 안내<br>
-                    - 상품 수령 후 7일 이내로 카카오톡 또는 Q&A 게시판을 통해 교환/반품 접수를 부탁드립니다.<br>
-                    - 지정 택배사에 수거 신청을 도와드리며 2-3일 내로 기사님 방문 수거 후 당사에 상품이 도착하면 교환/반품이 진행됩니다.<br>
-                    - 임의로 타 택배 이용 시 추가 배송비가 발생할 수 있으며 반드시 배송비 선불 처리 후 발송 부탁드립니다.<br>
-                    - 단순변심 (사이즈,색상 교환포함) 에 의한 교환/반품의 경우 고객측에서 왕복 배송비를 부담하셔야합니다.<br>
-
-                    교환 및 반품이 불가능한 경우<br>
-                    - 상품을 수령하신 날로부터 7일 이상 경과된 경우<br>
-                    - 상품에 부착되어 있는 텍을 제거하시거나 바코드가 훼손된 경우<br>
-                    - 세탁,냄새,화장품,향수 등의 착용흔적이나 오염으로 인해 재판매가 불가한 경우<br>
-                    - 실밥,초크자국,구김,마감박음질,린넨 소재의 실뭉침 또는 잡사 등은 불량사유가 아니오니 참고 부탁드립니다.<br>
-                </p>
-            </div>
+            <section class="style-detail-section">
+                <div class="top-detail">
+                    <button class="image-container">
+                        <img th:src="@{|${style.product_top.image}|}" alt="상의">
+                    </button>
+                    <b class="title" th:text="${style.product_top.title}"></b>
+                    <b class="price" th:text="${style.product_top.price}"></b>
+                    <a th:href="@{|${style.product_top.link}|}" target="_blank">상세보기</a>
+                </div>
+                <div class="outer-detail">
+                    <button class="image-container">
+                        <img th:src="@{|${style.product_outer.image}|}" alt="아우터">
+                    </button>
+                    <b class="title" th:text="${style.product_outer.title}"></b>
+                    <b class="price" th:text="${style.product_outer.price}"></b>
+                    <a th:href="@{|${style.product_outer.link}|}" target="_blank">상세보기</a>
+                </div>
+                <div class="bottom-detail">
+                    <button class="image-container">
+                        <img th:src="@{|${style.product_bottom.image}|}" alt="하의">
+                    </button>
+                    <b class="title" th:text="${style.product_bottom.title}"></b>
+                    <b class="price" th:text="${style.product_bottom.price}"></b>
+                    <a th:href="@{|${style.product_bottom.link}|}" target="_blank">상세보기</a>
+                </div>
+                <div class="shoes-detail">
+                    <button class="image-container">
+                        <img th:src="@{|${style.product_shoes.image}|}" alt="신발">
+                    </button>
+                    <b class="title" th:text="${style.product_shoes.title}"></b>
+                    <b class="price" th:text="${style.product_shoes.price}"></b>
+                    <a th:href="@{|${style.product_shoes.link}|}" target="_blank">상세보기</a>
+                </div>
+                <div class="bag-detail">
+                    <button class="image-container">
+                        <img th:src="@{|${style.product_bag.image}|}" alt="가방">
+                    </button>
+                    <b class="title" th:text="${style.product_bag.title}"></b>
+                    <b class="price" th:text="${style.product_bag.price}"></b>
+                    <a th:href="@{|${style.product_bag.link}|}" target="_blank">상세보기</a>
+                </div>
+            </section>
         </section>
     </section>
+
 </main>
 </body>
 </html>

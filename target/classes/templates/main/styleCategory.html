@@ -19,35 +19,37 @@
                 <b>10건</b>
             </div>
 
-            <ul>
-                <li>
-                    <a href="/styleProduct?sort=recent">최신순</a>
-                </li>
-                <li>
-                    <a href="/styleProduct?sort=name">이름순</a>
-                </li>
-                <li>
-            </ul>
         </div>
-        <section>
-            <div class="item" th:each="styleProduct: ${styleProducts}">
-                <a class="image-container" th:href="@{|/styleProduct/${styleProduct.no}|}">
-                    <img th:src="@{|/styleImage/${styleProduct.images[0].no}|}" src="" alt="">
-                </a>
-                <b class="title" th:text="${styleProduct.name}">스타일 이름</b>
-            </div>
+        <!-- Main Content -->
+        <section class="main-section">
+            <section class="style-section">
+                <section class="style-item-section">
+                    <div class="item" th:each="style: ${styles}" >
+                        <section class="image-container">
+                            <div class="container">
+                                <div class="box top empty" id="top">
+                                    <img class="top-img" th:src="@{|${style.product_top.image}|}" alt="상의">
+                                </div>
+                                <div class="box outer empty" id="outer">
+                                    <img class="outer-img" th:src="@{|${style.product_outer.image}|}" alt="겉옷">
+                                </div>
+                                <div class="box bottom empty" id="bottom">
+                                    <img class="bottom-img" th:src="@{|${style.product_bottom.image}|}" alt="하의">
+                                </div>
+                                <div class="box shoes empty" id="shoes">
+                                    <img class="shoes-img" th:src="@{|${style.product_shoes.image}|}" alt="신발">
+                                </div>
+                                <div class="box bag empty" id="bag">
+                                    <img class="bag-img" th:src="@{|${style.product_bag.image}|}" alt="가방">
+                                </div>
+                            </div>
+                        </section>
+                        <a th:href="@{|/styleProduct/${style.no}|}">상세보기</a>
+                    </div>
+                </section>
+            </section>
         </section>
-        <ol>
-            <li><a href="#"><i class="bi bi-caret-left-fill"></i></a></li>
-            <li><a href="#">1</a></li>
-            <li><a href="#">2</a></li>
-            <li><a href="#">3</a></li>
-            <li><a href="#"><i class="bi bi-caret-right-fill"></i></a></li>
-        </ol>
-        <a href="/user/style-upload">글쓰기</a>
     </section>
-
-
 </main>
 </body>
 </html>

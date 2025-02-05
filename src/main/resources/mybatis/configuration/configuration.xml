@@ -8,6 +8,8 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
+        <typeAlias type="ido.style.dto.StylesProductDTO" alias="StylesProductDTO" />
+
         <typeAlias type="ido.style.dto.ProductDTO" alias="ProductDTO" />
         <typeAlias type="ido.style.dto.CategoryDTO" alias="CategoryDTO" />
         <typeAlias type="ido.style.dto.ProductImageDTO" alias="ProductImageDTO" />

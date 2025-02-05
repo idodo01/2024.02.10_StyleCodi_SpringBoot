@@ -43,15 +43,21 @@ public interface ProductMapper {
 
     void deleteLoves(LovesDTO loves); // 찜 목록에 상품 정보 삭제
 
+    ///////////// 스타일 리스트 - 마이 페이지
     void insertStyles(StylesDTO styles); // 스타일 리스트 추가
-
     // 스타일 불러오기
     List<StylesDTO> selectStylesByUser(
             UserDTO user
     );
-
     StylesDTO selectStyleByUser(UserDTO user, Integer styleNo);
 
+    ////////////////스타일 리스트 - 스타일 코디
+
+
+    void insertStylesStyleCodi(StylesProductDTO styles); // 스타일 리스트 추가
+    // 스타일 불러오기
+    List<StylesProductDTO> selectStylesStyleCodi();
+    StylesProductDTO selectStyleStyleCodi(Integer styleNo);
 }
 
     

@@ -16,10 +16,10 @@
 
         <ul class="main-menu-ul">
             <li th:each="styleCategory: ${styleCategories}">
-                <a th:href="@{|/styleCategory?categoryNo=${styleCategory.no}|}" th:text="${styleCategory.name}">ALL</a>
+                <a th:href="@{|/styleCategory|}" th:text="${styleCategory.name}">ALL</a>
                 <ul class="header-child-menu" th:if="${styleCategory.children}">
-                    <li th:each="childCategory: ${styleCategory.children}">
-                        <a th:href="@{|/styleProduct?categoryNo=${childCategory.no}|}" th:text="${childCategory.name}">ALL</a>
+                    <li th:each="styleChildCategory: ${styleCategory.children}">
+                        <a th:href="@{|/styleCategory|}" th:text="${styleChildCategory.name}">ALL</a>
                     </li>
                 </ul>
             </li>

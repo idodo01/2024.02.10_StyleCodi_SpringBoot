@@ -90,18 +90,7 @@
 
         FROM product_naver_shop P
 
-        INNER JOIN category CT
-        ON P.category = CT.no
-        <if test="categoryNo != 1">
-            AND P.category IN (WITH RECURSIVE `category_cte` AS
-            (
-            SELECT * FROM `style_category` WHERE `no` = #{categoryNo}
-            UNION
-            SELECT child.* FROM `category_cte` parent
-            INNER JOIN `style_category` child
-            ON parent.no = child.parent
-            ) SELECT `no` FROM `category_cte`)
-        </if>
+        WHERE #{categoryNo} = 1 OR category = #{categoryNo}
 
         <choose>
             <when test="sort == 'title'">
@@ -180,6 +169,7 @@
         ON L.product_no = P.no
 
         WHERE `user_id` = #{user.id}
+        AND (#{categoryNo} = 1 OR category = #{categoryNo})
 
         <choose>
             <when test="sort == 'title'">
@@ -196,88 +186,6 @@
 
     </select>
 
-<!--    찜 상품 - api 사용전 -->
-<!--    <resultMap id="lovesMap" type="LovesDTO">-->
-<!--        &lt;!&ndash; Loves 테이블 매핑 &ndash;&gt;-->
-<!--        <id property="no" column="loves_no" />-->
-
-<!--        &lt;!&ndash; ProductDTO 매핑 &ndash;&gt;-->
-<!--        <association property="product" javaType="ProductDTO">-->
-<!--            <id property="no" column="product_no" />-->
-<!--            <result property="name" column="product_name" />-->
-<!--            <result property="price" column="product_price" />-->
-<!--            <result property="detail" column="detail" />-->
-<!--            <result property="uploadedAt" column="uploaded_at" />-->
-
-<!--            &lt;!&ndash; ProductCategory 매핑 &ndash;&gt;-->
-<!--            <association property="category" javaType="CategoryDTO">-->
-<!--                <id property="no" column="product_category" />-->
-<!--            </association>-->
-
-<!--            &lt;!&ndash; ProductImageDTO 매핑 &ndash;&gt;-->
-<!--            <collection property="images" ofType="ProductImageDTO">-->
-<!--                <id property="no" column="product_image_no" />-->
-<!--            </collection>-->
-<!--        </association>-->
-<!--    </resultMap>-->
-
-
-<!--    <select id="selectLovesByUser" resultType="LovesDTO" resultMap="lovesMap">-->
-<!--        SELECT-->
-<!--        L.user_id AS loves_user_no,-->
-<!--        L.product_no AS loves_product_no,-->
-<!--        L.no AS loves_no,-->
-
-<!--        P.no AS product_no,-->
-<!--        P.name AS product_name,-->
-<!--        P.price AS product_price,-->
-<!--        P.detail,-->
-<!--        P.uploaded_at,-->
-
-<!--        CT.no AS product_category,-->
-<!--        PI.no AS product_image_no-->
-
-<!--        FROM (((Loves L-->
-<!--        JOIN product P-->
-<!--        ON L.product_no = P.no)-->
-
-<!--        JOIN product_image PI-->
-<!--        ON P.no = PI.product_no)-->
-
-<!--        JOIN category CT-->
-<!--        ON P.category = CT.no-->
-<!--            <if test="categoryNo != 1">-->
-<!--                AND P.category IN (WITH RECURSIVE `category_cte` AS-->
-<!--                (-->
-<!--                SELECT * FROM `category` WHERE `no` = #{categoryNo}-->
-<!--                UNION-->
-<!--                SELECT child.* FROM `category_cte` parent-->
-<!--                INNER JOIN `category` child-->
-<!--                ON parent.no = child.parent-->
-<!--                ) SELECT `no` FROM `category_cte`)-->
-<!--            </if>-->
-<!--        )-->
-
-<!--        WHERE `user_id` = #{user.id}-->
-
-<!--        <choose>-->
-<!--            <when test="sort == 'name'">-->
-<!--                ORDER BY P.`name`-->
-<!--            </when>-->
-<!--            <when test="sort == 'low-price'">-->
-<!--                ORDER BY P.`price`-->
-<!--            </when>-->
-<!--            <when test="sort == 'high-price'">-->
-<!--                ORDER BY P.`price` DESC-->
-<!--            </when>-->
-<!--            <otherwise>-->
-<!--                ORDER BY P.`uploaded_at`-->
-<!--            </otherwise>-->
-<!--        </choose>-->
-
-
-<!--    </select>-->
-
     <insert id="insertLoves">
         INSERT INTO `loves` (no, product_no, user_id)
         VALUES (NULL, #{product.no}, #{user.id})
@@ -288,6 +196,8 @@
         WHERE product_no = #{product.no}
     </delete>
 
+
+<!--    스타일 리스트 - 마이페이지-->
     <insert id="insertStyles">
         INSERT INTO `styles` (no, product_top, product_outer, product_bottom, product_shoes, product_bag, user_id)
         VALUES (NULL, #{product_top.no},#{product_outer.no}, #{product_bottom.no}, #{product_shoes.no}, #{product_bag.no},  #{user.id})
@@ -471,4 +381,183 @@
         WHERE `user_id` = #{user.id} AND S.`no` = #{styleNo};
     </select>
 
+<!--    스타일리스트 - 스타일 코디-->
+    <insert id="insertStylesStyleCodi">
+        INSERT INTO `styles_product` (no, product_top, product_outer, product_bottom, product_shoes, product_bag, user_id)
+        VALUES (NULL, #{product_top.no},#{product_outer.no}, #{product_bottom.no}, #{product_shoes.no}, #{product_bag.no},  #{user.id})
+    </insert>
+
+    <resultMap id="stylesCodiMap" type="StylesProductDTO">
+        <!-- Styles 테이블 매핑 -->
+        <id property="no" column="styles_no" />
+
+        <!-- ProductDTO 매핑 (product_top) -->
+        <association property="product_top" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_top_no" />
+            <result property="image" column="product_top_image" />
+        </association>
+
+        <!-- ProductDTO 매핑 (product_outer) -->
+        <association property="product_outer" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_outer_no" />
+            <result property="image" column="product_outer_image" />
+
+        </association>
+
+        <!-- ProductDTO 매핑 (product_bottom) -->
+        <association property="product_bottom" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_bottom_no" />
+            <result property="image" column="product_bottom_image" />
+        </association>
+
+        <!-- ProductDTO 매핑 (product_shoes) -->
+        <association property="product_shoes" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_shoes_no" />
+            <result property="image" column="product_shoes_image" />
+        </association>
+
+        <!-- ProductDTO 매핑 (product_bag) -->
+        <association property="product_bag" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_bag_no" />
+            <result property="image" column="product_bag_image" />
+        </association>
+    </resultMap>
+
+    <select id="selectStylesStyleCodi" resultType="StylesProductDTO" resultMap="stylesCodiMap">
+        SELECT
+            S.no AS styles_no,
+            S.product_top AS styles_product_top,
+            S.product_outer AS styles_product_outer,
+            S.product_bottom AS styles_product_bottom,
+            S.product_shoes AS styles_product_shoes,
+            S.product_bag AS styles_product_bag,
+            S.user_id AS styles_user_no,
+
+            -- Product information
+            P1.no AS product_top_no,
+            P1.image AS product_top_image,
+
+            P2.no AS product_outer_no,
+            P2.image AS product_outer_image,
+
+            P3.no AS product_bottom_no,
+            P3.image AS product_bottom_image,
+
+            P4.no AS product_shoes_no,
+            P4.image AS product_shoes_image,
+
+            P5.no AS product_bag_no,
+            P5.image AS product_bag_image
+
+
+        FROM styles_product S
+                 JOIN product_naver_shop P1 ON S.product_top = P1.no
+                 JOIN product_naver_shop P2 ON S.product_outer = P2.no
+                 JOIN product_naver_shop P3 ON S.product_bottom = P3.no
+                 JOIN product_naver_shop P4 ON S.product_shoes = P4.no
+                 JOIN product_naver_shop P5 ON S.product_bag = P5.no
+
+    </select>
+
+
+    <resultMap id="styleCodiMap" type="StylesProductDTO">
+        <!-- Styles 테이블 매핑 -->
+        <id property="no" column="styles_no" />
+
+        <!-- ProductDTO 매핑 (product_top) -->
+        <association property="product_top" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_top_no" />
+            <result property="title" column="product_top_title" />
+            <result property="link" column="product_top_link" />
+            <result property="image" column="product_top_image" />
+            <result property="price" column="product_top_price" />
+        </association>
+
+        <!-- ProductDTO 매핑 (product_outer) -->
+        <association property="product_outer" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_outer_no" />
+            <result property="title" column="product_outer_title" />
+            <result property="link" column="product_outer_link" />
+            <result property="image" column="product_outer_image" />
+            <result property="price" column="product_outer_price" />
+        </association>
+
+        <!-- ProductDTO 매핑 (product_bottom) -->
+        <association property="product_bottom" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_bottom_no" />
+            <result property="title" column="product_bottom_title" />
+            <result property="link" column="product_bottom_link" />
+            <result property="image" column="product_bottom_image" />
+            <result property="price" column="product_bottom_price" />
+        </association>
+
+        <!-- ProductDTO 매핑 (product_shoes) -->
+        <association property="product_shoes" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_shoes_no" />
+            <result property="title" column="product_shoes_title" />
+            <result property="link" column="product_shoes_link" />
+            <result property="image" column="product_shoes_image" />
+            <result property="price" column="product_shoes_price" />
+        </association>
+
+        <!-- ProductDTO 매핑 (product_bag) -->
+        <association property="product_bag" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_bag_no" />
+            <result property="title" column="product_bag_title" />
+            <result property="link" column="product_bag_link" />
+            <result property="image" column="product_bag_image" />
+            <result property="price" column="product_bag_price" />
+        </association>
+    </resultMap>
+
+    <select id="selectStyleStyleCodi" resultType="StylesProductDTO" resultMap="styleCodiMap">
+        SELECT
+            S.no AS styles_no,
+            S.product_top AS styles_product_top,
+            S.product_outer AS styles_product_outer,
+            S.product_bottom AS styles_product_bottom,
+            S.product_shoes AS styles_product_shoes,
+            S.product_bag AS styles_product_bag,
+            S.user_id AS styles_user_no,
+
+            -- Product information
+            P1.no AS product_top_no,
+            P1.title AS product_top_title,
+            P1.link AS product_top_link,
+            P1.image AS product_top_image,
+            P1.price AS product_top_price,
+
+            P2.no AS product_outer_no,
+            P2.title AS product_outer_title,
+            P2.link AS product_outer_link,
+            P2.image AS product_outer_image,
+            P2.price AS product_outer_price,
+
+            P3.no AS product_bottom_no,
+            P3.title AS product_bottom_title,
+            P3.link AS product_bottom_link,
+            P3.image AS product_bottom_image,
+            P3.price AS product_bottom_price,
+
+            P4.no AS product_shoes_no,
+            P4.title AS product_shoes_title,
+            P4.link AS product_shoes_link,
+            P4.image AS product_shoes_image,
+            P4.price AS product_shoes_price,
+
+            P5.no AS product_bag_no,
+            P5.title AS product_bag_title,
+            P5.link AS product_bag_link,
+            P5.image AS product_bag_image,
+            P5.price AS product_bag_price
+
+        FROM styles_product S
+                 JOIN product_naver_shop P1 ON S.product_top = P1.no
+                 JOIN product_naver_shop P2 ON S.product_outer = P2.no
+                 JOIN product_naver_shop P3 ON S.product_bottom = P3.no
+                 JOIN product_naver_shop P4 ON S.product_shoes = P4.no
+                 JOIN product_naver_shop P5 ON S.product_bag = P5.no
+
+        WHERE S.`no` = #{styleNo};
+    </select>
 </mapper>
