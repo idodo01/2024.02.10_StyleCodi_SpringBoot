@@ -123,4 +123,9 @@ public class ProductService {
         return productMapper.selectStyleStyleCodi(styleNo);
     }
 
+    // 스타일 코디 - 마이페이지 > 내 업로드 스타일
+    public List<StylesProductDTO> get_styles_style_codi_by_user(UserDTO user){
+        return productMapper.selectStylesStyleCodiByUser(user);
+    }
+
 }

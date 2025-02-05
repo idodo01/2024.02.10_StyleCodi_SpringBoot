@@ -60,8 +60,6 @@ public class MainController {
         List<StylesProductDTO> styles = productService.get_styles_style_codi();
         model.addAttribute("styles", styles);
 
-        System.out.println(styles);
-
         // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
@@ -123,25 +121,6 @@ public class MainController {
         model.addAttribute("lovesMap", lovesMap);
 
         return "main/category";
-    }
-
-
-    // 상품 하나의 화면
-    @GetMapping("/product/{productNo}")
-    public String get_product(
-            @PathVariable Integer productNo,
-            Model model
-    ) {
-        ProductDTO product = productService.get_product(productNo);
-
-        List<CategoryDTO> categories = productService.get_categories();
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-
-        model.addAttribute("product", product);
-        model.addAttribute("categories", categories);
-        model.addAttribute("styleCategories", styleCategories);
-
-        return "main/product";
     }
 
     /****************************************************************************/

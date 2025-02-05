@@ -1,7 +1,7 @@
 @import "../public/public.css";
 
 footer{
-    background-color: rgba(0,0,0,0.1);
+    background-color: pink;
     padding: 50px 200px;
     color: var(--Dark-gray-textured-background---4-rgba);
 }

@@ -52,13 +52,16 @@ public interface ProductMapper {
     StylesDTO selectStyleByUser(UserDTO user, Integer styleNo);
 
     ////////////////스타일 리스트 - 스타일 코디
-
-
     void insertStylesStyleCodi(StylesProductDTO styles); // 스타일 리스트 추가
     // 스타일 불러오기
     List<StylesProductDTO> selectStylesStyleCodi();
     StylesProductDTO selectStyleStyleCodi(Integer styleNo);
+
+    ////////////  스타일 리스트 - 마이페이지 > 내 업로드 스타일
+    List<StylesProductDTO> selectStylesStyleCodiByUser(UserDTO user);
 }
+
+
 
     
     

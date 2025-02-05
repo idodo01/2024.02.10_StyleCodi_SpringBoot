@@ -560,4 +560,46 @@
 
         WHERE S.`no` = #{styleNo};
     </select>
+
+<!--    마이페이지 > 내 업로드 스타일 -->
+
+
+    <select id="selectStylesStyleCodiByUser" resultType="StylesProductDTO" resultMap="stylesCodiMap">
+        SELECT
+            S.no AS styles_no,
+            S.product_top AS styles_product_top,
+            S.product_outer AS styles_product_outer,
+            S.product_bottom AS styles_product_bottom,
+            S.product_shoes AS styles_product_shoes,
+            S.product_bag AS styles_product_bag,
+            S.user_id AS styles_user_no,
+
+            -- Product information
+            P1.no AS product_top_no,
+            P1.image AS product_top_image,
+
+            P2.no AS product_outer_no,
+            P2.image AS product_outer_image,
+
+            P3.no AS product_bottom_no,
+            P3.image AS product_bottom_image,
+
+            P4.no AS product_shoes_no,
+            P4.image AS product_shoes_image,
+
+            P5.no AS product_bag_no,
+            P5.image AS product_bag_image
+
+
+        FROM styles_product S
+                 JOIN product_naver_shop P1 ON S.product_top = P1.no
+                 JOIN product_naver_shop P2 ON S.product_outer = P2.no
+                 JOIN product_naver_shop P3 ON S.product_bottom = P3.no
+                 JOIN product_naver_shop P4 ON S.product_shoes = P4.no
+                 JOIN product_naver_shop P5 ON S.product_bag = P5.no
+
+        WHERE `user_id` = #{id}
+
+    </select>
+
 </mapper>

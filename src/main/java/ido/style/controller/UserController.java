@@ -106,93 +106,9 @@ public class UserController {
         return "redirect:/styleCategory";
     }
     /************************ 유저 마이페이지 ***************************/
-    @GetMapping("/myLove")
-    public String user_myLove(
-            @RequestParam(defaultValue = "1") Integer categoryNo,
-            String sort,
 
-            Authentication authentication,
-            @AuthenticationPrincipal UserDTO user,
+    /////////////////////// 내 옷장
 
-            Model model
-    ){
-        if(!(Objects.nonNull(authentication))){
-            return "redirect:/user/login";
-        }
-
-        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
-
-        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
-        model.addAttribute("styleStoreCategories", styleStoreCategories);
-
-        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort); // 찜 목록
-        model.addAttribute("loves", loves);
-        System.out.println("loves object: " + loves);
-
-        // 상위 header에 사용되는 카테고리
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-        List<CategoryDTO> categories = productService.get_categories();
-        model.addAttribute("styleCategories", styleCategories);
-        model.addAttribute("categories", categories);
-
-        return "user/myLove";
-    }
-
-    @GetMapping("/myStyle")
-    public String user_myStyle(
-            Authentication authentication,
-            @AuthenticationPrincipal UserDTO user,
-
-            Model model
-    ){
-        if(!(Objects.nonNull(authentication))){
-            return "redirect:/user/login";
-        }
-
-        List<StylesDTO> styles = productService.get_styles_by_user(user); // 내 스타일
-        model.addAttribute("styles", styles);
-
-        System.out.println("Style object: " + styles);
-
-
-        // 상위 header에 사용되는 카테고리
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-        List<CategoryDTO> categories = productService.get_categories();
-        model.addAttribute("styleCategories", styleCategories);
-        model.addAttribute("categories", categories);
-
-        return "user/myStyle";
-    }
-
-    @GetMapping("/myStyle-detail/{styleNo}")
-    public String user_myStyle_detail(
-            @PathVariable Integer styleNo,
-
-            Authentication authentication,
-            @AuthenticationPrincipal UserDTO user,
-
-            Model model
-    ){
-        if(!(Objects.nonNull(authentication))){
-            return "redirect:/user/login";
-        }
-
-        StylesDTO style = productService.get_style_by_user(user, styleNo); // 내 스타일
-        model.addAttribute("style", style);
-
-        System.out.println("Style object: " + style);
-
-
-        // 상위 header에 사용되는 카테고리
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-        List<CategoryDTO> categories = productService.get_categories();
-        model.addAttribute("styleCategories", styleCategories);
-        model.addAttribute("categories", categories);
-
-        return "user/myStyle-detail";
-    }
-
-    /*********************************************/
     @GetMapping("/myClothes")
     public String user_myClothes(
             @RequestParam(defaultValue = "1") Integer categoryNo,
@@ -251,6 +167,112 @@ public class UserController {
         userService.add_clothes(clothes, user);
         return "redirect:/user/myClothes";
     }
+    /////////////////////// 내 찜
+    @GetMapping("/myLove")
+    public String user_myLove(
+            @RequestParam(defaultValue = "1") Integer categoryNo,
+            String sort,
+
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
+
+        List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
+        model.addAttribute("styleStoreCategories", styleStoreCategories);
+
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort); // 찜 목록
+        model.addAttribute("loves", loves);
+        System.out.println("loves object: " + loves);
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myLove";
+    }
+
+    /////////////////////// 내 스타일
+    @GetMapping("/myStyle")
+    public String user_myStyle(
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        List<StylesDTO> styles = productService.get_styles_by_user(user); // 스타일 전부
+        model.addAttribute("styles", styles);
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myStyle";
+    }
+
+    @GetMapping("/myStyle-detail/{styleNo}")
+    public String user_myStyle_detail(
+            @PathVariable Integer styleNo,
+
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        StylesDTO style = productService.get_style_by_user(user, styleNo); // 하나의 스타일
+        model.addAttribute("style", style);
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myStyle-detail";
+    }
+
+    // 내 업로드 스타일
+    @GetMapping("/myUpload")
+    public String user_myUpload(
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        List<StylesProductDTO> styles = productService.get_styles_style_codi_by_user(user);
+        model.addAttribute("styles", styles);
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myUpload";
+    }
+
 
 
 }
