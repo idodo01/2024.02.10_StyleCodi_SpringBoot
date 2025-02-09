@@ -45,6 +45,7 @@
     "Application.ApiExamSearchBlog.executor": "Run",
     "Application.StyleSnapApplication.executor": "Run",
     "DefaultHtmlFileTemplate": "HTML File",
+    "Maven.Style [package].executor": "Run",
     "RequestMappingsPanelOrder0": "0",
     "RequestMappingsPanelOrder1": "1",
     "RequestMappingsPanelWidth0": "75",
@@ -55,7 +56,7 @@
     "Spring Boot.StyleSnapApplication.executor": "Run",
     "git-widget-placeholder": "master",
     "kotlin-language-version-configured": "true",
-    "last_opened_file_path": "C:/Users/idodo/Documents/Study1/2024.01.05_StyleCodi_SpringBoot-master/src/main/resources/static/css/user",
+    "last_opened_file_path": "C:/Users/idodo/Documents/Study1/testProject",
     "node.js.detected.package.eslint": "true",
     "node.js.detected.package.tslint": "true",
     "node.js.selected.package.eslint": "(autodetect)",
@@ -162,7 +163,12 @@
       <workItem from="1738677467430" duration="65000" />
       <workItem from="1738739970928" duration="7767000" />
       <workItem from="1738750081508" duration="2306000" />
-      <workItem from="1738753336296" duration="3890000" />
+      <workItem from="1738753336296" duration="4581000" />
+      <workItem from="1738841179915" duration="170000" />
+      <workItem from="1738841919549" duration="1927000" />
+      <workItem from="1738928748490" duration="19000" />
+      <workItem from="1738929967069" duration="3530000" />
+      <workItem from="1739106770542" duration="3766000" />
     </task>
     <servers />
   </component>

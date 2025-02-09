@@ -3,7 +3,7 @@
       xmlns:th="http://www.thymeleaf.org"
       xmlns:sec="http://www.thymeleaf.org/extras/spring-security"
       xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
-      layout:decorate="~{/layout/main-layout}"
+      layout:decorate="~{layout/main-layout}"
 >
 <head>
     <meta charset="UTF-8">
@@ -25,27 +25,27 @@
             <section class="style-map-section">
                 <div class="container">
                     <div class="box top empty" id="top" onclick="uploadImage('top')">
-                        <img class="top-img" src="../../static/images/example/top.jpg" alt="상의">
+                        <img class="top-img" src="../../static/images/example/top.JPG" alt="상의">
                         <b class="top-productNo"></b>
                         <input type="file" accept="image/*" id="input-top" onchange="addList(); previewImage(event, 'top')" style="display: none;">
                     </div>
                     <div class="box outer empty" id="outer" onclick="uploadImage('outer')">
-                        <img class="outer-img" src="../../static/images/example/outer.jpg" alt="겉옷">
+                        <img class="outer-img" src="../../static/images/example/outer.JPG" alt="겉옷">
                         <b class="outer-productNo"></b>
                         <input type="file" accept="image/*" id="input-outer" onchange="previewImage(event, 'outer')" style="display: none;">
                     </div>
                     <div class="box bottom empty" id="bottom" onclick="uploadImage('bottom')">
-                        <img class="bottom-img" src="../../static/images/example/bottom.jpg" alt="하의">
+                        <img class="bottom-img" src="../../static/images/example/bottom.JPG" alt="하의">
                         <b class="bottom-productNo"></b>
                         <input type="file" accept="image/*" id="input-bottom" onchange="previewImage(event, 'bottom')" style="display: none;">
                     </div>
                     <div class="box shoes empty" id="shoes" onclick="uploadImage('shoes')">
-                        <img class="shoes-img" src="../../static/images/example/shose.jpg" alt="신발">
+                        <img class="shoes-img" src="../../static/images/example/shose.JPG" alt="신발">
                         <b class="shoes-productNo"></b>
                         <input type="file" accept="image/*" id="input-shoes" onchange="previewImage(event, 'shoes')" style="display: none;">
                     </div>
                     <div class="box bag empty" id="bag" onclick="uploadImage('bag')">
-                        <img class="bag-img" src="../../static/images/example/bag.jpg" alt="가방">
+                        <img class="bag-img" src="../../static/images/example/bag.JPG" alt="가방">
                         <b class="bag-productNo"></b>
                         <input type="file" accept="image/*" id="input-bag" onchange="previewImage(event, 'bag')" style="display: none;">
                     </div>
@@ -58,7 +58,7 @@
         </section>
 
         <section class="style-store-section">
-            <iframe name="store" src="http://localhost:8080/style-store"></iframe>
+            <iframe name="store" src="http://211.188.55.158:8080/style-store"></iframe>
         </section>
     </section>
 </main>

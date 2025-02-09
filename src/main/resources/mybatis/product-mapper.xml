@@ -164,7 +164,7 @@
         P.price AS product_price,
         P.category AS product_category
 
-        FROM Loves L
+        FROM loves L
         JOIN product_naver_shop P
         ON L.product_no = P.no
 
