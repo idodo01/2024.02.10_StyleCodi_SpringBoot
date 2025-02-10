@@ -1,11 +1,9 @@
 @import "../public/public.css";
 
-
-
-
 .style-all-section {
     width: 1400px;
-    margin: 180px auto;
+    margin: 120px 0;
+    padding: 0 50px;
 
     text-align: center;
 
@@ -108,8 +106,8 @@ button:hover {
 .style-store-section{
     margin: 30px auto;
 
-    /*width: 800px;*/
-    width:70%;
+    width: 800px;
+    /*width:70%;*/
     border: 5px solid pink;
     border-radius: 8px;
 
@@ -125,7 +123,6 @@ button:hover {
 }
 .style-store-section a{
     text-decoration: none;
-    color: var(--Dark-gray-textured-background---4-rgba);
 }
 /*************************************************************/
 iframe {

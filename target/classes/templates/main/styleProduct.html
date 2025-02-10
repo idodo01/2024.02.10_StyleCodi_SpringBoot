@@ -9,8 +9,8 @@
     <meta charset="UTF-8">
     <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
     <title>STYLE CODI ♥♡♥♡</title>
-    <link rel="stylesheet" href="../../static/css/main/style-product.css">
-    <script src="../../static/js/main/style-product.js" defer></script>
+    <link rel="stylesheet" href="../../static/css/main/styleProduct.css">
+    <script src="../../static/js/main/styleProduct.js" defer></script>
 </head>
 <body>
 <main layout:fragment="main">
@@ -19,63 +19,64 @@
             <section class="style-body-section">
                 <section class="style-map-section">
                     <div class="container">
-                        <div class="box top empty" id="top">
+                        <div class="box top" id="top">
                             <img class="top-img" th:src="@{|${style.product_top.image}|}" alt="상의">
                         </div>
-                        <div class="box outer empty" id="outer">
+                        <div class="box outer" id="outer">
                             <img class="outer-img" th:src="@{|${style.product_outer.image}|}" alt="겉옷">
                         </div>
-                        <div class="box bottom empty" id="bottom">
+                        <div class="box bottom" id="bottom">
                             <img class="bottom-img" th:src="@{|${style.product_bottom.image}|}" alt="하의">
                         </div>
-                        <div class="box shoes empty" id="shoes">
+                        <div class="box shoes" id="shoes">
                             <img class="shoes-img" th:src="@{|${style.product_shoes.image}|}" alt="신발">
                         </div>
-                        <div class="box bag empty" id="bag">
+                        <div class="box bag" id="bag">
                             <img class="bag-img" th:src="@{|${style.product_bag.image}|}" alt="가방">
                         </div>
                     </div>
                 </section>
+                <button class="styleCategory-btn"><a href="/styleCategory">목록가기</a></button>
                 <section class="style-detail-section">
-                    <div class="top-detail">
-                        <button class="image-container">
-                            <img th:src="@{|${style.product_top.image}|}" alt="상의">
-                        </button>
-                        <b class="title" th:text="${style.product_top.title}"></b>
-                        <b class="price" th:text="${style.product_top.price}"></b>
-                        <a th:href="@{|${style.product_top.link}|}" target="_blank">상세보기</a>
+                    <div>
+                        <img th:src="@{|${style.product_top.image}|}" alt="상의">
+                        <div class="style-detail">
+                            <b class="title" th:text="${style.product_top.title}"></b>
+                            <b class="price" th:text="${style.product_top.price}"></b>
+                            <a th:href="@{|${style.product_top.link}|}" target="_blank">더보기</a>
+                        </div>
                     </div>
-                    <div class="outer-detail">
-                        <button class="image-container">
-                            <img th:src="@{|${style.product_outer.image}|}" alt="아우터">
-                        </button>
-                        <b class="title" th:text="${style.product_outer.title}"></b>
-                        <b class="price" th:text="${style.product_outer.price}"></b>
-                        <a th:href="@{|${style.product_outer.link}|}" target="_blank">상세보기</a>
+                    <div>
+                        <img th:src="@{|${style.product_outer.image}|}" alt="아우터">
+                        <div  class="style-detail">
+                            <b class="title" th:text="${style.product_outer.title}"></b>
+                            <b class="price" th:text="${style.product_outer.price}"></b>
+                            <a th:href="@{|${style.product_outer.link}|}" target="_blank">더보기</a>
+                        </div>
                     </div>
-                    <div class="bottom-detail">
-                        <button class="image-container">
-                            <img th:src="@{|${style.product_bottom.image}|}" alt="하의">
-                        </button>
-                        <b class="title" th:text="${style.product_bottom.title}"></b>
-                        <b class="price" th:text="${style.product_bottom.price}"></b>
-                        <a th:href="@{|${style.product_bottom.link}|}" target="_blank">상세보기</a>
+                    <div>
+                        <img th:src="@{|${style.product_bottom.image}|}" alt="하의">
+                        <div  class="style-detail">
+                            <b class="title" th:text="${style.product_bottom.title}"></b>
+                            <b class="price" th:text="${style.product_bottom.price}"></b>
+                            <a th:href="@{|${style.product_bottom.link}|}" target="_blank">더보기</a>
+                        </div>
                     </div>
-                    <div class="shoes-detail">
-                        <button class="image-container">
-                            <img th:src="@{|${style.product_shoes.image}|}" alt="신발">
-                        </button>
-                        <b class="title" th:text="${style.product_shoes.title}"></b>
-                        <b class="price" th:text="${style.product_shoes.price}"></b>
-                        <a th:href="@{|${style.product_shoes.link}|}" target="_blank">상세보기</a>
+                    <div>
+                        <img th:src="@{|${style.product_shoes.image}|}" alt="신발">
+                        <div  class="style-detail">
+                            <b class="title" th:text="${style.product_shoes.title}"></b>
+                            <b class="price" th:text="${style.product_shoes.price}"></b>
+                            <a th:href="@{|${style.product_shoes.link}|}" target="_blank">더보기</a>
+                        </div>
                     </div>
-                    <div class="bag-detail">
-                        <button class="image-container">
-                            <img th:src="@{|${style.product_bag.image}|}" alt="가방">
-                        </button>
-                        <b class="title" th:text="${style.product_bag.title}"></b>
-                        <b class="price" th:text="${style.product_bag.price}"></b>
-                        <a th:href="@{|${style.product_bag.link}|}" target="_blank">상세보기</a>
+                    <div>
+                        <img th:src="@{|${style.product_bag.image}|}" alt="가방">
+                        <div class="style-detail">
+                            <b class="title" th:text="${style.product_bag.title}"></b>
+                            <b class="price" th:text="${style.product_bag.price}"></b>
+                            <a th:href="@{|${style.product_bag.link}|}" target="_blank">더보기</a>
+                        </div>
                     </div>
                 </section>
             </section>

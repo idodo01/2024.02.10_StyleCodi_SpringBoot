@@ -63,9 +63,7 @@
 
                         <section class="myPage-clothes-item-section">
                             <div class="item" th:each="clothe: ${clothes}">
-                                <button class="image-container">
-                                    <img th:src="@{|/clothesImage/${clothe.images[0].no}|}" src="" alt="">
-                                </button>
+                                <img th:src="@{|/clothesImage/${clothe.images[0].no}|}" src="" alt="">
                                 <b class="title" th:text="${clothe.name}">옷 이름</b>
                                 <b class="detail" th:utext="${clothe.detail}">옷 설명</b>
                             </div>

@@ -63,24 +63,15 @@
 
                         <section class="myPage-loves-item-section">
                             <div class="item" th:each="love: ${loves}" >
-                                <button class="image-container">
-                                    <img class="item-img" th:src="@{|${love.product.image}|}" src="" alt=""
-                                         th:data-category="${love.product.category}"
-                                         th:onclick="|changeParentImage(event)|">
-                                </button>
+                                <img class="item-img" th:src="@{|${love.product.image}|}" src="" alt=""
+                                     th:data-category="${love.product.category}"
+                                     th:onclick="|changeParentImage(event)|">
                                 <b class="title" th:text="${love.product.title}">상품명</b>
                                 <b class="price" th:text="${love.product.price}">9,999원</b>
                                 <a th:href="@{|${love.product.link}|}" target="_blank">상세보기</a>
                             </div>
                         </section>
 
-                        <ol>
-                            <li><a href="#"><i class="bi bi-caret-left-fill"></i></a></li>
-                            <li><a href="#">1</a></li>
-                            <li><a href="#">2</a></li>
-                            <li><a href="#">3</a></li>
-                            <li><a href="#"><i class="bi bi-caret-right-fill"></i></a></li>
-                        </ol>
                     </section>
 
 

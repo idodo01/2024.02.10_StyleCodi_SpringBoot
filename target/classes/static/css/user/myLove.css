@@ -81,7 +81,6 @@ h1 {
 
     justify-content: space-between;
     font-size: var(--font-size-x-small);
-    color: var(--Dark-gray-textured-background---4-rgba);
 
     width: 800px;
 
@@ -99,7 +98,6 @@ h1 {
 }
 .myPage-loves-section a{
     text-decoration: none;
-    color: var(--Dark-gray-textured-background---4-rgba);
 }
 /*****************************************************/
 .myPage-loves-item-section {
@@ -114,24 +112,8 @@ h1 {
     flex-direction: column;
 
 }
-.myPage-loves-item-section .image-container{
-    width: 150px;
-    height: 150px;
-    overflow: hidden;
 
-    margin-bottom: 10px;
-    margin-top: 30px;
-
-    padding: 15px;
-
-    border: 5px solid pink;
-    border-radius: 8px;
-
-    &:hover > img{
-        transform: scale(120%);
-    }
-}
-.myPage-loves-item-section .image-container > img{
+.myPage-loves-item-section > div > img{
     width: 100%;
     height: 100%;
     transition-duration: 0.2s;
@@ -139,13 +121,11 @@ h1 {
 }
 .myPage-loves-item-section .title{
     text-decoration: none;
-    color: var(--Dark-gray-textured-background---5-rgba);
     font-family: Medium;
     font-size: var(--font-size-xx-small);
     margin-bottom: 8px;
 }
 .myPage-loves-item-section .price{
-    color: var(--Pasteles-5-rgba);
     font-family: Medium;
     font-size: var(--font-size-xx-small);
 }

@@ -65,39 +65,16 @@
     --font-size-xx-small: 14px;
     --font-size-xxx-small: 12px;
 
-    
-    
 
-    --Pasteles-1-rgba : rgba(169, 115, 245, 1);
-    --Pasteles-2-rgba : rgba(107, 214, 201, 1);
-    --Pasteles-3-rgba : rgba(133, 239, 135, 1);
-    --Pasteles-4-rgba : rgba(255, 250, 123, 1);
-    --Pasteles-5-rgba : rgba(250, 125, 173, 1);
-    
-    --Summer-spring-decoration-design-elements-1-rgba: rgba(242, 219, 152, 1);
-    --Summer-spring-decoration-design-elements-2-rgba: rgba(242, 209, 147, 1);
-    --Summer-spring-decoration-design-elements-3-rgba: rgba(242, 222, 186, 1);
-    --Summer-spring-decoration-design-elements-4-rgba: rgba(242, 232, 215, 1);
-    --Summer-spring-decoration-design-elements-5-rgba: rgba(242, 242, 242, 1);
+    --color-blueSet-1: rgb(177, 178, 255);
+    --color-blueSet-2: rgb(170, 196, 255);
+    --color-blueSet-3: rgb(210, 218, 255);
+    --color-blueSet-4: rgb(238, 241, 255);
 
-    --Spring-WT-1-rgba : rgba(188, 212, 242, 1);
-    --Spring-WT-2-rgba : rgba(237, 240, 202, 0.25);
-    --Spring-WT-3-rgba : rgba(212, 216, 105, 1);
-    --Spring-WT-4-rgba : rgba(175, 191, 59, 1);
-    --Spring-WT-5-rgba : rgba(221, 237, 253, 1);
-
-    --Dark-gray-textured-background---1-rgba : rgba(191, 191, 191, 1);
-    --Dark-gray-textured-background---2-rgba : rgba(140, 140, 140, 1);
-    --Dark-gray-textured-background---3-rgba : rgba(114, 114, 114, 1);
-    --Dark-gray-textured-background---4-rgba : rgba(89, 89, 89, 1);
-    --Dark-gray-textured-background---5-rgba : rgba(63, 63, 63, 1);
-
-    --abstract-gray-background---1-rgba : rgba(82, 85, 89, 1);
-    --abstract-gray-background---2-rgba : rgba(216, 216, 216, 1);
-    --abstract-gray-background---3-rgba : rgba(191, 191, 191, 1);
-    --abstract-gray-background---4-rgba : rgba(129, 135, 140, 1);
-    --abstract-gray-background---5-rgba : rgba(164, 165, 165, 1);
-
+    --color-lovely-1: rgb(255, 207, 223);
+    --color-lovely-2: rgb(254, 253, 202);
+    --color-lovely-3: rgb(224, 249, 181);
+    --color-lovely-4: rgb(165, 222, 229);
 
     margin: 0;
     padding: 0;

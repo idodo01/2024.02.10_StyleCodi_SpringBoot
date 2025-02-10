@@ -17,11 +17,6 @@
         <ul class="main-menu-ul">
             <li th:each="styleCategory: ${styleCategories}">
                 <a th:href="@{|/styleCategory|}" th:text="${styleCategory.name}">ALL</a>
-                <ul class="header-child-menu" th:if="${styleCategory.children}">
-                    <li th:each="styleChildCategory: ${styleCategory.children}">
-                        <a th:href="@{|/styleCategory|}" th:text="${styleChildCategory.name}">ALL</a>
-                    </li>
-                </ul>
             </li>
             <li th:each="category: ${categories}">
                 <a th:href="@{|/category?categoryNo=${category.no}|}" th:text="${category.name}">ALL</a>

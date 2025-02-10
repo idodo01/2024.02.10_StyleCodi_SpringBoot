@@ -37,11 +37,9 @@
 
     <section class="style-clothes-item-section">
         <div class="item" th:each="clothe: ${clothes}" >
-            <button class="image-container">
             <img class="item-img" th:src="@{|/clothesImage/${clothe.images[0].no}|}" src="" alt=""
                  th:data-category="${clothe.category.no}"
                  th:onclick="|changeParentImage(event)|">
-            </button>
             <b class="title" th:text="${clothe.name}">옷 이름</b>
             <b class="detail" th:utext="${clothe.detail}">옷 설명</b>
         </div>
