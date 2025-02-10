@@ -1,7 +1,6 @@
 package ido.style.service;
 
 import ido.style.dto.ClothesDTO;
-import ido.style.dto.StyleProductDTO;
 import ido.style.dto.UserDTO;
 import ido.style.mapper.UserMapper;
 import lombok.extern.log4j.Log4j2;
@@ -34,12 +33,6 @@ public class UserService {
         return true; // 가입 성공 판단
     }
 
-    // 스타일 INSERT
-    public void add_style_product(StyleProductDTO styleProduct){
-        userMapper.insertStyleProduct(styleProduct);
-        userMapper.insertStyleProductImages(styleProduct);
-
-    }
 
     // 옷 INSERT
     public void add_clothes(ClothesDTO clothes,UserDTO user){

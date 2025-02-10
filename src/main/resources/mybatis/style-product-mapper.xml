@@ -4,75 +4,7 @@
         "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="ido.style.mapper.StyleProductMapper">
 
-    <resultMap id="styleProductWithImageMap" type="StyleProductDTO" autoMapping="true">
-        <id property="no" column="product_no" />
-        <result property="name" column="product_name" />
 
-        <association property="category" javaType="StyleCategoryDTO" autoMapping="true">
-            <id property="no" column="category_no" />
-            <result property="name" column="category_name" />
-        </association>
-
-        <collection property="images" ofType="StyleProductImageDTO" javaType="list">
-            <id property="no" column="product_image_no"/>
-        </collection>
-    </resultMap>
-
-    <select id="selectStyleProducts" resultType="StyleProductDTO" resultMap="styleProductWithImageMap">
-        SELECT
-        P.`no` AS product_no,
-        P.`name` AS product_name,
-        P.detail,
-        P.uploaded_at,
-
-        CT.no AS category_no,
-        CT.name AS category_name,
-
-        PI.`no` AS product_image_no
-
-        FROM style_product P
-        INNER JOIN style_category CT
-        ON P.category = CT.no
-        <if test="categoryNo != 1">
-            AND P.category IN (WITH RECURSIVE `category_cte` AS
-            (
-            SELECT * FROM `style_category` WHERE `no` = #{categoryNo}
-            UNION
-            SELECT child.* FROM `category_cte` parent
-            INNER JOIN `style_category` child
-            ON parent.no = child.parent
-            ) SELECT `no` FROM `category_cte`)
-        </if>
-        INNER JOIN style_product_image PI
-        ON P.`no` = PI.`product_no`
-        <choose>
-            <when test="sort == 'name'">
-                ORDER BY P.`name`
-            </when>
-            <otherwise>
-                ORDER BY P.`uploaded_at`
-            </otherwise>
-        </choose>
-    </select>
-
-    <select id="selectStyleProductByNo" resultType="StyleProductDTO" resultMap="styleProductWithImageMap">
-        SELECT
-            *,
-            P.`no` AS product_no,
-            P.`name` AS product_name,
-
-            CT.no AS category_no,
-            CT.name AS category_name,
-
-            PI.`no` AS product_image_no
-        FROM style_product P
-        INNER JOIN  style_category CT
-        ON P.category = CT.no
-        INNER JOIN  style_product_image PI
-        ON P.`no` = PI.`product_no`
-
-        WHERE P.`no` = #{productNo};
-    </select>
 
     <resultMap id="styleCategoryWithChildrenMap" type="StyleCategoryDTO">
         <id property="no" column="parent_no" />

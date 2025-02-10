@@ -2,7 +2,6 @@ package ido.style.configuration;
 
 import ido.style.converter.ClothesMultipartConverter;
 import ido.style.converter.MultipartConverter;
-import ido.style.converter.StyleMultipartConverter;
 import ido.style.interceptor.CategoryInterceptor;
 import ido.style.interceptor.StyleCategoryInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -29,7 +28,6 @@ public class MainConfiguration implements WebMvcConfigurer {
     @Override
     public void addFormatters(FormatterRegistry registry) {
         registry.addConverter(new MultipartConverter());
-        registry.addConverter(new StyleMultipartConverter());
         registry.addConverter(new ClothesMultipartConverter());
     }
 

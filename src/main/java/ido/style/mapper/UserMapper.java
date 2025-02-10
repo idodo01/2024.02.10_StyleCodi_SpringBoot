@@ -2,7 +2,6 @@ package ido.style.mapper;
 
 import ido.style.dto.ClothesDTO;
 import ido.style.dto.SnsInfoDTO;
-import ido.style.dto.StyleProductDTO;
 import ido.style.dto.UserDTO;
 import org.apache.ibatis.annotations.Mapper;
 
@@ -14,9 +13,6 @@ public interface UserMapper {
     UserDTO selectUserByCi(String ci);
     void insertUser(UserDTO user);
     void insertSnsInfo(SnsInfoDTO snsInfo);
-
-    void insertStyleProduct(StyleProductDTO styleProduct);
-    void insertStyleProductImages(StyleProductDTO styleProduct);
 
     void insertClothes(ClothesDTO clothes, UserDTO user);
     void insertClothesImages(ClothesDTO clothes);

@@ -97,14 +97,6 @@ public class UserController {
         return "user/style-upload";
     }
 
-    @PostMapping("/style-upload")
-    public String style_upload(
-            StyleProductDTO styleProductDTO
-    )
-    {
-        userService.add_style_product(styleProductDTO);
-        return "redirect:/styleCategory";
-    }
     /************************ 유저 마이페이지 ***************************/
 
     /////////////////////// 내 옷장

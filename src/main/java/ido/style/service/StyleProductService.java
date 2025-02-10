@@ -15,14 +15,6 @@ public class StyleProductService {
     @Autowired
     private StyleProductMapper styleProductMapper;
 
-    public List<StyleProductDTO> get_style_products(Integer categoryNo, String sort){
-        return styleProductMapper.selectStyleProducts(categoryNo, sort);
-    }
-
-    public StyleProductDTO get_style_product(Integer productNo){
-        return styleProductMapper.selectStyleProductByNo(productNo);
-    }
-
     public List<StyleCategoryDTO> get_categories(){
         return styleProductMapper.selectStyleCategories();
     }

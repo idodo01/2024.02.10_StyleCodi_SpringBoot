@@ -18,9 +18,7 @@
 
         <typeAlias type="ido.style.searchApi.ProductNaverShopDTO" alias="ProductNaverShopDTO" />
 
-        <typeAlias type="ido.style.dto.StyleProductDTO" alias="StyleProductDTO" />
         <typeAlias type="ido.style.dto.StyleCategoryDTO" alias="StyleCategoryDTO" />
-        <typeAlias type="ido.style.dto.StyleProductImageDTO" alias="StyleProductImageDTO" />
 
         <typeAlias type="ido.style.dto.UserDTO" alias="UserDTO" />
         <typeAlias type="ido.style.dto.SnsInfoDTO" alias="SnsInfoDTO" />
