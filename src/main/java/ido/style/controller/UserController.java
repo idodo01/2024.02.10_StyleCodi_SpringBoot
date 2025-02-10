@@ -199,6 +199,28 @@ public class UserController {
 
         return "user/myLove";
     }
+    @GetMapping("/myLoveStyle")
+    public String user_myLoveStyle(
+            Authentication authentication,
+            @AuthenticationPrincipal UserDTO user,
+
+            Model model
+    ){
+        if(!(Objects.nonNull(authentication))){
+            return "redirect:/user/login";
+        }
+
+        List<LovesStyleDTO> loves = styleProductService.get_lovesStyle_by_user(user); // 찜 목록
+        model.addAttribute("loves", loves);
+
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
+        return "user/myLoveStyle";
+    }
 
     /////////////////////// 내 스타일
     @GetMapping("/myStyle")

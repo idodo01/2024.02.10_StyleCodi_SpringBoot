@@ -51,14 +51,22 @@ public class MainController {
  // 스타일 리스트 화면
     @GetMapping("/styleCategory")
     public String get_styleCategory(
-//            @RequestParam(defaultValue = "1") Integer categoryNo,
-//            String sort,
+            @AuthenticationPrincipal UserDTO user,
             Model model
 
     ){
 
         List<StylesProductDTO> styles = productService.get_styles_style_codi();
         model.addAttribute("styles", styles);
+
+        List<LovesStyleDTO> loves = styleProductService.get_lovesStyle_by_user(user);
+
+        Map<Integer, Boolean> lovesMap = styles.stream()
+                .collect(Collectors.toMap(
+                        StylesProductDTO::getNo,
+                        style -> loves.stream().anyMatch(love -> love.getStyle().getNo().equals(style.getNo()))
+                ));
+        model.addAttribute("lovesMap", lovesMap);
 
         // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
@@ -67,6 +75,32 @@ public class MainController {
         model.addAttribute("categories", categories);
 
         return "main/styleCategory";
+    }
+
+    // 찜 스타일 목록에 추가하기
+    @PostMapping("/lovesStyle-post")
+    public ResponseEntity<Void> lovesStyle_post(
+            @RequestBody StylesProductDTO styles,
+            @AuthenticationPrincipal UserDTO userDTO
+    ){
+        if(Objects.isNull(userDTO)){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 해당 상품과 유저를 전달해서 찜목록에 추가하기
+        styleProductService.add_lovesStyle(styles, userDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    // 찜 스타일 목록에 상품을 삭제하기
+    @DeleteMapping("/lovesStyle-delete")
+    public ResponseEntity<Void> lovesStyle_delete(
+            @RequestBody StylesProductDTO styles,
+            @AuthenticationPrincipal UserDTO userDTO
+    ){
+
+        styleProductService.remove_lovesStyle(styles, userDTO);
+        return ResponseEntity.ok().build(); // 200
+
     }
 
     // 스타일 하나의 화면
@@ -121,6 +155,32 @@ public class MainController {
         model.addAttribute("lovesMap", lovesMap);
 
         return "main/category";
+    }
+
+    // 찜목록에 상품을 추가하기
+    @PostMapping("/loves-post")
+    public ResponseEntity<Void> loves_post(
+            @RequestBody ProductNaverShopDTO product,
+            @AuthenticationPrincipal UserDTO userDTO
+    ){
+        if(Objects.isNull(userDTO)){
+            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
+        }
+        // 해당 상품과 유저를 전달해서 찜목록에 추가하기
+        productService.add_loves(product, userDTO);
+        return ResponseEntity.ok().build();
+    }
+
+    // 찜목록에 상품을 삭제하기
+    @DeleteMapping("/loves-delete")
+    public ResponseEntity<Void> loves_delete(
+            @RequestBody ProductNaverShopDTO product,
+            @AuthenticationPrincipal UserDTO userDTO
+    ){
+
+        productService.remove_loves(product, userDTO);
+        return ResponseEntity.ok().build(); // 200
+
     }
 
     /****************************************************************************/
@@ -242,32 +302,7 @@ public class MainController {
     }
 
 
-    // 찜목록에 상품을 추가하기
-    @PostMapping("/loves-post")
-    public ResponseEntity<Void> loves_post(
-            @RequestBody ProductNaverShopDTO product,
-            @AuthenticationPrincipal UserDTO userDTO
-    ){
-        if(Objects.isNull(userDTO)){
-            return ResponseEntity.status(HttpStatus.UNAUTHORIZED).build();
-        }
-        // 해당 상품과 유저를 전달해서 찜목록에 추가하기
-        productService.add_loves(product, userDTO);
-        return ResponseEntity.ok().build();
-    }
-
-    // 찜목록에 상품을 삭제하기
-    @DeleteMapping("/loves-delete")
-    public ResponseEntity<Void> loves_delete(
-            @RequestBody ProductNaverShopDTO product,
-            @AuthenticationPrincipal UserDTO userDTO
-    ){
-
-        productService.remove_loves(product, userDTO);
-        return ResponseEntity.ok().build(); // 200
-
-    }
-    // 내 옷장
+    // 스타일 - style-make 안에 사용되는 IFRAME 3 (내 옷장)
     @GetMapping("/style-clothes")
     public String get_user_clothes(
             @RequestParam(defaultValue = "1") Integer categoryNo,

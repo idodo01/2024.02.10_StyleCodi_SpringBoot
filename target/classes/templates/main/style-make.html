@@ -46,8 +46,8 @@
                     </div>
                 </div>
                 <p sec:authorize="not authenticated">로그인을 하면, 나만의 스타일을 저장하고 업로드할 수 있어요~</p>
-                <button sec:authorize="authenticated" class="save-btn" onclick="saveList()">저장하기</button>
-                <button sec:authorize="authenticated" class="upload-btn" onclick="uploadList()">업로드하기</button>
+                <button class="save-btn" onclick="saveList()">저장하기</button>
+                <button class="upload-btn" onclick="uploadList()">업로드하기</button>
             </section>
 
         </section>

@@ -52,10 +52,12 @@ function saveList() {
         },
         body: JSON.stringify(requestBody)
     }).then(response => {
-        if (response.ok) {
+        // 로그인이 안된 유저가 클릭 시
+        if(response.status === 401){
+            alert('로그인을 먼저 해주세요');
+        }
+        else if (response.ok) {
             console.log('요청 성공');
-        } else {
-            console.error('요청 실패:', response.status);
         }
     })
         .catch((error) => console.error('서버 통신 오류:', error));
@@ -87,10 +89,12 @@ function uploadList() {
         },
         body: JSON.stringify(requestBody)
     }).then(response => {
-        if (response.ok) {
+        // 로그인이 안된 유저가 클릭 시
+        if(response.status === 401){
+            alert('로그인을 먼저 해주세요');
+        }
+        else if (response.ok) {
             console.log('요청 성공');
-        } else {
-            console.error('요청 실패:', response.status);
         }
     })
         .catch((error) => console.error('서버 통신 오류:', error));

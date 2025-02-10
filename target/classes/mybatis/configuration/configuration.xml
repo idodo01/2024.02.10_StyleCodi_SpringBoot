@@ -9,8 +9,10 @@
     </settings>
     <typeAliases>
         <typeAlias type="ido.style.dto.StylesProductDTO" alias="StylesProductDTO" />
+        <typeAlias type="ido.style.dto.LovesStyleDTO" alias="LovesStyleDTO" />
 
         <typeAlias type="ido.style.dto.ProductDTO" alias="ProductDTO" />
+        <typeAlias type="ido.style.dto.LovesDTO" alias="LovesDTO" />
         <typeAlias type="ido.style.dto.CategoryDTO" alias="CategoryDTO" />
         <typeAlias type="ido.style.dto.ProductImageDTO" alias="ProductImageDTO" />
 
@@ -22,7 +24,7 @@
 
         <typeAlias type="ido.style.dto.UserDTO" alias="UserDTO" />
         <typeAlias type="ido.style.dto.SnsInfoDTO" alias="SnsInfoDTO" />
-        <typeAlias type="ido.style.dto.LovesDTO" alias="LovesDTO" />
+
         <typeAlias type="ido.style.dto.StylesDTO" alias="StylesDTO" />
 
         <typeAlias type="ido.style.dto.ClothesDTO" alias="ClothesDTO" />

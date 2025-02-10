@@ -83,17 +83,16 @@
 .shoes { grid-column: 1 / 2; grid-row: 3 / 4; }
 .bag { grid-column: 2 / 3; grid-row: 3 / 4; }
 
-/*****************************************************/
 
-button {
-    padding: 10px 20px;
-    background-color: lightpink;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
+/****************************************/
+.user-like-container > button{
+    border: unset;
+    background: unset;
     cursor: pointer;
+    font-size: var(--font-size-normal);
+}
+.user-like-container .bi-heart-fill {
+    color: red;
 }
 
 

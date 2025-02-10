@@ -96,5 +96,121 @@
         WHERE C1.parent IS NULL
     </select>
 
+<!--    스타일 찜-->
 
+    <!--    찜 상품 - api 사용 후 -->
+    <resultMap id="lovesStyleMap" type="LovesStyleDTO">
+        <!-- Loves 테이블 매핑 -->
+        <id property="no" column="loves_no" />
+
+        <!-- StylesProductDTO 매핑 -->
+        <association property="style" javaType="StylesProductDTO">
+            <id property="no" column="style_no" />
+        </association>
+
+        <!-- ProductNaverShopDTO 매핑 -->
+        <association property="product_top" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_top_no" />
+            <result property="title" column="product_top_title" />
+            <result property="link" column="product_top_link" />
+            <result property="image" column="product_top_image" />
+            <result property="price" column="product_top_price" />
+        </association>
+
+        <association property="product_outer" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_outer_no" />
+            <result property="title" column="product_outer_title" />
+            <result property="link" column="product_outer_link" />
+            <result property="image" column="product_outer_image" />
+            <result property="price" column="product_outer_price" />
+        </association>
+
+        <association property="product_bottom" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_bottom_no" />
+            <result property="title" column="product_bottom_title" />
+            <result property="link" column="product_bottom_link" />
+            <result property="image" column="product_bottom_image" />
+            <result property="price" column="product_bottom_price" />
+        </association>
+
+        <association property="product_shoes" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_shoes_no" />
+            <result property="title" column="product_shoes_title" />
+            <result property="link" column="product_shoes_link" />
+            <result property="image" column="product_shoes_image" />
+            <result property="price" column="product_shoes_price" />
+        </association>
+
+        <association property="product_bag" javaType="ProductNaverShopDTO">
+            <id property="no" column="product_bag_no" />
+            <result property="title" column="product_bag_title" />
+            <result property="link" column="product_bag_link" />
+            <result property="image" column="product_bag_image" />
+            <result property="price" column="product_bag_price" />
+        </association>
+    </resultMap>
+
+
+    <select id="selectLovesStyleByUser" resultType="LovesStyleDTO" resultMap="lovesStyleMap">
+        SELECT
+        L.user_id AS loves_user_no,
+        L.style_no AS loves_style_no,
+        L.no AS loves_no,
+
+        S.no AS style_no,
+
+        -- Product information
+        P1.no AS product_top_no,
+        P1.title AS product_top_title,
+        P1.link AS product_top_link,
+        P1.image AS product_top_image,
+        P1.price AS product_top_price,
+
+        P2.no AS product_outer_no,
+        P2.title AS product_outer_title,
+        P2.link AS product_outer_link,
+        P2.image AS product_outer_image,
+        P2.price AS product_outer_price,
+
+        P3.no AS product_bottom_no,
+        P3.title AS product_bottom_title,
+        P3.link AS product_bottom_link,
+        P3.image AS product_bottom_image,
+        P3.price AS product_bottom_price,
+
+        P4.no AS product_shoes_no,
+        P4.title AS product_shoes_title,
+        P4.link AS product_shoes_link,
+        P4.image AS product_shoes_image,
+        P4.price AS product_shoes_price,
+
+        P5.no AS product_bag_no,
+        P5.title AS product_bag_title,
+        P5.link AS product_bag_link,
+        P5.image AS product_bag_image,
+        P5.price AS product_bag_price
+
+        FROM loves_style L
+        JOIN styles_product S ON L.style_no = S.no
+        LEFT JOIN product_naver_shop P1 ON S.product_top = P1.no
+        LEFT JOIN product_naver_shop P2 ON S.product_outer = P2.no
+        LEFT JOIN product_naver_shop P3 ON S.product_bottom = P3.no
+        LEFT JOIN product_naver_shop P4 ON S.product_shoes = P4.no
+        LEFT JOIN product_naver_shop P5 ON S.product_bag = P5.no
+
+
+
+        WHERE L.`user_id` = #{id}
+
+    </select>
+
+    <insert id="insertLovesStyle">
+        INSERT INTO `loves_style` (no, style_no, user_id)
+        VALUES (NULL, #{style.no}, #{user.id})
+    </insert>
+
+    <delete id="deleteLovesStyle">
+        DELETE FROM `loves_style`
+        WHERE style_no = #{style.no}
+    </delete>
 </mapper>

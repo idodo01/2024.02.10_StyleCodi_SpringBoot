@@ -43,6 +43,8 @@ public interface ProductMapper {
 
     void deleteLoves(LovesDTO loves); // 찜 목록에 상품 정보 삭제
 
+
+
     ///////////// 스타일 리스트 - 마이 페이지
     void insertStyles(StylesDTO styles); // 스타일 리스트 추가
     // 스타일 불러오기
