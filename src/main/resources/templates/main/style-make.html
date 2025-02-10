@@ -54,7 +54,9 @@
 
         <section class="style-store-section">
 <!--            <iframe name="store" src="http://211.188.55.158:8080/style-store"></iframe>-->
-            <iframe name="store" src="http://localhost:8080/style-store"></iframe>
+<!--            <iframe name="store" src="http://localhost:8080/style-store"></iframe>-->
+            <iframe name="store" th:src="@{|${iframe_url}|}"></iframe>
+
         </section>
     </section>
 </main>
