@@ -197,8 +197,8 @@ public class MainController {
         model.addAttribute("categories", categories);
         model.addAttribute("styleCategories", styleCategories);
 
-//        String iframe_url ="http://211.188.55.158:8080/style-store";
-        String iframe_url ="http://localhost:8080/style-store";
+        String iframe_url ="http://211.188.55.158:8080/style-store";
+//        String iframe_url ="http://localhost:8080/style-store";
         model.addAttribute("iframe_url", iframe_url);
 
         return "main/style-make";
