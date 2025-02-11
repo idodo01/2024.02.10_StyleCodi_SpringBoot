@@ -7,8 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
+    <title>STYLE CODI ♥♡♥♡ - My Page</title>
     <link rel="stylesheet" href="../../static/css/user/myLoveStyle.css">
+    <script src="../../static/js/user/myLoveStyle.js" defer></script>
 </head>
 <body>
 <main layout:fragment="main">
@@ -45,26 +47,34 @@
                     <section class="myPage-loves-section">
                         <section class="myPage-loves-item-section">
                             <div class="item" th:each="love: ${loves}" >
-                                <section class="image-container">
-                                    <div class="container">
-                                        <div class="box top empty" id="top">
-                                            <img class="top-img" th:src="@{|${love.product_top.image}|}" alt="상의">
-                                        </div>
-                                        <div class="box outer empty" id="outer">
-                                            <img class="outer-img" th:src="@{|${love.product_outer.image}|}" alt="겉옷">
-                                        </div>
-                                        <div class="box bottom empty" id="bottom">
-                                            <img class="bottom-img" th:src="@{|${love.product_bottom.image}|}" alt="하의">
-                                        </div>
-                                        <div class="box shoes empty" id="shoes">
-                                            <img class="shoes-img" th:src="@{|${love.product_shoes.image}|}" alt="신발">
-                                        </div>
-                                        <div class="box bag empty" id="bag">
-                                            <img class="bag-img" th:src="@{|${love.product_bag.image}|}" alt="가방">
-                                        </div>
+                                <form th:id="${love.style.no}">
+                                    <a th:href="@{|/styleProduct/${love.style.no}|}">
+                                        <section class="image-container">
+                                            <div class="container">
+                                                <div class="box top empty" id="top">
+                                                    <img class="top-img" th:src="@{|${love.product_top.image}|}" alt="상의">
+                                                </div>
+                                                <div class="box outer empty" id="outer">
+                                                    <img class="outer-img" th:src="@{|${love.product_outer.image}|}" alt="겉옷">
+                                                </div>
+                                                <div class="box bottom empty" id="bottom">
+                                                    <img class="bottom-img" th:src="@{|${love.product_bottom.image}|}" alt="하의">
+                                                </div>
+                                                <div class="box shoes empty" id="shoes">
+                                                    <img class="shoes-img" th:src="@{|${love.product_shoes.image}|}" alt="신발">
+                                                </div>
+                                                <div class="box bag empty" id="bag">
+                                                    <img class="bag-img" th:src="@{|${love.product_bag.image}|}" alt="가방">
+                                                </div>
+                                            </div>
+                                        </section>
+                                    </a>
+                                    <div class="user-like-container">
+                                        <button onclick="toggleIcon(this)">
+                                            <i th:classappend="${lovesMap[love.style.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>
+                                        </button>
                                     </div>
-                                </section>
-                                <a th:href="@{|/styleProduct/${love.style.no}|}">상세보기</a>
+                                </form>
                             </div>
                         </section>
 

@@ -1,58 +1,19 @@
-function changeParentImage(event) {
-    const category = event.target.dataset.category;
-    let part;
-
-    switch (category) {
-        case '2':
-            part = "bag";
-            break;
-        case '3':
-            part = "shoes";
-            break;
-        case '4':
-            part = "bottom";
-            break;
-        case '5':
-            part = "top";
-            break;
-        case '6':
-            part = "outer";
-            break;
-
-    }
-    const imgClassName = `${part}-img`; // 동적 클래스 이름
-
-    const parentImg = parent.document.querySelector(`.${imgClassName}`);
-
-    // 부모 페이지의 이미지를 변경
-    parentImg.src = event.target.getAttribute('src');
-
-    /*****************************************************************/
-
-    const bClassName = `${part}-productNo`; // 동적 클래스 이름
-
-    const parentB = parent.document.querySelector(`.${bClassName}`);
-
-    // 부모 문서인 style-make의 ${part}-productNo 클래스의 위치의 id에 삽입
-    parentB.id = event.target.getAttribute('alt');
-    // ProductNo.innerHTML += event.target.getAttribute('alt');
-    
-
-}
 
 
-
-// 찜 추가 & 해제
+// 찜 추가
 function toggleIcon(button) {
-
+    
     const productForm = button.closest('form'); // 현재 버튼이 속한 form 찾기
     const csrfToken = document.querySelector('meta[name=_csrf]').getAttribute('content');
-    
+
+
     // 하트 클릭시 아이콘 바뀜
     const icon = button.querySelector('i');
 
     if (icon.classList.contains('bi-heart')) { // 찜이 아닌 상태에서 찜 (빈하트 - > 풀하트)
-     
+        // icon.classList.remove('bi-heart');
+        // icon.classList.add('bi-heart-fill');
+
         // 찜 추가
         const requestBody = {
             no: productForm.id,
@@ -74,12 +35,17 @@ function toggleIcon(button) {
             else if (response.ok) {
                 // 요청 성공 시 페이지 리로드
                 window.location.reload();
-                
+
+                // if(confirm('상품이 찜목록에 담겼습니다. 찜목록으로 이동하시겠습니까?')){
+                //     location.href = '/style-loves';
+                // }
             }
 
         })
     } else { // 찜인 상태에서 찜 해제 (풀하트 - > 빈하트)
-       
+        // icon.classList.remove('bi-heart-fill');
+        // icon.classList.add('bi-heart');
+        
         // 찜 해제
         const requestBody = {
             no: productForm.id,
@@ -97,12 +63,21 @@ function toggleIcon(button) {
                 // 요청 성공 시 페이지 리로드
                 window.location.reload();
             }
-         
+            // switch (response.status){
+            //     case 200:
+            //         alert('삭제 완료!');
+            //         break;
+            //     case 404:
+            //         alert('해당 시리얼은 존재하지 않음!');
+            //         break;
+            //     default: // 아무것도 입력하지 않음
+            //         throw Error("응답 에러 발생");
+            // }
         })
 
     }
 
+   
 
-
-
+    
 }

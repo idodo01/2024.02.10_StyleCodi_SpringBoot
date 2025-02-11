@@ -36,36 +36,73 @@ function changeParentImage(event) {
     // 부모 문서인 style-make의 ${part}-productNo 클래스의 위치의 id에 삽입
     parentB.id = event.target.getAttribute('alt');
     // ProductNo.innerHTML += event.target.getAttribute('alt');
+    
+
+}
 
 
-    // const productNo = event.target.getAttribute('alt');
-    //
-    // const csrfToken = document.querySelector('meta[name=_csrf]').getAttribute('content');
 
-    // // 서버에 상품 번호 전달
-    // fetch('/style-click-list', {
-    //     method: 'POST',
-    //     headers: {
-    //         "X-CSRF-TOKEN": csrfToken,
-    //         'Content-Type': 'application/json'
-    //     },
-    //     body: JSON.stringify(
-    //         {productNo: productNo}
-    //     )
-    // })
-    //     .then((response) => {
-    //         if (response.ok) {
-    //             console.log('상품 번호 서버에 전달 완료');
-    //             const styleListIframe = parent.document.getElementById('style-list-iframe');
-    //             // style-list iframe을 새로고침
-    //             styleListIframe.contentWindow.location.reload();
-    //
-    //             // window.location.href = '/style-list';
-    //             // location.reload(); // 페이지 새로고침으로 타임리프 갱신
-    //         } else {
-    //             console.error('상품 번호 전달 실패');
-    //         }
-    //     })
-    //     .catch((error) => console.error('서버 통신 오류:', error));
+// 찜 추가 & 해제
+function toggleIcon(button) {
+
+    const productForm = button.closest('form'); // 현재 버튼이 속한 form 찾기
+    const csrfToken = document.querySelector('meta[name=_csrf]').getAttribute('content');
+    
+    // 하트 클릭시 아이콘 바뀜
+    const icon = button.querySelector('i');
+
+    if (icon.classList.contains('bi-heart')) { // 찜이 아닌 상태에서 찜 (빈하트 - > 풀하트)
+     
+        // 찜 추가
+        const requestBody = {
+            no: productForm.id,
+        }
+
+        // 찜 POST 요청 전송
+        fetch(`/loves-post`, {
+            method: "POST",
+            headers: {
+                "X-CSRF-TOKEN": csrfToken,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        }).then(response => {
+            // 로그인이 안된 유저가 클릭 시
+            if(response.status === 401){
+                alert('로그인을 먼저 해주세요');
+            }
+            else if (response.ok) {
+                // 요청 성공 시 페이지 리로드
+                window.location.reload();
+                
+            }
+
+        })
+    } else { // 찜인 상태에서 찜 해제 (풀하트 - > 빈하트)
+       
+        // 찜 해제
+        const requestBody = {
+            no: productForm.id,
+        }
+
+        fetch('/loves-delete', {
+            method: "DELETE",
+            headers: {
+                "X-CSRF-TOKEN": csrfToken,
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(requestBody)
+        }).then(response => {
+            if (response.ok) {
+                // 요청 성공 시 페이지 리로드
+                window.location.reload();
+            }
+         
+        })
+
+    }
+
+
+
 
 }

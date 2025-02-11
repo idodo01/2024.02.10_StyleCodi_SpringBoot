@@ -7,8 +7,10 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>My Page</title>
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
+    <title>STYLE CODI ♥♡♥♡ - My Page</title>
     <link rel="stylesheet" href="../../static/css/user/myLove.css">
+    <script src="../../static/js/user/myLove.js" defer></script>
 </head>
 <body>
 <main layout:fragment="main">
@@ -62,13 +64,22 @@
                         </ul>
 
                         <section class="myPage-loves-item-section">
+
                             <div class="item" th:each="love: ${loves}" >
-                                <img class="item-img" th:src="@{|${love.product.image}|}" src="" alt=""
-                                     th:data-category="${love.product.category}"
-                                     th:onclick="|changeParentImage(event)|">
-                                <b class="title" th:text="${love.product.title}">상품명</b>
-                                <b class="price" th:text="${love.product.price}">9,999원</b>
-                                <a th:href="@{|${love.product.link}|}" target="_blank">상세보기</a>
+                                <form th:id="${love.product.no}">
+                                    <a th:href="@{|${love.product.link}|}" target="_blank">
+                                        <img class="item-img" th:src="@{|${love.product.image}|}" src="" alt=""
+                                         th:data-category="${love.product.category}"
+                                         th:onclick="|changeParentImage(event)|">
+                                    </a>
+                                    <b class="title" th:text="${love.product.title}">상품명</b>
+                                    <b class="price" th:text="${love.product.price}">9,999원</b>
+                                    <div class="user-like-container">
+                                        <button onclick="toggleIcon(this)">
+                                            <i th:classappend="${lovesMap[love.product.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>
+                                        </button>
+                                    </div>
+                                </form>
                             </div>
                         </section>
 

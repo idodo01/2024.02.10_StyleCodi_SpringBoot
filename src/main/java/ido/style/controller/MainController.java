@@ -55,6 +55,12 @@ public class MainController {
             Model model
 
     ){
+        // 상위 header에 사용되는 카테고리
+        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
+        List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
+
 
         List<StylesProductDTO> styles = productService.get_styles_style_codi();
         model.addAttribute("styles", styles);
@@ -68,11 +74,7 @@ public class MainController {
                 ));
         model.addAttribute("lovesMap", lovesMap);
 
-        // 상위 header에 사용되는 카테고리
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-        List<CategoryDTO> categories = productService.get_categories();
-        model.addAttribute("styleCategories", styleCategories);
-        model.addAttribute("categories", categories);
+
 
         return "main/styleCategory";
     }
@@ -110,14 +112,17 @@ public class MainController {
             Model model
     ){
 
-        StylesProductDTO style = productService.get_style_style_codi(styleNo);
-        model.addAttribute("style", style);
-
         // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
+
+
+        StylesProductDTO style = productService.get_style_style_codi(styleNo);
+        model.addAttribute("style", style);
+
+
 
         return "main/styleProduct";
     }
@@ -132,26 +137,27 @@ public class MainController {
 
             Model model
     ){
+
+        // 카테고리
         model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
 
-        List<ProductNaverShopDTO> products = productService.get_naver_shop_products(categoryNo, sort);
-
+        // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
+        model.addAttribute("styleCategories", styleCategories);
+        model.addAttribute("categories", categories);
 
+        // 상품 및 찜
+        List<ProductNaverShopDTO> products = productService.get_naver_shop_products(categoryNo, sort);
         List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
+
         Map<Integer, Boolean> lovesMap = products.stream()
                 .collect(Collectors.toMap(
                         ProductNaverShopDTO::getNo,
                         product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
                 ));
 
-        System.out.println(products);
         model.addAttribute("products", products);
-
-        model.addAttribute("styleCategories", styleCategories);
-        model.addAttribute("categories", categories);
-
         model.addAttribute("lovesMap", lovesMap);
 
         return "main/category";
@@ -197,8 +203,8 @@ public class MainController {
         model.addAttribute("categories", categories);
         model.addAttribute("styleCategories", styleCategories);
 
-        String iframe_url ="http://211.188.55.158:8080/style-store";
-//        String iframe_url ="http://localhost:8080/style-store";
+//        String iframe_url ="http://211.188.55.158:8080/style-store";
+        String iframe_url ="http://localhost:8080/style-store";
         model.addAttribute("iframe_url", iframe_url);
 
         return "main/style-make";
@@ -256,25 +262,37 @@ public class MainController {
     public String get_style_store(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
+            @AuthenticationPrincipal UserDTO user,
             Model model
     ){
 
         model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
-
-        List<ProductNaverShopDTO> products = productService.get_naver_shop_products(categoryNo, sort);
-
-//        List<ProductDTO> products = productService.get_products(categoryNo, sort);
+        
+        // 편의 카테고리
         List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories();
-
-        System.out.println(products);
-        model.addAttribute("products", products);
         model.addAttribute("styleStoreCategories", styleStoreCategories);
+        
+        
+        // 상품 및 찜
+        List<ProductNaverShopDTO> products = productService.get_naver_shop_products(categoryNo, sort);
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
+
+        Map<Integer, Boolean> lovesMap = products.stream()
+                .collect(Collectors.toMap(
+                        ProductNaverShopDTO::getNo,
+                        product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
+                ));
+
+        model.addAttribute("products", products);
+
+        model.addAttribute("lovesMap", lovesMap);
+        
         return "main/style-store";
     }
 
     // 스타일 - style-make 안에 사용되는 IFRAME 2 (찜 페이지)
     @GetMapping("/style-loves")
-    public String get_user_love(
+    public String get_style_love(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
 
@@ -289,14 +307,23 @@ public class MainController {
 
         model.addAttribute("categoryNo", categoryNo); // 정렬 a태그에 사용
 
-        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort); // 찜 목록
         List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
-
-
-        System.out.println(loves);
-        model.addAttribute("loves", loves);
         model.addAttribute("styleStoreCategories", styleStoreCategories);
 
+        // 상품 및 찜
+        List<ProductNaverShopDTO> products = productService.get_naver_shop_products(categoryNo, sort);
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
+
+        Map<Integer, Boolean> lovesMap = products.stream()
+                .collect(Collectors.toMap(
+                        ProductNaverShopDTO::getNo,
+                        product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
+                ));
+
+        model.addAttribute("products", products);
+        model.addAttribute("loves", loves);
+
+        model.addAttribute("lovesMap", lovesMap);
 
         return "main/style-loves";
     }
@@ -304,7 +331,7 @@ public class MainController {
 
     // 스타일 - style-make 안에 사용되는 IFRAME 3 (내 옷장)
     @GetMapping("/style-clothes")
-    public String get_user_clothes(
+    public String get_style_clothes(
             @RequestParam(defaultValue = "1") Integer categoryNo,
             String sort,
 

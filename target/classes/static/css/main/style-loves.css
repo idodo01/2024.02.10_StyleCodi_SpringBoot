@@ -64,9 +64,8 @@
 
 }
 
-.style-loves-item-section > div > img{
+.style-loves-item-section .item-img {
     width: 100%;
-    height: 100%;
     transition-duration: 0.2s;
     object-fit: contain;
 }
@@ -80,6 +79,23 @@
     font-family: Medium;
     font-size: var(--font-size-xx-small);
 }
+
+/****************************************/
+.user-like-container > button{
+    border: unset;
+    background: unset;
+    cursor: pointer;
+    font-size: var(--font-size-normal);
+}
+.user-like-container .bi-heart-fill {
+    color: red;
+}
+
+
+
+
+
+
 
 
 

@@ -113,21 +113,33 @@ h1 {
 
 }
 
-.myPage-loves-item-section > div > img{
+.myPage-loves-item-section .item-img {
     width: 100%;
-    height: 100%;
     transition-duration: 0.2s;
     object-fit: contain;
 }
-.myPage-loves-item-section .title{
+.myPage-loves-item-section .title {
     text-decoration: none;
     font-family: Medium;
     font-size: var(--font-size-xx-small);
     margin-bottom: 8px;
 }
-.myPage-loves-item-section .price{
+.myPage-loves-item-section .price {
     font-family: Medium;
     font-size: var(--font-size-xx-small);
 }
+
+/****************************************/
+.user-like-container > button{
+    border: unset;
+    background: unset;
+    cursor: pointer;
+    font-size: var(--font-size-normal);
+}
+.user-like-container .bi-heart-fill {
+    color: red;
+}
+
+
 
 

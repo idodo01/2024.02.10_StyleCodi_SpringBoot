@@ -1,6 +1,7 @@
 package ido.style.controller;
 
 import ido.style.dto.*;
+import ido.style.searchApi.ProductNaverShopDTO;
 import ido.style.service.*;
 import jakarta.servlet.http.HttpSession;
 import org.apache.logging.log4j.LogManager;
@@ -14,7 +15,9 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.Map;
 import java.util.Objects;
+import java.util.stream.Collectors;
 
 @Controller
 @RequestMapping("/user")
@@ -78,24 +81,7 @@ public class UserController {
         // 가입 성공이면 login 화면으로, 실패라면 회원가입 화면으로.
         return joinResult ? "redirect:/user/login" : "user/join";
     }
-    /******************************************************************/
-    @GetMapping("/style-upload")
-    public String style_upload(
-            @AuthenticationPrincipal UserDTO user,
-            Authentication authentication,
-            Model model
-    ){
 
-        if(!(Objects.nonNull(authentication))){
-            return "redirect:/user/login";
-        }
-
-        List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
-        List<CategoryDTO> categories = productService.get_categories();
-        model.addAttribute("styleCategories", styleCategories);
-        model.addAttribute("categories", categories);
-        return "user/style-upload";
-    }
 
     /************************ 유저 마이페이지 ***************************/
 
@@ -179,15 +165,26 @@ public class UserController {
         List<StyleStoreCategoryDTO> styleStoreCategories = productService.get_style_store_categories(); // 편의 카테고리
         model.addAttribute("styleStoreCategories", styleStoreCategories);
 
-        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort); // 찜 목록
-        model.addAttribute("loves", loves);
-        System.out.println("loves object: " + loves);
-
         // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
+
+        // 상품 및 찜
+        List<ProductNaverShopDTO> products = productService.get_naver_shop_products(categoryNo, sort);
+        List<LovesDTO> loves = productService.get_loves_by_user(categoryNo, user, sort);
+
+        Map<Integer, Boolean> lovesMap = products.stream()
+                .collect(Collectors.toMap(
+                        ProductNaverShopDTO::getNo,
+                        product -> loves.stream().anyMatch(love -> love.getProduct().getNo().equals(product.getNo()))
+                ));
+
+        model.addAttribute("products", products);
+        model.addAttribute("loves", loves);
+
+        model.addAttribute("lovesMap", lovesMap);
 
         return "user/myLove";
     }
@@ -202,14 +199,29 @@ public class UserController {
             return "redirect:/user/login";
         }
 
-        List<LovesStyleDTO> loves = styleProductService.get_lovesStyle_by_user(user); // 찜 목록
-        model.addAttribute("loves", loves);
 
         // 상위 header에 사용되는 카테고리
         List<StyleCategoryDTO> styleCategories = styleProductService.get_categories();
         List<CategoryDTO> categories = productService.get_categories();
         model.addAttribute("styleCategories", styleCategories);
         model.addAttribute("categories", categories);
+
+        List<StylesProductDTO> styles = productService.get_styles_style_codi();
+        List<LovesStyleDTO> loves = styleProductService.get_lovesStyle_by_user(user);
+
+        Map<Integer, Boolean> lovesMap = styles.stream()
+                .collect(Collectors.toMap(
+                        StylesProductDTO::getNo,
+                        style -> loves.stream().anyMatch(love -> love.getStyle().getNo().equals(style.getNo()))
+                ));
+
+        model.addAttribute("styles", styles);
+        model.addAttribute("loves", loves);
+
+        model.addAttribute("lovesMap", lovesMap);
+
+
+
 
         return "user/myLoveStyle";
     }

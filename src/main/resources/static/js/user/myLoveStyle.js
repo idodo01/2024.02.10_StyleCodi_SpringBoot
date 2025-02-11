@@ -1,65 +1,25 @@
-function changeParentImage(event) {
-    const category = event.target.dataset.category;
-    let part;
-
-    switch (category) {
-        case '2':
-            part = "bag";
-            break;
-        case '3':
-            part = "shoes";
-            break;
-        case '4':
-            part = "bottom";
-            break;
-        case '5':
-            part = "top";
-            break;
-        case '6':
-            part = "outer";
-            break;
-
-    }
-    const imgClassName = `${part}-img`; // 동적 클래스 이름
-
-    const parentImg = parent.document.querySelector(`.${imgClassName}`);
-
-    // 부모 페이지의 이미지를 변경
-    parentImg.src = event.target.getAttribute('src');
-
-    /*****************************************************************/
-
-    const bClassName = `${part}-productNo`; // 동적 클래스 이름
-
-    const parentB = parent.document.querySelector(`.${bClassName}`);
-
-    // 부모 문서인 style-make의 ${part}-productNo 클래스의 위치의 id에 삽입
-    parentB.id = event.target.getAttribute('alt');
-    // ProductNo.innerHTML += event.target.getAttribute('alt');
-    
-
-}
 
 
-
-// 찜 추가 & 해제
+// 찜 추가
 function toggleIcon(button) {
 
     const productForm = button.closest('form'); // 현재 버튼이 속한 form 찾기
     const csrfToken = document.querySelector('meta[name=_csrf]').getAttribute('content');
-    
+
+
     // 하트 클릭시 아이콘 바뀜
     const icon = button.querySelector('i');
 
     if (icon.classList.contains('bi-heart')) { // 찜이 아닌 상태에서 찜 (빈하트 - > 풀하트)
-     
+
+
         // 찜 추가
         const requestBody = {
             no: productForm.id,
         }
 
         // 찜 POST 요청 전송
-        fetch(`/loves-post`, {
+        fetch(`/lovesStyle-post`, {
             method: "POST",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,
@@ -74,18 +34,19 @@ function toggleIcon(button) {
             else if (response.ok) {
                 // 요청 성공 시 페이지 리로드
                 window.location.reload();
-                
+
             }
 
         })
     } else { // 찜인 상태에서 찜 해제 (풀하트 - > 빈하트)
-       
+
+
         // 찜 해제
         const requestBody = {
             no: productForm.id,
         }
 
-        fetch('/loves-delete', {
+        fetch('/lovesStyle-delete', {
             method: "DELETE",
             headers: {
                 "X-CSRF-TOKEN": csrfToken,
@@ -97,7 +58,7 @@ function toggleIcon(button) {
                 // 요청 성공 시 페이지 리로드
                 window.location.reload();
             }
-         
+
         })
 
     }

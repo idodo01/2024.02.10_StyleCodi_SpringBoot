@@ -22,26 +22,27 @@
                 <section class="style-item-section">
                     <div class="item" th:each="style: ${styles}" >
                         <form th:id="${style.no}">
-                            <section class="image-container">
-                                <div class="container">
-                                    <div class="box top empty" id="top">
-                                        <img class="top-img" th:src="@{|${style.product_top.image}|}" alt="상의">
+                            <a th:href="@{|/styleProduct/${style.no}|}">
+                                <section class="image-container">
+                                    <div class="container">
+                                        <div class="box top empty" id="top">
+                                            <img class="top-img" th:src="@{|${style.product_top.image}|}" alt="상의">
+                                        </div>
+                                        <div class="box outer empty" id="outer">
+                                            <img class="outer-img" th:src="@{|${style.product_outer.image}|}" alt="겉옷">
+                                        </div>
+                                        <div class="box bottom empty" id="bottom">
+                                            <img class="bottom-img" th:src="@{|${style.product_bottom.image}|}" alt="하의">
+                                        </div>
+                                        <div class="box shoes empty" id="shoes">
+                                            <img class="shoes-img" th:src="@{|${style.product_shoes.image}|}" alt="신발">
+                                        </div>
+                                        <div class="box bag empty" id="bag">
+                                            <img class="bag-img" th:src="@{|${style.product_bag.image}|}" alt="가방">
+                                        </div>
                                     </div>
-                                    <div class="box outer empty" id="outer">
-                                        <img class="outer-img" th:src="@{|${style.product_outer.image}|}" alt="겉옷">
-                                    </div>
-                                    <div class="box bottom empty" id="bottom">
-                                        <img class="bottom-img" th:src="@{|${style.product_bottom.image}|}" alt="하의">
-                                    </div>
-                                    <div class="box shoes empty" id="shoes">
-                                        <img class="shoes-img" th:src="@{|${style.product_shoes.image}|}" alt="신발">
-                                    </div>
-                                    <div class="box bag empty" id="bag">
-                                        <img class="bag-img" th:src="@{|${style.product_bag.image}|}" alt="가방">
-                                    </div>
-                                </div>
-                            </section>
-                            <a th:href="@{|/styleProduct/${style.no}|}">상세보기</a>
+                                </section>
+                            </a>
                             <div class="user-like-container">
                                 <button onclick="toggleIcon(this)">
                                     <i th:classappend="${lovesMap[style.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>

@@ -134,14 +134,15 @@ h1 {
 
 /*****************************************************/
 
-button {
-    padding: 10px 20px;
-    background-color: lightpink;
-    color: white;
-    font-size: 16px;
-    font-weight: bold;
-    border: none;
-    border-radius: 5px;
+.user-like-container > button{
+    border: unset;
+    background: unset;
     cursor: pointer;
+    font-size: var(--font-size-normal);
 }
+.user-like-container .bi-heart-fill {
+    color: red;
+}
+
+
 
