@@ -46,13 +46,15 @@
     <section class="style-store-item-section">
         <div class="item" th:each="product: ${products}" >
             <form th:id="${product.no}">
+
+                <img class="item-img" th:src="@{|${product.image}|}" src="" th:alt="${product.no}"
+                     th:data-category="${product.category}"
+                     th:onclick="|changeParentImage(event)|">
+
                 <a th:href="@{|${product.link}|}" target="_blank">
-                    <img class="item-img" th:src="@{|${product.image}|}" src="" th:alt="${product.no}"
-                         th:data-category="${product.category}"
-                         th:onclick="|changeParentImage(event)|">
+                    <b class="title" th:text="${product.title}">상품명</b>
+                    <b class="price" th:text="${product.price}+'원'">9,999원</b>
                 </a>
-                <b class="title" th:text="${product.title}">상품명</b>
-                <b class="price" th:text="${product.price}+'원'">9,999원</b>
                 <div class="user-like-container">
                     <button onclick="toggleIcon(this)">
                         <i th:classappend="${lovesMap[product.no] ? 'bi bi-heart-fill' : 'bi bi-heart'}"></i>
