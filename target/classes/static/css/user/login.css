@@ -1,10 +1,16 @@
 @import "../public/public.css";
 
 .login-section {
-    width: 500px;
-    margin: 0 auto;
+    margin: 150px 0;
+    padding: 0 500px;
 }
-.login-section h1{
+
+.join-section label {
+    font-size: 14px;
+    color: #333;
+}
+
+.login-section > h1{
     text-align: center;
     margin: 40px 0;
     font-size: var(--font-size-xxx-large);
@@ -13,7 +19,7 @@
 
 .user-info-section > label{
     display: flex;
-    border: 1px solid var(--Dark-gray-textured-background---1-rgba);
+    border: 1px solid black;
     margin: 8px 0;
     align-items: center;
 }
@@ -36,7 +42,6 @@
 }
 .login-config-section label{
     margin-left: 20px;
-    color: var(--abstract-gray-background---1-rgba);
 }
 .login-config-section input{
     margin-right: 5px;
@@ -47,7 +52,6 @@
     text-align: center;
 }
 .link-section a{
-    color: var(--Dark-gray-textured-background---5-rgba);
     text-decoration: none;
     font-size: var(--font-size-x-small);
     &:hover{
@@ -57,7 +61,6 @@
 .link-section a:not(:last-child)::after{
     content: "|";
     margin: 0 10px;
-    color: var(--Dark-gray-textured-background---1-rgba);
 }
 #login-btn{
     width: 100%;

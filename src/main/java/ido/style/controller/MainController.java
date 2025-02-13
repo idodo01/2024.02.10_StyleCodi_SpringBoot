@@ -41,12 +41,6 @@ public class MainController {
         return "main/home"; // 홈페이지로 가라
     }
 
-//    // 로그인 필요 페이지
-//    @GetMapping("/loginPlz")
-//    public String loginPlz() {
-//       return "redirect:/user/login";
-//    }
-
 
  // 스타일 리스트 화면
     @GetMapping("/styleCategory")
@@ -202,7 +196,7 @@ public class MainController {
 
         model.addAttribute("categories", categories);
         model.addAttribute("styleCategories", styleCategories);
-
+//        String iframe_url = "http://stylecodi.duckdns.org:8080/style-store";
 //        String iframe_url ="http://211.188.55.158:8080/style-store";
         String iframe_url ="http://localhost:8080/style-store";
         model.addAttribute("iframe_url", iframe_url);

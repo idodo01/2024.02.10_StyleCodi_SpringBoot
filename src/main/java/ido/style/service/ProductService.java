@@ -15,15 +15,6 @@ public class ProductService {
     @Autowired
     private ProductMapper productMapper;
 
-    // 상품 불러오기
-    public List<ProductDTO> get_products(Integer categoryNo, String sort){
-        return productMapper.selectProducts(categoryNo, sort);
-    }
-
-    public ProductDTO get_product(Integer productNo){
-        return productMapper.selectProductByNo(productNo);
-    }
-
     public List<CategoryDTO> get_categories(){
         return productMapper.selectCategories();
     }

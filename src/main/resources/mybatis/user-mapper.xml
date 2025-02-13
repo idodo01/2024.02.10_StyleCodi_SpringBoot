@@ -13,22 +13,8 @@
         VALUES (#{id}, #{password}, #{tel}, #{email}, #{name}, NULL)
     </insert>
 
-    <insert id="insertStyleProduct">
-        INSERT INTO style_product VALUES (NULL, #{name}, #{detail}, DEFAULT, 1)
-    </insert>
-
-    <insert id="insertStyleProductImages">
-        <selectKey keyProperty="no" resultType="int" order="BEFORE">
-            SELECT LAST_INSERT_ID()
-        </selectKey>
-        INSERT INTO `style_product_image` VALUES
-        <foreach collection="images" item="image" separator=",">
-            (NULL, #{no}, #{image.fileName}, #{image.data})
-        </foreach>
-    </insert>
 
     <!--    내 옷 -->
-
     <insert id="insertClothes">
         INSERT INTO clothes VALUES (NULL, #{clothes.name}, #{clothes.detail}, DEFAULT, 2, #{user.id})
     </insert>

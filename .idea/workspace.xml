@@ -22,6 +22,10 @@
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
   </component>
+  <component name="KubernetesApiPersistence"><![CDATA[{}]]></component>
+  <component name="KubernetesApiProvider"><![CDATA[{
+  "isMigrated": true
+}]]></component>
   <component name="MavenImportPreferences">
     <option name="generalSettings">
       <MavenGeneralSettings>
@@ -177,7 +181,9 @@
       <workItem from="1739206406089" duration="254000" />
       <workItem from="1739240066213" duration="8121000" />
       <workItem from="1739252304979" duration="1415000" />
-      <workItem from="1739272870871" duration="2387000" />
+      <workItem from="1739272870871" duration="2988000" />
+      <workItem from="1739357580697" duration="4306000" />
+      <workItem from="1739410647621" duration="9847000" />
     </task>
     <servers />
   </component>

@@ -11,13 +11,6 @@ import lombok.*;
 public class ClothesImageDTO {
     private Integer no;
     private String fileName;
-//    @ToString.Exclude
+    //    @ToString.Exclude
     private byte[] data;
 }
-
-
-
-
-
-
-

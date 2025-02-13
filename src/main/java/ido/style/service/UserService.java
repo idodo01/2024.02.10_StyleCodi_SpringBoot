@@ -38,7 +38,6 @@ public class UserService {
     public void add_clothes(ClothesDTO clothes,UserDTO user){
         // 상품을 전달해서 DB에 상품의 정보를 추가하기!
         userMapper.insertClothes(clothes, user);
-
         userMapper.insertClothesImages(clothes);
 
     }

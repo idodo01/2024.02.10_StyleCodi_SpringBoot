@@ -1,9 +1,15 @@
 @import "../public/public.css";
 
 .join-section {
-    margin: 100px 0;
-    padding: 0 450px;
+    margin: 120px 0;
+    padding: 0 500px;
 }
+.join-section > h1 {
+    text-align: center;
+    margin: 40px 0;
+    font-size: var(--font-size-xxx-large);
+}
+
 .join-section .form-container {
     max-width: 400px;
     margin: 50px auto;

@@ -8,17 +8,15 @@
         <setting name="mapUnderscoreToCamelCase" value="true"/>
     </settings>
     <typeAliases>
+
         <typeAlias type="ido.style.dto.StylesProductDTO" alias="StylesProductDTO" />
         <typeAlias type="ido.style.dto.LovesStyleDTO" alias="LovesStyleDTO" />
-
-        <typeAlias type="ido.style.dto.ProductDTO" alias="ProductDTO" />
-        <typeAlias type="ido.style.dto.LovesDTO" alias="LovesDTO" />
-        <typeAlias type="ido.style.dto.CategoryDTO" alias="CategoryDTO" />
-        <typeAlias type="ido.style.dto.ProductImageDTO" alias="ProductImageDTO" />
+        <typeAlias type="ido.style.dto.StyleCategoryDTO" alias="StyleCategoryDTO" />
 
         <typeAlias type="ido.style.searchApi.ProductNaverShopDTO" alias="ProductNaverShopDTO" />
+        <typeAlias type="ido.style.dto.LovesDTO" alias="LovesDTO" />
+        <typeAlias type="ido.style.dto.CategoryDTO" alias="CategoryDTO" />
 
-        <typeAlias type="ido.style.dto.StyleCategoryDTO" alias="StyleCategoryDTO" />
 
         <typeAlias type="ido.style.dto.UserDTO" alias="UserDTO" />
         <typeAlias type="ido.style.dto.SnsInfoDTO" alias="SnsInfoDTO" />

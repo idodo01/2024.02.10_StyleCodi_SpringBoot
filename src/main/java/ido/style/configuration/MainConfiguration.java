@@ -1,7 +1,6 @@
 package ido.style.configuration;
 
 import ido.style.converter.ClothesMultipartConverter;
-import ido.style.converter.MultipartConverter;
 import ido.style.interceptor.CategoryInterceptor;
 import ido.style.interceptor.StyleCategoryInterceptor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +16,6 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 @EnableAspectJAutoProxy
 public class MainConfiguration implements WebMvcConfigurer {
     @Autowired private CategoryInterceptor categoryInterceptor;
-    @Autowired private StyleCategoryInterceptor styleCategoryInterceptor;
 
     @Override
     public void addInterceptors(InterceptorRegistry registry) {
@@ -27,7 +25,6 @@ public class MainConfiguration implements WebMvcConfigurer {
 
     @Override
     public void addFormatters(FormatterRegistry registry) {
-        registry.addConverter(new MultipartConverter());
         registry.addConverter(new ClothesMultipartConverter());
     }
 

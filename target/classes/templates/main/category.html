@@ -14,10 +14,11 @@
 </head>
 <body>
 <main layout:fragment="main">
-
     <section class="category-section">
-        <div class="product-sort">
+        <p>네이버 쇼핑에 등록된 상품입니다~ </p>
+        <p>클릭시, 해당 페이지로 이동합니다! </p>
 
+        <div class="product-sort">
             <ul>
 <!--                <li>-->
 <!--                    <a th:href="@{|/category?categoryNo=${categoryNo}&sort=recent|}" target="store">최신순</a>-->
@@ -34,6 +35,7 @@
             </ul>
 
         </div>
+
         <section>
             <div class="item" th:each="product: ${products}">
                 <form th:id="${product.no}">
