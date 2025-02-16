@@ -108,8 +108,7 @@
 /***************************************************/
 .recommend-item-section{
     margin-top: 100px;
-    padding: 50px var(--main-padding);
-    background-color: var(--Spring-WT-2-rgba);
+    padding: 50px 15px;
 }
 .recommend-item-section h2{
     font-family: Bold;
@@ -147,13 +146,11 @@
 }
 .recommend-item-section .title{
     text-decoration: none;
-    color: var(--Dark-gray-textured-background---5-rgba);
     font-family: Medium;
     font-weight: bold;
     font-size: var(--font-size-x-small);
 }
 .recommend-item-section .price{
-    color: var(--Pasteles-5-rgba);
     font-family: Medium;
     font-size: var(--font-size-x-small);
 }

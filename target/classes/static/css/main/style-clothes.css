@@ -32,7 +32,6 @@
 
     justify-content: space-between;
     font-size: var(--font-size-x-small);
-    color: var(--Dark-gray-textured-background---4-rgba);
 
     width: 800px;
 
@@ -48,10 +47,7 @@
     content: "|";
     margin: 0 10px;
 }
-.style-clothes-section a{
-    text-decoration: none;
-    color: var(--Dark-gray-textured-background---4-rgba);
-}
+
 /*****************************************************/
 .style-clothes-item-section {
     margin: 20px auto;
@@ -74,13 +70,11 @@
 }
 .style-clothes-item-section .title{
     text-decoration: none;
-    color: var(--Dark-gray-textured-background---5-rgba);
     font-family: Medium;
     font-size: var(--font-size-xx-small);
     margin-bottom: 8px;
 }
 .style-clothes-item-section .price{
-    color: var(--Pasteles-5-rgba);
     font-family: Medium;
     font-size: var(--font-size-xx-small);
 }

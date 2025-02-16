@@ -35,6 +35,9 @@ function toggleIcon(button) {
                 // 요청 성공 시 페이지 리로드
                 window.location.reload();
 
+                if(confirm('스타일이 찜목록에 담겼습니다. 찜목록으로 이동하시겠습니까?')){
+                    location.href = '/user/myLoveStyle';
+                }
             }
 
         })

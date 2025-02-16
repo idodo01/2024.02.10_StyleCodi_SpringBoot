@@ -8,6 +8,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>STYLE CODI ♥♡♥♡ - My Page</title>
+    <meta th:name="${_csrf.parameterName}" th:content="${_csrf.token}">
     <link rel="stylesheet" href="../../static/css/user/myStyle-detail.css">
     <script src="../../static/js/user/myStyle-detail.js" defer></script>
 
@@ -47,19 +48,19 @@
                     <section class="style-body-section">
                         <section class="style-map-section">
                             <div class="container">
-                                <div class="box top empty" id="top">
+                                <div class="box top empty" th:id="${style.product_top.no}">
                                     <img class="top-img" th:src="@{|${style.product_top.image}|}" alt="상의">
                                 </div>
-                                <div class="box outer empty" id="outer">
+                                <div class="box outer empty" th:id="${style.product_outer.no}">
                                     <img class="outer-img" th:src="@{|${style.product_outer.image}|}" alt="겉옷">
                                 </div>
-                                <div class="box bottom empty" id="bottom">
+                                <div class="box bottom empty" th:id="${style.product_bottom.no}">
                                     <img class="bottom-img" th:src="@{|${style.product_bottom.image}|}" alt="하의">
                                 </div>
-                                <div class="box shoes empty" id="shoes">
+                                <div class="box shoes empty" th:id="${style.product_shoes.no}">
                                     <img class="shoes-img" th:src="@{|${style.product_shoes.image}|}" alt="신발">
                                 </div>
-                                <div class="box bag empty" id="bag">
+                                <div class="box bag empty" th:id="${style.product_bag.no}">
                                     <img class="bag-img" th:src="@{|${style.product_bag.image}|}" alt="가방">
                                 </div>
                             </div>
@@ -107,6 +108,7 @@
                             </div>
                         </section>
                     </section>
+                    <button class="upload-btn" onclick="uploadList()">업로드하기</button>
                 </section>
             </div>
         </div>

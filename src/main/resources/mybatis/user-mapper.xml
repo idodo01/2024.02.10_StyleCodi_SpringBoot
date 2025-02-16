@@ -16,7 +16,7 @@
 
     <!--    내 옷 -->
     <insert id="insertClothes">
-        INSERT INTO clothes VALUES (NULL, #{clothes.name}, #{clothes.detail}, DEFAULT, 2, #{user.id})
+        INSERT INTO clothes VALUES (NULL, #{clothes.name}, #{clothes.detail}, DEFAULT, #{clothes.category}, #{user.id})
     </insert>
 
     <insert id="insertClothesImages">
@@ -34,10 +34,10 @@
         <id property="no" column="product_no" />
         <result property="name" column="product_name" />
 
-        <association property="category" javaType="StyleCategoryDTO" autoMapping="true">
-            <id property="no" column="category_no" />
-            <result property="name" column="category_name" />
-        </association>
+<!--        <association property="category" javaType="StyleStoreCategoryDTO" autoMapping="true">-->
+<!--            <id property="no" column="category_no" />-->
+<!--            <result property="name" column="category_name" />-->
+<!--        </association>-->
 
         <collection property="images" ofType="ClothesImageDTO" javaType="list">
             <id property="no" column="product_image_no"/>
@@ -51,29 +51,16 @@
         C.detail,
         C.uploaded_at,
         C.user_id,
-        CT.no AS category_no,
-        CT.name AS category_name,
+
         CI.no AS product_image_no
 
-        FROM ((clothes C
+        FROM clothes C
         JOIN clothes_image CI
-        ON C.no = CI.product_no)
+        ON C.no = CI.product_no
 
-        JOIN category CT
-        ON C.category = CT.no
-        <if test="categoryNo != 1">
-            AND C.category IN (WITH RECURSIVE `category_cte` AS
-            (
-            SELECT * FROM `category` WHERE `no` = #{categoryNo}
-            UNION
-            SELECT child.* FROM `category_cte` parent
-            INNER JOIN `category` child
-            ON parent.no = child.parent
-            ) SELECT `no` FROM `category_cte`)
-        </if>
-        )
+        WHERE `user_id` = #{user.id}
+        AND (#{categoryNo} = 1 OR category = #{categoryNo})
 
-        WHERE C.user_id = #{user.id}
 
         <choose>
             <when test="sort == 'name'">

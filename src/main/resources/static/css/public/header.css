@@ -17,10 +17,7 @@
     /*    background-color: white;*/
     /*}*/
 }
-#main-header a{
-    text-decoration: none;
-    color: black;
-}
+
 /***********************************************/
 .main-menu-ul{
     display: flex;

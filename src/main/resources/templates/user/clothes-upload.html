@@ -30,9 +30,21 @@
                     <b>상품명</b>
                     <label><input type="text" name="name" placeholder="상품명을 입력하세요"></label>
                 </section>
+
+                <section class="category-check">
+                    <b>카테고리</b>
+                    <select name="category">
+                        <option value="2">가방</option>
+                        <option value="3">신발</option>
+                        <option value="4">하의</option>
+                        <option value="5">상의</option>
+                        <option value="6">아우터</option>
+                    </select>
+                </section>
+
                 <section class="item-images-section">
-                    <b>이미지 첨부 <button type="button" id="image-add-button"><i class="bi bi-plus"></i></button></b>
-                    <ol></ol>
+                    <b>이미지 첨부</b>
+                    <input type="file" name="images[0]">
                 </section>
 
                 <section>

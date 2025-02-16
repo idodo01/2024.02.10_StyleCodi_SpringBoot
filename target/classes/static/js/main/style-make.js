@@ -57,7 +57,9 @@ function saveList() {
             alert('로그인을 먼저 해주세요');
         }
         else if (response.ok) {
-            console.log('요청 성공');
+            if (confirm('저장 완료! 확인하시겠습니까?')) {
+                window.location.href = '/user/myStyle'; // 페이지 이동
+            }
         }
     })
         .catch((error) => console.error('서버 통신 오류:', error));
@@ -94,7 +96,9 @@ function uploadList() {
             alert('로그인을 먼저 해주세요');
         }
         else if (response.ok) {
-            console.log('요청 성공');
+            if (confirm('업로드 완료! 확인하시겠습니까?')) {
+                window.location.href = '/styleCategory'; // 페이지 이동
+            }
         }
     })
         .catch((error) => console.error('서버 통신 오류:', error));

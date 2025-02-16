@@ -15,7 +15,7 @@ public class ClothesDTO {
     private String name;
     private String detail;
     private LocalDateTime uploadedAt;
-    private StyleCategoryDTO category;
+    private Integer category;
     private List<ClothesImageDTO> images;
 
     private UserDTO user;

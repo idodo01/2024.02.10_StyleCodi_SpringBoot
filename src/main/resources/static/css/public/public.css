@@ -94,3 +94,9 @@
         -moz-appearance: textfield;
     }
 }
+
+a {
+     text-decoration: none;
+     color: black;
+ }
+
