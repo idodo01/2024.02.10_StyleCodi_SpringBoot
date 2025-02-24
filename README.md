@@ -1,3 +1,18 @@
+# 2024.10.21_MatchingPairsCardGame_JS
+
+## 1. 제작 기간: ~ 2024.2.11
+## 2. 간단설명
+코디 커뮤니티
+
+자신만의 스타일 코디 맵을 만들어 내고
+그것을 공유할 수 있다
+
+스타일 코디 맵에 사용되는 아이템은
+1) 유저 옷장
+2) 네이버 쇼핑
+3) 네이버 쇼핑 유저 찜
+
+## 3. 이미지로 살펴보기
 <img width="80%" src="https://github.com/user-attachments/assets/3e7ab3c9-417f-48df-affd-ac94610c3751"/>
 <img width="80%" src="https://github.com/user-attachments/assets/15c597e2-8016-4ab3-b0f4-5d0ac9449b8e"/>
 <img width="80%" src="https://github.com/user-attachments/assets/32a50eac-1594-4ad2-b997-ae67fa09663b"/>
