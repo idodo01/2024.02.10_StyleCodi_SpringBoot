@@ -1,4 +1,4 @@
-# 2024.10.21_MatchingPairsCardGame_JS
+# 2024.02.10_StyleCodi_SpringBoot
 
 ## 1. 제작 기간: 2024.12.22 ~ 2025.2.11
 ## 2. 간단설명
