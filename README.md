@@ -20,10 +20,10 @@ http://211.188.55.158:8080/
 ![Image](https://github.com/user-attachments/assets/4caa3661-0b74-4986-aa2b-8973e44cf3b4)
 ![Image](https://github.com/user-attachments/assets/275553a8-cd81-48ea-8d86-02e317d14cce)
 ![Image](https://github.com/user-attachments/assets/1c55ebbd-13b6-4a03-bf32-2480d4d83a29)
+![Image](https://github.com/user-attachments/assets/cc563da9-d2f3-44d8-9e86-ec7075ad83f3)
 ![Image](https://github.com/user-attachments/assets/c4f18b56-fbf6-482f-ad5e-63fb22a3c8c3)
 ![Image](https://github.com/user-attachments/assets/e5638e24-483e-4ade-bb79-cb599f21a6db)
 ![Image](https://github.com/user-attachments/assets/5ace26ca-059b-4a5e-9ab5-1ae463738755)
-![Image](https://github.com/user-attachments/assets/cc563da9-d2f3-44d8-9e86-ec7075ad83f3)
 ![Image](https://github.com/user-attachments/assets/80a55d15-5846-476b-a6da-d7bd21966271)
 
 ## 4. 이후 업데이트
