@@ -1,7 +1,7 @@
 function changeParentImage(event) {
 
-
     const category = event.target.dataset.category.toString();
+    // console.log(category+"출력");
 
     let part;
 

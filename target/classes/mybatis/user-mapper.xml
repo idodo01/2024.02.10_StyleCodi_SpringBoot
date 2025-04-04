@@ -50,6 +50,7 @@
         C.name AS product_name,
         C.detail,
         C.uploaded_at,
+        C.category,
         C.user_id,
 
         CI.no AS product_image_no
